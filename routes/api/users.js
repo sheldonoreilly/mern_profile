@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
+const gravatar = require('gravatar');
 
 // @route GET api/users/users
 // @desc tests users route
@@ -15,7 +16,37 @@ router.post('/register', (req, res) => {
   // check with Mongo if email - hence user exists
   User.findOne({ email: req.body.email }) //force break
     .then(user => {
-      return res.status(400).json({ email: 'Email already exists' });
+      if (user) {
+        //return a 400 - user already registered
+        return res.status(400).json({ email: 'Email already exists' });
+      } else {
+        const avatar = gravatar.url(req.body.email, {
+          s: '200', //size
+          r: 'PG', //rating
+          d: 'mm' //default
+        });
+        //create a new user resource
+        //construct a mongoose model instance
+        const user = new User({
+          name: req.body.name,
+          password: req.body.password,
+          email: req.body.email
+        });
+
+        //we need to encrypt the password
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            //assign the hashed password
+            user.password = hash;
+            //save the resource
+            user
+              .save()
+              .then(user => res.json(user))
+              .catch(err => console.log(err));
+          });
+        });
+      }
     });
 });
 
