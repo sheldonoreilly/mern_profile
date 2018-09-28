@@ -1,0 +1,33 @@
+{
+  "name": "mern_profile",
+  "version": "1.0.0",
+  "description": "A personal profile site made with React/Redux, Node/Express, Mongo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "React",
+    "Redux",
+    "Node",
+    "Express",
+    "Mongo",
+    "JWT",
+    "Bootstrap"
+  ],
+  "author": "Sheldon O'Reilly",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.18",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
