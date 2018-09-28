@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
@@ -13,6 +14,10 @@ mongoose
   .connect(dbKey)
   .then(() => console.log('DB Connection successful'))
   .catch(err => console.log(err));
+
+//middleware for form posts
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use('/api/users', users);
 app.use('/api/posts', posts);
