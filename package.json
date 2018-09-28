@@ -2,9 +2,11 @@
   "name": "mern_profile",
   "version": "1.0.0",
   "description": "A personal profile site made with React/Redux, Node/Express, Mongo",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "node server.js",
+    "server": "nodemon server.js"
+
   },
   "keywords": [
     "React",
