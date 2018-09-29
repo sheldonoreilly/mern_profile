@@ -5,6 +5,7 @@ import './App.css';
 
 //components
 import Navbar from './components/layout/Navbar';
+import Center from './components/layout/Center';
 import Footer from './components/layout/Footer';
 
 const theme = createMuiTheme({
@@ -32,6 +33,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <Navbar />
+          <Center />
           <Footer />
         </div>
       </MuiThemeProvider>

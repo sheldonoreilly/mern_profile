@@ -25,11 +25,11 @@ const styles = theme => ({
 const Footer = props => {
   const { classes } = props;
   return (
-    <Paper elevation={5}>
-      <Typography className={classes.layout} variant="title" color="inherit">
-        Footer
-      </Typography>
-    </Paper>
+    // <Paper elevation={5}>
+    <Typography className={classes.layout} variant="title" color="inherit">
+      Footer
+    </Typography>
+    // </Paper>
   );
 };
 
