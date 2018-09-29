@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ProfileSchema = new Schema({
   // associate the user with the profile
   user: {
-    type: ObjectId,
+    type: Schema.ObjectId,
     ref: 'users'
   },
   handle: {
@@ -47,7 +47,7 @@ const ProfileSchema = new Schema({
         required: true
       },
       company: {
-        type: string,
+        type: String,
         required: true
       },
       location: {
