@@ -18,12 +18,10 @@ const styles = theme => ({
   menuButton: {
     marginLeft: -12,
     marginRight: 20
-  },
-  backgroundColor: theme.palette.grey[200]
+  }
 });
 
 function Navbar(props) {
-  console.log('classes :', props.classes);
   const { classes } = props;
   return (
     <div className={classes.root}>
