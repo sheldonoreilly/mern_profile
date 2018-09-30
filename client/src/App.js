@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
-
-// import './App.css';
 
 //components
 import Navbar from './components/layout/Navbar';
 import Center from './components/layout/Center';
 import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
-import Login from './components/auth/Login';
+import SignIn from './components/auth/SignIn';
 
 // #8e0038
 // #c34262 - light
@@ -65,7 +62,7 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Center} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/signIn" component={SignIn} />
             <Footer />
           </MuiThemeProvider>
         </div>

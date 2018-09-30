@@ -40,7 +40,7 @@ function Navbar(props) {
           <Button color="inherit" component={Link} to="/browse">
             Browse
           </Button>
-          <Button color="inherit" component={Link} to="/login">
+          <Button color="inherit" component={Link} to="/signin">
             Login
           </Button>
           <Button color="inherit" component={Link} to="register">

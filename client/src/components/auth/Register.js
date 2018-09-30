@@ -6,12 +6,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import withStyles from '@material-ui/core/styles/withStyles';
+import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 
 const styles = theme => ({
   layout: {
@@ -30,7 +30,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px ${theme
       .spacing.unit * 3}px`
   },
   avatar: {
@@ -42,7 +42,8 @@ const styles = theme => ({
     marginTop: theme.spacing.unit
   },
   submit: {
-    marginTop: theme.spacing.unit * 3
+    marginTop: theme.spacing.unit * 3,
+    backgroundColor: theme.palette.secondary.main
   }
 });
 
@@ -51,10 +52,19 @@ class Register extends Component {
     name: '',
     email: '',
     password: '',
-    password_repeat: ''
+    password_repeat: '',
+    usernameInvalid: false,
+    usernameError: '',
+    emailInvalid: false,
+    emailError: '',
+    passwordInvalid: false,
+    passwordError: '',
+    password_repeatInvalid: false,
+    password_repeatError: ''
   };
 
   handleChange = name => ({ target: { value } }) => {
+    console.log('handleChange = name => ({ target: { value } }) => {');
     console.log('value :', value);
     console.log('name :', name);
     this.setState({
@@ -66,6 +76,31 @@ class Register extends Component {
     e.preventDefault();
     console.log('Form Submit');
     console.log('this.state :', this.state);
+
+    axios
+      .post('/api/users/register', this.state)
+      .then(res => {
+        console.log('res :', res);
+      })
+      .catch(err => {
+        console.log('err.response.data :', err.response.data);
+        this.setState({
+          //username
+          usernameInvalid: err.response.data.name ? true : false,
+          usernameError: err.response.data.name,
+          //email
+          emailInvalid: err.response.data.email ? true : false,
+          emailError: err.response.data.email,
+          //password
+          passwordInvalid: err.response.data.password ? true : false,
+          passwordError: err.response.data.password,
+          //password repeat
+          password_repeatInvalid: err.response.data.password_repeat
+            ? true
+            : false,
+          password_repeatError: err.response.data.password_repeat
+        });
+      });
   };
 
   render() {
@@ -79,49 +114,51 @@ class Register extends Component {
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Avatar className={classes.avatar}>
-              <LockIcon />
+              <AssignmentIcon />
             </Avatar>
             <Typography variant="headline">Sign Up!</Typography>
             <form className={classes.form}>
               <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="name">Name</InputLabel>
-                <Input
+                <TextField
                   onChange={this.handleChange('name')}
-                  id="name"
                   name="name"
+                  label="Name"
                   value={name}
-                  autoComplete="name"
                   autoFocus
+                  autoComplete="name"
+                  error={this.state.usernameInvalid}
+                  helperText={this.state.usernameError}
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
+                <TextField
                   onChange={this.handleChange('email')}
-                  id="email"
                   name="email"
+                  label="Email"
                   value={email}
                   autoComplete="email"
+                  error={this.state.emailInvalid}
+                  helperText={this.state.emailError}
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
+                <TextField
                   onChange={this.handleChange('password')}
                   name="password"
-                  type="password"
-                  id="password"
+                  label="Password"
                   value={password}
+                  error={this.state.passwordInvalid}
+                  helperText={this.state.passwordError}
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Confirm Password</InputLabel>
-                <Input
+                <TextField
                   onChange={this.handleChange('password_repeat')}
                   name="password_repeat"
-                  type="password"
-                  id="password_repeat"
+                  label="Confirm Password"
                   value={password_repeat}
+                  error={this.state.password_repeatInvalid}
+                  helperText={this.state.password_repeatError}
                 />
               </FormControl>
               <FormControlLabel
