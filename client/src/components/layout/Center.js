@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Paper from '@material-ui/core/Paper';
-// import Image from '../img/main.jpg'; // Import using relative path
 
 const styles = {
   paperContainer: {
@@ -15,6 +14,10 @@ const styles = {
 
 export default class Center extends React.Component {
   render() {
-    return <Paper style={styles.paperContainer} />;
+    return (
+      <Fragment>
+        <Paper style={styles.paperContainer} />
+      </Fragment>
+    );
   }
 }
