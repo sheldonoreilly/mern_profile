@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import './App.css';
-// import grey from '@material-ui/core/colors/grey';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+// import './App.css';
 
 //components
 import Navbar from './components/layout/Navbar';
 import Center from './components/layout/Center';
 import Footer from './components/layout/Footer';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: '#fff',
+      main: '#494b49',
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
-      contrastText: '#000'
+      contrastText: '#a2a2a2'
     },
     secondary: {
       main: '#11cb5f',
@@ -30,15 +33,25 @@ class App extends Component {
   render() {
     console.log(theme);
     return (
-      <MuiThemeProvider theme={theme}>
+      <Router>
         <div className="App">
-          <Navbar />
-          <Center />
-          <Footer />
+          <MuiThemeProvider theme={theme}>
+            <Navbar />
+            <Route exact path="/" component={Center} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Footer />
+          </MuiThemeProvider>
         </div>
-      </MuiThemeProvider>
+      </Router>
     );
   }
+}
+
+{
+  /* <MuiThemeProvider theme={theme}>
+            <Route exact path="/" Component={Center} />
+            </MuiThemeProvider> */
 }
 
 export default App;
