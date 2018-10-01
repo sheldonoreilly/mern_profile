@@ -11,7 +11,10 @@ import Typography from '@material-ui/core/Typography';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+
+//react/redux
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 
 const styles = theme => ({
   layout: {
@@ -63,10 +66,28 @@ class Register extends Component {
     password_repeatError: ''
   };
 
+  componentWillReceiveProps(nextProps) {
+    //set errors to component state to reflect in UI
+    if (nextProps.errors) {
+      const { errors } = nextProps;
+      this.setState({
+        //username
+        usernameInvalid: errors.name ? true : false,
+        usernameError: errors.name,
+        //email
+        emailInvalid: errors.email ? true : false,
+        emailError: errors.email,
+        //password
+        passwordInvalid: errors.password ? true : false,
+        passwordError: errors.password,
+        //password repeat
+        password_repeatInvalid: errors.password_repeat ? true : false,
+        password_repeatError: errors.password_repeat
+      });
+    }
+  }
+
   handleChange = name => ({ target: { value } }) => {
-    console.log('handleChange = name => ({ target: { value } }) => {');
-    console.log('value :', value);
-    console.log('name :', name);
     this.setState({
       [name]: value
     });
@@ -74,38 +95,24 @@ class Register extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log('Form Submit');
-    console.log('this.state :', this.state);
 
-    axios
-      .post('/api/users/register', this.state)
-      .then(res => {
-        console.log('res :', res);
-      })
-      .catch(err => {
-        console.log('err.response.data :', err.response.data);
-        this.setState({
-          //username
-          usernameInvalid: err.response.data.name ? true : false,
-          usernameError: err.response.data.name,
-          //email
-          emailInvalid: err.response.data.email ? true : false,
-          emailError: err.response.data.email,
-          //password
-          passwordInvalid: err.response.data.password ? true : false,
-          passwordError: err.response.data.password,
-          //password repeat
-          password_repeatInvalid: err.response.data.password_repeat
-            ? true
-            : false,
-          password_repeatError: err.response.data.password_repeat
-        });
-      });
+    //destructure relevent props
+    const { name, email, password, password_repeat } = this.state;
+
+    const newUser = {
+      name,
+      email,
+      password,
+      password_repeat
+    };
+
+    //'connect' gets us access to the action
+    this.props.registerUser(newUser);
   };
 
   render() {
-    const { classes } = this.props;
     //destructure
+    const { classes } = this.props;
     const { name, email, password, password_repeat } = this.state;
 
     return (
@@ -118,45 +125,49 @@ class Register extends Component {
             </Avatar>
             <Typography variant="headline">Sign Up!</Typography>
             <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
+              <FormControl margin="normal" fullWidth>
                 <TextField
                   onChange={this.handleChange('name')}
                   name="name"
                   label="Name"
                   value={name}
+                  required
                   autoFocus
                   autoComplete="name"
                   error={this.state.usernameInvalid}
                   helperText={this.state.usernameError}
                 />
               </FormControl>
-              <FormControl margin="normal" required fullWidth>
+              <FormControl margin="normal" fullWidth>
                 <TextField
                   onChange={this.handleChange('email')}
                   name="email"
                   label="Email"
                   value={email}
+                  required
                   autoComplete="email"
                   error={this.state.emailInvalid}
                   helperText={this.state.emailError}
                 />
               </FormControl>
-              <FormControl margin="normal" required fullWidth>
+              <FormControl margin="normal" fullWidth>
                 <TextField
                   onChange={this.handleChange('password')}
                   name="password"
                   label="Password"
                   value={password}
+                  required
                   error={this.state.passwordInvalid}
                   helperText={this.state.passwordError}
                 />
               </FormControl>
-              <FormControl margin="normal" required fullWidth>
+              <FormControl margin="normal" fullWidth>
                 <TextField
                   onChange={this.handleChange('password_repeat')}
                   name="password_repeat"
                   label="Confirm Password"
                   value={password_repeat}
+                  required
                   error={this.state.password_repeatInvalid}
                   helperText={this.state.password_repeatError}
                 />
@@ -183,7 +194,20 @@ class Register extends Component {
 }
 
 Register.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Register);
+//redux - connect the state to the props
+//this is after the state has been through the reducers
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+//make this a react-redux container
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withStyles(styles)(Register));

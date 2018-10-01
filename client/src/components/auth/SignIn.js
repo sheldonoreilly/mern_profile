@@ -12,10 +12,6 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import FormHelperText from '@material-ui/core/FormHelperText';
-
-//helper
-import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   layout: {
@@ -57,8 +53,6 @@ class SignIn extends Component {
   };
 
   handleChange = name => ({ target: { value } }) => {
-    console.log('value :', value);
-    console.log('name :', name);
     this.setState({
       [name]: value
     });
@@ -67,8 +61,8 @@ class SignIn extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     console.log('Form Submit');
-    console.log('this.state :', this.state);
   };
+
   render() {
     const { email, password } = this.state;
     const { classes } = this.props;
