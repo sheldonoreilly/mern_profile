@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -107,7 +108,7 @@ class Register extends Component {
     };
 
     //'connect' gets us access to the action
-    this.props.registerUser(newUser);
+    this.props.registerUser(newUser, this.props.history);
   };
 
   render() {
@@ -155,6 +156,7 @@ class Register extends Component {
                   onChange={this.handleChange('password')}
                   name="password"
                   label="Password"
+                  type="password"
                   value={password}
                   required
                   error={this.state.passwordInvalid}
@@ -166,6 +168,7 @@ class Register extends Component {
                   onChange={this.handleChange('password_repeat')}
                   name="password_repeat"
                   label="Confirm Password"
+                  type="password"
                   value={password_repeat}
                   required
                   error={this.state.password_repeatInvalid}
@@ -210,4 +213,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser }
-)(withStyles(styles)(Register));
+)(withStyles(styles)(withRouter(Register)));
