@@ -20,7 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
-//registerUser takes in userData -> and also takes in the dispatch functio
+//registerUser takes in userData -> and also takes in the dispatch function
 //which it will call
 export const logIn = userData => dispatch => {
   axios

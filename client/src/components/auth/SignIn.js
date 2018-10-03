@@ -13,6 +13,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+//redux
+import { connect } from 'react-redux';
+import LogInUser from '../../actions/authActions';
+
 const styles = theme => ({
   layout: {
     width: 'auto',
@@ -103,7 +107,6 @@ class SignIn extends Component {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-
               <Button
                 onClick={this.handleFormSubmit}
                 type="submit"
@@ -122,7 +125,11 @@ class SignIn extends Component {
 }
 
 SignIn.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SignIn);
+export default connect(
+  null,
+  { SignIn }
+)(withStyles(styles)(SignIn));

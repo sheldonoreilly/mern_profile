@@ -13,23 +13,30 @@ import Center from './components/layout/Center';
 import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import SignIn from './components/auth/SignIn';
+import Dashboard from './components/dashboard/Dashboard';
 
 //material-ui
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#8e0038'
-    },
-    secondary: {
-      light: green[300],
-      main: green[500],
-      dark: green[700]
-    }
-  }
+  // palette: {
+  //   primary: {
+  //     main: '#282c34',
+  //     contrastText: '#eae6d2'
+  //   },
+  //   secondary: {
+  //     light: green[300],
+  //     main: green[500],
+  //     dark: green[700]
+  //   },
+  //   background: {
+  //     paper: '#282c34', //the background
+  //     default: '#282c34' // everything else (maybe plain grid?)
+  //   }
+  // }
 });
 
 class App extends Component {
   render() {
+    console.log('theme :', theme);
     return (
       <Provider store={store}>
         <Router>
@@ -38,7 +45,9 @@ class App extends Component {
               <Navbar />
               <Route exact path="/" component={Center} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/signIn" component={SignIn} />
+              {/* <Route exact path="/signIn" component={SignIn} /> */}
+              <Route exact path="/signIn" component={Dashboard} />
+
               <Footer />
             </MuiThemeProvider>
           </div>
