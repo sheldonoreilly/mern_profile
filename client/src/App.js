@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 //jwt
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
@@ -10,6 +11,9 @@ import { logUserOut } from './actions/authActions';
 //redux/react-redux
 import { Provider } from 'react-redux';
 import store from './store';
+
+//private Routes
+import PrivateRoute from './components/common/PrivateRoute';
 //components
 import Navbar from './components/layout/Navbar';
 import Center from './components/layout/Center';
@@ -69,7 +73,8 @@ class App extends Component {
               <Route exact path="/" component={Center} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/signIn" component={SignIn} />
-              <Route exact path="/dashboard" component={Dashboard} /> */}
+              {/* //sor Private route to  */}
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Footer />
             </MuiThemeProvider>
           </div>
