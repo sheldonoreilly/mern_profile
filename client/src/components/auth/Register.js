@@ -67,6 +67,13 @@ class Register extends Component {
     password_repeatError: ''
   };
 
+  //if logged in then we dont want to be here -> redirect to dashboard
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('./dashboard');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     //set errors to component state to reflect in UI
     if (nextProps.errors) {

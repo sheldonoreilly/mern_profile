@@ -71,6 +71,13 @@ class SignIn extends Component {
     this.props.logIn(userData);
   };
 
+  //if logged in then we dont want to be here -> redirect to dashboard
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('./dashboard');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     //checked if now logged in
     if (nextProps.isAuthenticated) {
