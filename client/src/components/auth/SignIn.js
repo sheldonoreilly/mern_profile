@@ -6,8 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -53,7 +52,11 @@ const styles = theme => ({
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    emailInvalid: false,
+    emailError: '',
+    passwordInvalid: false,
+    passwordError: ''
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -86,13 +89,15 @@ class SignIn extends Component {
     //set errors to component state to reflect in UI
     if (nextProps.errors) {
       const { errors } = nextProps;
+      console.log('errors :', errors);
+
       this.setState({
         //email
-        // emailInvalid: errors.email ? true : false,
-        // emailError: errors.email,
-        // //password
-        // passwordInvalid: errors.password ? true : false,
-        // passwordError: errors.password,
+        emailInvalid: errors.email ? true : false,
+        emailError: errors.email,
+        //password
+        passwordInvalid: errors.password ? true : false,
+        passwordError: errors.password
       });
     }
   }
@@ -111,26 +116,28 @@ class SignIn extends Component {
             </Avatar>
             <Typography variant="headline">Sign in</Typography>
             <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
+              <FormControl margin="normal" fullWidth>
+                <TextField
                   onChange={this.handleChange('email')}
-                  value={email}
-                  id="email"
                   name="email"
+                  label="Email"
+                  value={email}
+                  required
                   autoComplete="email"
-                  autoFocus
+                  error={this.state.emailInvalid}
+                  helperText={this.state.emailError}
                 />
               </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
+              <FormControl margin="normal" fullWidth>
+                <TextField
                   onChange={this.handleChange('password')}
-                  value={password}
                   name="password"
+                  label="Password"
                   type="password"
-                  id="password"
-                  autoComplete="current-password"
+                  value={password}
+                  required
+                  error={this.state.passwordInvalid}
+                  helperText={this.state.passwordError}
                 />
               </FormControl>
               <FormControlLabel
