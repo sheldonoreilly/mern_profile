@@ -32,7 +32,7 @@ export const logIn = userData => dispatch => {
       //set the token to auth header
       setAuthToken(token);
       //decode - getting current user
-      const decoded = jwt_decode.decode(token);
+      const decoded = jwt_decode(token);
       //dispatch current user
       dispatch(setCurrentUser(decoded));
     })
@@ -49,4 +49,12 @@ export const setCurrentUser = decoded => {
     type: SET_CURRENT_USER,
     payload: decoded
   };
+};
+
+export const logUserOut = () => dispatch => {
+  //remove user form local storage
+  localStorage.removeItem('jwtToken');
+  //remove header (auth) from requests
+  setAuthToken(false);
+  dispatch(setCurrentUser({}));
 };

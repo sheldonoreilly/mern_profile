@@ -12,10 +12,10 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-
 //redux
 import { connect } from 'react-redux';
-import LogInUser from '../../actions/authActions';
+//actions
+import { logIn } from '../../actions/authActions';
 
 const styles = theme => ({
   layout: {
@@ -64,11 +64,34 @@ class SignIn extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log('Form Submit');
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.logIn(userData);
   };
 
+  componentWillReceiveProps(nextProps) {
+    //checked if now logged in
+    if (nextProps.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+    //set errors to component state to reflect in UI
+    if (nextProps.errors) {
+      const { errors } = nextProps;
+      this.setState({
+        //email
+        // emailInvalid: errors.email ? true : false,
+        // emailError: errors.email,
+        // //password
+        // passwordInvalid: errors.password ? true : false,
+        // passwordError: errors.password,
+      });
+    }
+  }
+
   render() {
-    const { email, password } = this.state;
+    const { email, password, errors } = this.state;
     const { classes } = this.props;
 
     return (
@@ -126,10 +149,16 @@ class SignIn extends Component {
 
 SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
 export default connect(
-  null,
-  { SignIn }
+  mapStateToProps,
+  { logIn }
 )(withStyles(styles)(SignIn));
