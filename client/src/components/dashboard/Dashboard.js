@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -10,12 +10,20 @@ import Person from '@material-ui/icons/Person';
 import School from '@material-ui/icons/School';
 import Update from '@material-ui/icons/Update';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import CircularProgress from '@material-ui/core/CircularProgress';
 //redux
 import { connect } from 'react-redux';
 //actions
 import { getCurrentProfile } from '../../actions/profileActions';
 
+//helper
+import AddProfile from './AddProfile';
+
+import isEmpty from '../../validation/is-empty';
+
 import DataTable from './Table';
+import { Button } from '@material-ui/core';
+import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 const styles = theme => ({
   root: {},
@@ -37,7 +45,16 @@ class Dashboard extends Component {
 
   render() {
     const { classes } = this.props;
-    // const { value } = this.state;
+    const { user } = this.props.auth;
+    const { profile, loading } = this.props.profile;
+
+    //sor need to work on spinner and such
+    let greeting = `Welcome, ${user.name}`;
+
+    //so profile is an empty obj - use hasnt created one yet
+    if (loading) {
+      greeting = 'Loading';
+    }
 
     return (
       <React.Fragment>
@@ -52,48 +69,59 @@ class Dashboard extends Component {
                 Dashboard
               </Typography>
               <Typography color="textSecondary" style={{ marginTop: 0 }}>
-                Welcome, Sheldon O'Reilly
+                {greeting}
               </Typography>
-              <Grid
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justify: 'flex-start'
-                }}>
-                {/* <List component="nav"> */}
-                <ListItem button disableGutters style={{ width: 'auto' }}>
-                  <ListItemIcon style={{ marginRight: 4 }}>
-                    <Person />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Edit Profile"
-                    style={{ padding: '0px 12px 0px 0px' }}
-                  />
-                </ListItem>
-                <ListItem button disableGutters style={{ width: 'auto' }}>
-                  <ListItemIcon style={{ marginRight: 4 }}>
-                    <School />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Add Education"
-                    style={{ padding: '0px 12px 0px 0px' }}
-                  />
-                </ListItem>
-                <ListItem button disableGutters style={{ width: 'auto' }}>
-                  <ListItemIcon style={{ marginRight: 4 }}>
-                    <Update />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Add Experience"
-                    style={{ padding: '0px 12px 0px 0px', fontSize: '0.8rem' }}
-                  />
-                </ListItem>
-              </Grid>
+
+              {isEmpty(profile) ? (
+                // only load the 'add profile' dashboard screen
+                <AddProfile />
+              ) : (
+                <Fragment>
+                  {/* // load the 'preview profile' dashboard screen */}
+                  <Grid
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justify: 'flex-start'
+                    }}>
+                    {/* <List component="nav"> */}
+                    <ListItem button disableGutters style={{ width: 'auto' }}>
+                      <ListItemIcon style={{ marginRight: 4 }}>
+                        <Person />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary="Edit Profile"
+                        style={{ padding: '0px 12px 0px 0px' }}
+                      />
+                    </ListItem>
+                    <ListItem button disableGutters style={{ width: 'auto' }}>
+                      <ListItemIcon style={{ marginRight: 4 }}>
+                        <School />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary="Add Education"
+                        style={{ padding: '0px 12px 0px 0px' }}
+                      />
+                    </ListItem>
+                    <ListItem button disableGutters style={{ width: 'auto' }}>
+                      <ListItemIcon style={{ marginRight: 4 }}>
+                        <Update />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary="Add Experience"
+                        style={{
+                          padding: '0px 12px 0px 0px',
+                          fontSize: '0.8rem'
+                        }}
+                      />
+                    </ListItem>
+                  </Grid>
+                  <DataTable title={'Experience Credentials'} />
+                  <DataTable title={'Education Credentials'} />
+                </Fragment>
+              )}
             </Grid>
           </Grid>
-
-          <DataTable title={'Experience Credentials'} />
-          <DataTable title={'Education Credentials'} />
         </div>
       </React.Fragment>
     );
@@ -101,16 +129,18 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
-// const mapStateToProps = state => {
-//   {
-//     profile: state.profile
-//   }
-// };
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   { getCurrentProfile }
 )(withStyles(styles)(Dashboard));
