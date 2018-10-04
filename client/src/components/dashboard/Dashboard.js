@@ -10,6 +10,10 @@ import Person from '@material-ui/icons/Person';
 import School from '@material-ui/icons/School';
 import Update from '@material-ui/icons/Update';
 import CssBaseline from '@material-ui/core/CssBaseline';
+//redux
+import { connect } from 'react-redux';
+//actions
+import { getCurrentProfile } from '../../actions/profileActions';
 
 import DataTable from './Table';
 
@@ -27,9 +31,13 @@ class Dashboard extends Component {
     value: ''
   };
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   render() {
     const { classes } = this.props;
-    const { value } = this.state;
+    // const { value } = this.state;
 
     return (
       <React.Fragment>
@@ -96,4 +104,13 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Dashboard);
+// const mapStateToProps = state => {
+//   {
+//     profile: state.profile
+//   }
+// };
+
+export default connect(
+  null,
+  { getCurrentProfile }
+)(withStyles(styles)(Dashboard));

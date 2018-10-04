@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS } from './types';
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from './types';
 
-//get current profile -
+//get current profile - will use database api to identify the logged in user
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
@@ -12,11 +12,22 @@ export const getCurrentProfile = () => dispatch => {
         payload: response.data
       })
     )
-    .catch(err => dispatch({ type: GET_ERRORS, payload: response.data }));
+    //handle case: new user, no profile, so return an empty payload.
+    .catch(err => {
+      dispatch({ type: GET_PROFILE, payload: {} });
+    });
 };
 
+//just a hook for a spinner component
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING
+  };
+};
+
+//clear the current profile
+export const clearCurrentProfile = () => {
+  return {
+    type: CLEAR_CURRENT_PROFILE
   };
 };

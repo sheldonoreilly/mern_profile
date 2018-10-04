@@ -5,9 +5,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import { logUserOut } from '../../actions/authActions';
+import { clearCurrentProfile } from '../../actions/profileActions';
 //react-redux
 import { connect } from 'react-redux';
 
@@ -29,11 +29,12 @@ class Navbar extends Component {
     //sor why prevent
     // e.preventDefault();
     this.props.logUserOut();
+    this.props.clearCurrentProfile();
   };
 
   render() {
     const { classes } = this.props;
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <div className={classes.root}>
@@ -83,5 +84,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logUserOut }
+  { logUserOut, clearCurrentProfile }
 )(withStyles(styles)(Navbar));
