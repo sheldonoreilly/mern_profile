@@ -66,6 +66,7 @@ class SignIn extends Component {
   };
 
   handleFormSubmit = e => {
+    ///sor why prevent?
     e.preventDefault();
     const userData = {
       email: this.state.email,
@@ -82,15 +83,14 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { auth } = nextProps;
     //checked if now logged in
-    if (nextProps.isAuthenticated) {
+    if (auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }
     //set errors to component state to reflect in UI
-    if (nextProps.errors) {
-      const { errors } = nextProps;
-      console.log('errors :', errors);
-
+    const { errors } = nextProps;
+    if (errors) {
       this.setState({
         //email
         emailInvalid: errors.email ? true : false,

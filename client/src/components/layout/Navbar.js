@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { logUserOut } from '../../actions/authActions';
 //react-redux
@@ -18,15 +17,16 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
   }
+  // menuButton: {
+  //   marginLeft: -12,
+  //   marginRight: 20
+  // }
 });
 
 class Navbar extends Component {
   logOut = e => {
+    //sor why prevent
     // e.preventDefault();
     this.props.logUserOut();
   };
@@ -39,12 +39,6 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
             <Typography
               variant="title"
               color="inherit"
@@ -54,16 +48,22 @@ class Navbar extends Component {
             <Button color="inherit" component={Link} to="/browse">
               Browse
             </Button>
-            <Button color="inherit" component={Link} to="/signin">
-              Login
-            </Button>
-            <Button color="inherit" component={Link} to="register">
-              Sign Up
-            </Button>
-            <Button onClick={this.logOut} color="inherit">
-              {/* add the avatar */}
-              Logout
-            </Button>
+
+            {!isAuthenticated ? (
+              <Fragment>
+                <Button color="inherit" component={Link} to="/signin">
+                  Login
+                </Button>
+                <Button color="inherit" component={Link} to="register">
+                  Sign Up
+                </Button>
+              </Fragment>
+            ) : (
+              <Button onClick={this.logOut} color="inherit">
+                {/* add the avatar */}
+                Logout
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
       </div>

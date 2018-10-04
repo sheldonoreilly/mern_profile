@@ -32,9 +32,8 @@ if (localStorage.jwtToken) {
     //logout user
     store.dispatch(logUserOut());
     //sor clear the current profile
-
     //redirect to login
-    window.location.href = 'login';
+    window.location.href = '/login';
   }
 }
 
@@ -69,8 +68,7 @@ class App extends Component {
               <Route exact path="/" component={Center} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/signIn" component={SignIn} />
-              {/* <Route exact path="/signIn" component={Dashboard} /> */}
-
+              <Route exact path="/dashboard" component={Dashboard} /> */}
               <Footer />
             </MuiThemeProvider>
           </div>
