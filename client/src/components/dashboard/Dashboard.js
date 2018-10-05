@@ -23,7 +23,6 @@ import isEmpty from '../../validation/is-empty';
 
 import DataTable from './Table';
 import { Button } from '@material-ui/core';
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 const styles = theme => ({
   root: {},
@@ -55,7 +54,7 @@ class Dashboard extends Component {
     if (loading) {
       greeting = 'Loading';
     }
-
+    console.log('render of the dashbord');
     return (
       <React.Fragment>
         <CssBaseline />
@@ -63,7 +62,6 @@ class Dashboard extends Component {
           <Grid container className={classes.main_container}>
             <Grid item xs={12}>
               <Typography
-                color="textPrimary"
                 variant="display3"
                 style={{ marginBottom: 0, marginTop: '32px' }}>
                 Dashboard

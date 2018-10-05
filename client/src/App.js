@@ -21,6 +21,7 @@ import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import SignIn from './components/auth/SignIn';
 import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/create-profile/CreateProfile';
 
 //check for token
 if (localStorage.jwtToken) {
@@ -43,22 +44,28 @@ if (localStorage.jwtToken) {
 }
 
 //material-ui
+// const theme = createMuiTheme({
+// palette: {
+//   primary: {
+//     main: '#282c34',
+//     contrastText: '#eae6d2'
+//   },
+//   secondary: {
+//     light: green[300],
+//     main: green[500],
+//     dark: green[700]
+//   },
+//   background: {
+//     paper: '#282c34', //the background
+//     default: '#282c34' // everything else (maybe plain grid?)
+//   }
+// }
+// });
+
 const theme = createMuiTheme({
-  // palette: {
-  //   primary: {
-  //     main: '#282c34',
-  //     contrastText: '#eae6d2'
-  //   },
-  //   secondary: {
-  //     light: green[300],
-  //     main: green[500],
-  //     dark: green[700]
-  //   },
-  //   background: {
-  //     paper: '#282c34', //the background
-  //     default: '#282c34' // everything else (maybe plain grid?)
-  //   }
-  // }
+  typography: {
+    fontFamily: ['Antic Slab', 'Helvetica']
+  }
 });
 
 class App extends Component {
@@ -74,7 +81,10 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/signIn" component={SignIn} />
               {/* //sor Private route to  */}
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+              <Route exact path="/dashboard" component={Dashboard} />
+
+              <Route exact path="/createprofile" component={CreateProfile} />
               <Footer />
             </MuiThemeProvider>
           </div>
