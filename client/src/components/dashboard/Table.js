@@ -8,8 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
   root: {

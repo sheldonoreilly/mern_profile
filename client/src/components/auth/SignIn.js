@@ -66,7 +66,6 @@ class SignIn extends Component {
   };
 
   handleFormSubmit = e => {
-    ///sor why prevent?
     e.preventDefault();
     const userData = {
       email: this.state.email,

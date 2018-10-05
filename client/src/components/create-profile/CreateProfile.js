@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+//redux
+import { connect } from 'react-redux';
+//actions
+import { getCurrentProfile, setProfile } from '../../actions/profileActions';
 
 const styles = theme => ({
   root: {},
@@ -50,6 +51,31 @@ class CreateProfile extends Component {
     github: '',
     skills: '',
     bio: ''
+  };
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
+  handleFormSubmit = e => {
+    e.preventDefault();
+    const { user } = this.props.auth;
+    //destructure relevent props
+    const { handle } = this.state;
+
+    const profile = {
+      handle
+    };
+
+    //add the user id to the tobe actioned profile
+    profile.userId = user.id;
+
+    //jimmy up the validation on server
+    profile.status = 'sexy';
+    profile.skills = 'c++, java';
+
+    //'connect' gets us access to the action
+    this.props.setProfile(profile);
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -111,9 +137,9 @@ class CreateProfile extends Component {
                     name: 'age',
                     id: 'age-simple'
                   }}>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}>Programmer</MenuItem>
+                  <MenuItem value={20}>Business Owner</MenuItem>
+                  <MenuItem value={30}>Student</MenuItem>
                 </Select>
               </FormControl>
               {/* company */}
@@ -197,7 +223,19 @@ class CreateProfile extends Component {
   }
 }
 CreateProfile.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  setProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CreateProfile);
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getCurrentProfile, setProfile }
+)(withStyles(styles)(CreateProfile));

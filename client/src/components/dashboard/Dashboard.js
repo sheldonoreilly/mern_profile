@@ -10,14 +10,12 @@ import Person from '@material-ui/icons/Person';
 import School from '@material-ui/icons/School';
 import Update from '@material-ui/icons/Update';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import CircularProgress from '@material-ui/core/CircularProgress';
+//router
+import { Link } from 'react-router-dom';
 //redux
 import { connect } from 'react-redux';
 //actions
 import { getCurrentProfile } from '../../actions/profileActions';
-
-//helper
-import AddProfile from './AddProfile';
 
 import isEmpty from '../../validation/is-empty';
 
@@ -54,7 +52,6 @@ class Dashboard extends Component {
     if (loading) {
       greeting = 'Loading';
     }
-    console.log('render of the dashbord');
     return (
       <React.Fragment>
         <CssBaseline />
@@ -70,10 +67,10 @@ class Dashboard extends Component {
               <Typography color="textSecondary" style={{ marginTop: 0 }}>
                 {greeting}
               </Typography>
-
-              {isEmpty(false) ? (
-                // only load the 'add profile' dashboard screen
-                <AddProfile />
+              {isEmpty(profile) ? (
+                <Button component={Link} to="/createprofile">
+                  Add Profile
+                </Button>
               ) : (
                 <Fragment>
                   {/* // load the 'preview profile' dashboard screen */}

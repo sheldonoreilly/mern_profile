@@ -6,5 +6,7 @@ export const PROFILE_LOADING = 'PROFILE_LOADING';
 export const PROFILE_NOT_FOUND = 'PROFILE_NOT_FOUND';
 export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 
+export const SET_PROFILE = 'SET_PROFILE';
+
 //plural is for when displaying all profiles in system
 export const GET_PROFILES = 'GET_PROFILES';
