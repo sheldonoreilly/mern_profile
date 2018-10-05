@@ -62,7 +62,8 @@ class Dashboard extends Component {
           <Grid container className={classes.main_container}>
             <Grid item xs={12}>
               <Typography
-                variant="display3"
+                variant="display2"
+                color="textPrimary"
                 style={{ marginBottom: 0, marginTop: '32px' }}>
                 Dashboard
               </Typography>
@@ -70,7 +71,7 @@ class Dashboard extends Component {
                 {greeting}
               </Typography>
 
-              {isEmpty(profile) ? (
+              {isEmpty(false) ? (
                 // only load the 'add profile' dashboard screen
                 <AddProfile />
               ) : (

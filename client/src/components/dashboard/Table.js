@@ -43,7 +43,7 @@ function DataTable(props) {
     <div>
       <Typography
         color="textPrimary"
-        variant="display1"
+        variant="headline"
         style={{
           display: 'inline-block',
           marginBottom: 0,
@@ -52,14 +52,14 @@ function DataTable(props) {
         }}>
         {title}
       </Typography>
-      <Button
+      {/* <Button
         variant="fab"
         color="primary"
         mini
         aria-label="Add"
         className={classes.button}>
         <AddIcon />
-      </Button>
+      </Button> */}
 
       <Paper className={classes.root}>
         <Table className={classes.table}>

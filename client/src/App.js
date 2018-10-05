@@ -64,7 +64,7 @@ if (localStorage.jwtToken) {
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: ['Antic Slab', 'Helvetica']
+    fontFamily: ['Karma', 'serif']
   }
 });
 

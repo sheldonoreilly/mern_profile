@@ -75,11 +75,16 @@ class CreateProfile extends Component {
         <div className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography
-              variant="display3"
+              variant="display2"
+              align="center"
+              color="textPrimary"
               style={{ marginBottom: 0, marginTop: '32px' }}>
-              Create Your Profile
+              Create your Profile
             </Typography>
-            <Typography style={{ marginTop: 0 }}>
+            <Typography
+              style={{ marginTop: 0 }}
+              color="textPrimary"
+              align="center">
               Let People know who you are!
             </Typography>
             <form className={classes.form}>
@@ -182,7 +187,7 @@ class CreateProfile extends Component {
                 variant="raised"
                 color="primary"
                 className={classes.submit}>
-                Sign in
+                Submit
               </Button>
             </form>
           </Paper>
