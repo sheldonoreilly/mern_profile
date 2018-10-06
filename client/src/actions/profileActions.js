@@ -42,14 +42,12 @@ export const setProfile = profile => dispatch => {
   axios
     .post('/api/profile', profile)
     .then(response => {
-      console.log('response', response);
       dispatch({
         type: SET_PROFILE,
         payload: response.data
       });
     })
     .catch(err => {
-      console.log('err', err);
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data

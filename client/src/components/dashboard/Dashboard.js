@@ -52,6 +52,7 @@ class Dashboard extends Component {
     if (loading) {
       greeting = 'Loading';
     }
+
     return (
       <React.Fragment>
         <CssBaseline />
@@ -81,7 +82,13 @@ class Dashboard extends Component {
                       justify: 'flex-start'
                     }}>
                     {/* <List component="nav"> */}
-                    <ListItem button disableGutters style={{ width: 'auto' }}>
+
+                    <ListItem
+                      button
+                      component={Link}
+                      to="/editprofile"
+                      disableGutters
+                      style={{ width: 'auto' }}>
                       <ListItemIcon style={{ marginRight: 4 }}>
                         <Person />
                       </ListItemIcon>

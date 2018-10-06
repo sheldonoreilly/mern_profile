@@ -28,8 +28,8 @@ class Navbar extends Component {
   logOut = e => {
     //sor why prevent
     // e.preventDefault();
-    this.props.logUserOut();
     this.props.clearCurrentProfile();
+    this.props.logUserOut();
   };
 
   render() {

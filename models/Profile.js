@@ -21,11 +21,6 @@ const ProfileSchema = new Schema({
   location: {
     type: String
   },
-  handle: {
-    type: String,
-    required: true,
-    max: 40
-  },
   status: {
     type: String,
     required: true

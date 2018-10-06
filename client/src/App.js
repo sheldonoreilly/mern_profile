@@ -22,9 +22,12 @@ import Register from './components/auth/Register';
 import SignIn from './components/auth/SignIn';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
+import EditProfile from './components/edit-profile/EditProfile';
 
 //check for token
 if (localStorage.jwtToken) {
+  //sor guess this gets called all the time
+
   setAuthToken(localStorage.jwtToken);
   //decode tokken and get user info
   const decoded = jwt_decode(localStorage.jwtToken);
@@ -79,12 +82,11 @@ class App extends Component {
               <Navbar />
               <Route exact path="/" component={Center} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/signIn" component={SignIn} />
-              {/* //sor Private route to  */}
+              <Route exact path="/signin" component={SignIn} />
               {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
               <Route exact path="/dashboard" component={Dashboard} />
-
               <Route exact path="/createprofile" component={CreateProfile} />
+              <Route exact path="/editprofile" component={EditProfile} />
               <Footer />
             </MuiThemeProvider>
           </div>
