@@ -10,6 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+
 //redux
 import { connect } from 'react-redux';
 //actions
@@ -42,12 +43,19 @@ const styles = theme => ({
 //sor add tooltips
 
 class Education extends Component {
-  state = {};
+  state = {
+    degree: '',
+    school: '',
+    field: '',
+    start: '',
+    end: ''
+  };
 
   componentDidMount() {}
 
   handleFormSubmit = e => {
     e.preventDefault();
+    console.log('education :', this.state);
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -58,7 +66,7 @@ class Education extends Component {
 
   render() {
     const { classes } = this.props;
-    const {} = this.state;
+    const { degree, school, field, start, end } = this.state;
     return (
       <Fragment>
         <CssBaseline />
@@ -71,20 +79,67 @@ class Education extends Component {
               style={{ marginBottom: 0, marginTop: '32px' }}>
               Add Education
             </Typography>
-
             <Typography
               style={{ marginTop: 0 }}
               color="textPrimary"
               align="center">
-              Let People know who you are!
+              Add degrees, certificates, courses, etc
             </Typography>
             <form className={classes.form}>
-              {/* handle */}
               <FormControl margin="dense" fullWidth>
-                <TextField name="handle" label="Handle" />
+                <TextField
+                  onChange={this.handleChange('school')}
+                  name="school"
+                  required
+                  label="School"
+                  value={school}
+                />
               </FormControl>
-              {/* prop status */}
-              {/* company */}
+              <FormControl margin="dense" fullWidth>
+                <TextField
+                  onChange={this.handleChange('degree')}
+                  name="degree"
+                  label="Degree\Course"
+                  required
+                  value={degree}
+                />
+              </FormControl>
+              <FormControl margin="dense" fullWidth>
+                <TextField
+                  onChange={this.handleChange('field')}
+                  name="field"
+                  label="Field of Study"
+                  value={field}
+                />
+              </FormControl>
+              <FormControl margin="dense">
+                <TextField
+                  id="date"
+                  label="Start"
+                  type="date"
+                  onChange={this.handleChange('start')}
+                  value={start}
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
+              </FormControl>
+              <br />
+              <FormControl margin="dense">
+                <TextField
+                  id="date"
+                  label="End"
+                  onChange={this.handleChange('end')}
+                  type="date"
+                  value={end}
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
+              </FormControl>
+              <br />
               <Button
                 onClick={this.handleFormSubmit}
                 type="submit"
