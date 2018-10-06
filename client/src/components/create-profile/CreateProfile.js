@@ -74,7 +74,7 @@ class CreateProfile extends Component {
 
     const profile = {
       handle,
-      status,
+      status: 'filler',
       company,
       website,
       location,
@@ -106,7 +106,7 @@ class CreateProfile extends Component {
       location,
       website,
       skills,
-      github,
+      gitHubUserName,
       bio
     } = this.state;
     return (
@@ -211,10 +211,10 @@ class CreateProfile extends Component {
               {/* GitHub */}
               <FormControl margin="dense" fullWidth>
                 <TextField
-                  onChange={this.handleChange('github')}
-                  name="github"
+                  onChange={this.handleChange('gitHubUserName ')}
+                  name="gitHubUserName"
                   label="GitHub Username"
-                  value={github}
+                  value={gitHubUserName}
                   helperText={
                     'If you want a GitHub link to your latest repositories.'
                   }

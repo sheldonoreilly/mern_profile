@@ -53,6 +53,8 @@ class Dashboard extends Component {
       greeting = 'Loading';
     }
 
+    console.log('Dashboard render profile empty?:', isEmpty(profile));
+
     return (
       <React.Fragment>
         <CssBaseline />

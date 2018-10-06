@@ -73,8 +73,8 @@ class EditProfile extends Component {
       profile.company = !isEmpty(profile.company) ? profile.company : '';
       profile.website = !isEmpty(profile.website) ? profile.website : '';
       profile.location = !isEmpty(profile.location) ? profile.location : '';
-      profile.githubusername = !isEmpty(profile.githubusername)
-        ? profile.githubusername
+      profile.gitHubUserName = !isEmpty(profile.gitHubUserName)
+        ? profile.gitHubUserName
         : '';
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.social = !isEmpty(profile.social) ? profile.social : {};
@@ -102,7 +102,7 @@ class EditProfile extends Component {
         location: profile.location,
         status: profile.status,
         skills: skillsCSV,
-        githubusername: profile.githubusername,
+        gitHubUserName: profile.gitHubUserName,
         bio: profile.bio,
         twitter: profile.twitter,
         facebook: profile.facebook,
@@ -143,6 +143,7 @@ class EditProfile extends Component {
     this.props.setProfile(profile);
 
     //go back to dashboard
+    this.props.history.push('./dashboard');
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -160,7 +161,7 @@ class EditProfile extends Component {
       location,
       website,
       skills,
-      github,
+      gitHubUserName,
       bio
     } = this.state;
     return (
@@ -189,6 +190,7 @@ class EditProfile extends Component {
                   name="handle"
                   label="Handle"
                   value={handle}
+                  disabled
                   required
                   helperText="A unique handle for your profile URL.  This can't be changed later."
                 />
@@ -265,10 +267,10 @@ class EditProfile extends Component {
               {/* GitHub */}
               <FormControl margin="dense" fullWidth>
                 <TextField
-                  onChange={this.handleChange('github')}
+                  onChange={this.handleChange('gitHubUserName')}
                   name="github"
                   label="GitHub Username"
-                  value={github}
+                  value={gitHubUserName}
                   helperText={
                     'If you want a GitHub link to your latest repositories.'
                   }
@@ -276,6 +278,7 @@ class EditProfile extends Component {
               </FormControl>
               <Button
                 type="submit"
+                onClick={this.handleFormSubmit}
                 fullWidth
                 variant="raised"
                 color="primary"
