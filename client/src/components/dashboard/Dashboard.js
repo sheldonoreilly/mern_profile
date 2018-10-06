@@ -53,8 +53,6 @@ class Dashboard extends Component {
       greeting = 'Loading';
     }
 
-    console.log('Dashboard render profile empty?:', isEmpty(profile));
-
     return (
       <React.Fragment>
         <CssBaseline />
@@ -99,7 +97,12 @@ class Dashboard extends Component {
                         style={{ padding: '0px 12px 0px 0px' }}
                       />
                     </ListItem>
-                    <ListItem button disableGutters style={{ width: 'auto' }}>
+                    <ListItem
+                      button
+                      component={Link}
+                      to="/addeducation"
+                      disableGutters
+                      style={{ width: 'auto' }}>
                       <ListItemIcon style={{ marginRight: 4 }}>
                         <School />
                       </ListItemIcon>
@@ -108,7 +111,12 @@ class Dashboard extends Component {
                         style={{ padding: '0px 12px 0px 0px' }}
                       />
                     </ListItem>
-                    <ListItem button disableGutters style={{ width: 'auto' }}>
+                    <ListItem
+                      button
+                      component={Link}
+                      to="/addexperience"
+                      disableGutters
+                      style={{ width: 'auto' }}>
                       <ListItemIcon style={{ marginRight: 4 }}>
                         <Update />
                       </ListItemIcon>

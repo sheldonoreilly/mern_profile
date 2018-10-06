@@ -23,6 +23,8 @@ import SignIn from './components/auth/SignIn';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
+import Education from './components/education/Education';
+import Experience from './components/experience/Experience';
 
 //check for token
 if (localStorage.jwtToken) {
@@ -87,6 +89,9 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/createprofile" component={CreateProfile} />
               <Route exact path="/editprofile" component={EditProfile} />
+              <Route exact path="/addeducation" component={Education} />
+              <Route exact path="/addexperience" component={Experience} />
+
               <Footer />
             </MuiThemeProvider>
           </div>
