@@ -8,6 +8,20 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    // backgroundColor: theme.palette.common.black,
+    // backgroundColor: theme.palette.grey[400],
+    fontSize: 18,
+    color: 'black'
+  }
+  // body: {
+  //   fontSize: 20
+  // }
+}))(TableCell);
 
 const styles = theme => ({
   root: {
@@ -21,22 +35,18 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(School, Degree, Years) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, School, Degree, Years };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0)
-];
+const rows = [createData('UNB', 'Business of Administration', '1988-1994')];
 
 function DataTable(props) {
   const { classes } = props;
-
   const { title } = props;
-
+  const { education } = props;
+  //school: degree: fieldOfStudy: to: currrent: description:
   return (
     <div>
       <Typography
@@ -50,35 +60,29 @@ function DataTable(props) {
         }}>
         {title}
       </Typography>
-      {/* <Button
-        variant="fab"
-        color="primary"
-        mini
-        aria-label="Add"
-        className={classes.button}>
-        <AddIcon />
-      </Button> */}
-
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell>Company</TableCell>
-              <TableCell numeric>Title</TableCell>
-              <TableCell numeric>Years</TableCell>
+              <CustomTableCell>School</CustomTableCell>
+              <CustomTableCell>Degree</CustomTableCell>
+              <CustomTableCell>Years</CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => {
+            {education.map(row => {
               return (
-                <TableRow key={row.id}>
+                <TableRow key={row.to}>
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.school}
                   </TableCell>
-                  <TableCell numeric>{row.calories}</TableCell>
-                  <TableCell numeric>{row.fat}</TableCell>
-                  {/* <TableCell numeric>{row.carbs}</TableCell>
-                <TableCell numeric>{row.protein}</TableCell> */}
+                  <TableCell>{row.degree}</TableCell>
+                  <TableCell>{`${row.to}-${row.to}`}</TableCell>
+                  <TableCell>
+                    <Button color="secondary" variant="fab" mini>
+                      <DeleteIcon />
+                    </Button>
+                  </TableCell>
                 </TableRow>
               );
             })}

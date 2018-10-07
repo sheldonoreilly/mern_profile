@@ -79,6 +79,7 @@ class Education extends Component {
     //'connect' gets us access to the action
     this.props.addEducation(education);
     //go back to dashboard
+    //sor this seems to need to be moved, async call needs to be finished before dashboard (to the action maybe
     this.props.history.push('./dashboard');
   };
 
@@ -148,6 +149,7 @@ class Education extends Component {
                 <TextField
                   id="date"
                   label="From"
+                  defaultValue="2017-05-24"
                   type="date"
                   onChange={this.handleChange('from')}
                   value={from}
@@ -162,6 +164,7 @@ class Education extends Component {
                 <TextField
                   id="date"
                   label="To"
+                  defaultValue="2017-05-24"
                   onChange={this.handleChange('to')}
                   type="date"
                   value={to}

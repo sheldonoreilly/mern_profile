@@ -129,8 +129,11 @@ class Dashboard extends Component {
                       />
                     </ListItem>
                   </Grid>
-                  <DataTable title={'Experience Credentials'} />
-                  <DataTable title={'Education Credentials'} />
+                  <DataTable
+                    title={'Experience Credentials'}
+                    education={profile.education}
+                  />
+                  {/* <DataTable title={'Education Credentials'} /> */}
                 </Fragment>
               )}
             </Grid>
