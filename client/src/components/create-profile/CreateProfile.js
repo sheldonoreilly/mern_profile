@@ -61,6 +61,8 @@ class CreateProfile extends Component {
     e.preventDefault();
     const { user } = this.props.auth;
     //destructure relevent props
+
+    //sor this has to be cleaned 8(
     const {
       handle,
       status,
@@ -86,7 +88,6 @@ class CreateProfile extends Component {
     profile.userId = user.id;
     //'connect' gets us access to the action
     this.props.setProfile(profile);
-
     //go back to dashboard
     this.props.history.push('./dashboard');
   };

@@ -14,7 +14,7 @@ import Select from '@material-ui/core/Select';
 //redux
 import { connect } from 'react-redux';
 //actions
-import { getCurrentProfile, setProfile } from '../../actions/profileActions';
+import { getCurrentProfile, addEducation } from '../../actions/profileActions';
 
 const styles = theme => ({
   root: {},
@@ -46,9 +46,11 @@ class Education extends Component {
   state = {
     degree: '',
     school: '',
-    field: '',
-    start: '',
-    end: ''
+    fieldofstudy: '',
+    from: '',
+    to: '',
+    current: '',
+    description: ''
   };
 
   componentDidMount() {}
@@ -56,6 +58,28 @@ class Education extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     console.log('education :', this.state);
+
+    //const { user } = this.props.auth;
+
+    //construct our edu object from state
+    const education = {
+      degree: this.state.degree,
+      school: this.state.school,
+      fieldofstudy: this.state.fieldofstudy,
+      from: this.state.from,
+      to: this.state.to
+      // current: '',
+      // description
+    };
+
+    //sor ???
+    //add the user id to the tobe actioned profile
+    //is this necessary - its mined from the requeest on the server??
+    //education.userId = user.id;
+    //'connect' gets us access to the action
+    this.props.addEducation(education);
+    //go back to dashboard
+    this.props.history.push('./dashboard');
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -66,7 +90,15 @@ class Education extends Component {
 
   render() {
     const { classes } = this.props;
-    const { degree, school, field, start, end } = this.state;
+    const {
+      degree,
+      school,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description
+    } = this.state;
     return (
       <Fragment>
         <CssBaseline />
@@ -106,19 +138,19 @@ class Education extends Component {
               </FormControl>
               <FormControl margin="dense" fullWidth>
                 <TextField
-                  onChange={this.handleChange('field')}
-                  name="field"
+                  onChange={this.handleChange('fieldofstudy')}
+                  name="fieldofstudy"
                   label="Field of Study"
-                  value={field}
+                  value={fieldofstudy}
                 />
               </FormControl>
               <FormControl margin="dense">
                 <TextField
                   id="date"
-                  label="Start"
+                  label="From"
                   type="date"
-                  onChange={this.handleChange('start')}
-                  value={start}
+                  onChange={this.handleChange('from')}
+                  value={from}
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true
@@ -129,10 +161,10 @@ class Education extends Component {
               <FormControl margin="dense">
                 <TextField
                   id="date"
-                  label="End"
-                  onChange={this.handleChange('end')}
+                  label="To"
+                  onChange={this.handleChange('to')}
                   type="date"
-                  value={end}
+                  value={to}
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true
@@ -159,17 +191,17 @@ class Education extends Component {
 Education.propTypes = {
   classes: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  setProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
+  //auth gets us the user
   auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, setProfile }
+  { getCurrentProfile, addEducation }
 )(withStyles(styles)(Education));
