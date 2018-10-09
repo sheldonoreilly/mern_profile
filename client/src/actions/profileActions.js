@@ -76,3 +76,25 @@ export const addEducation = education => dispatch => {
       });
     });
 };
+
+export const addExperience = experience => dispatch => {
+  axios
+    .post('/api/profile/experience', experience)
+    // .then(response => {
+    //   //sor nothing is needed here i guess.
+    //   //i am forwarding to dashboard in the component
+    //   //so router not needed here?
+    //   // dispatch({
+    //   //   type: SET_PROFILE,
+    //   //   payload: response.data
+    //   // });
+
+    //   // const wh
+    // })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};

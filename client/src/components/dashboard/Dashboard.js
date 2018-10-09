@@ -20,6 +20,7 @@ import { getCurrentProfile } from '../../actions/profileActions';
 import isEmpty from '../../validation/is-empty';
 
 import DataTable from './Table';
+import { DataType } from './Table';
 import { Button } from '@material-ui/core';
 
 const styles = theme => ({
@@ -129,11 +130,15 @@ class Dashboard extends Component {
                       />
                     </ListItem>
                   </Grid>
+
                   <DataTable
-                    title={'Experience Credentials'}
-                    education={profile.education}
+                    type={DataType.Education}
+                    data={profile.education}
                   />
-                  {/* <DataTable title={'Education Credentials'} /> */}
+                  <DataTable
+                    type={DataType.Experience}
+                    data={profile.experience}
+                  />
                 </Fragment>
               )}
             </Grid>

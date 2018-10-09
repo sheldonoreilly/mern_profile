@@ -30,7 +30,7 @@ const styles = theme => ({
     overflowX: 'auto'
   },
   table: {
-    minWidth: 500
+    minWidth: 300
   }
 });
 
@@ -40,13 +40,18 @@ function createData(School, Degree, Years) {
   return { id, School, Degree, Years };
 }
 
-const rows = [createData('UNB', 'Business of Administration', '1988-1994')];
+// const rows = [createData('UNB', 'Business of Administration', '1988-1994')];
+
+export var DataType = {
+  Education: 1,
+  Experience: 2
+};
 
 function DataTable(props) {
   const { classes } = props;
-  const { title } = props;
-  const { education } = props;
-  //school: degree: fieldOfStudy: to: currrent: description:
+  const { data } = props;
+  const { type } = props;
+
   return (
     <div>
       <Typography
@@ -58,26 +63,32 @@ function DataTable(props) {
           marginTop: '32px',
           marginRight: '16px'
         }}>
-        {title}
+        {type === DataType.Education ? 'Education' : 'Experience'}
       </Typography>
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell>School</CustomTableCell>
-              <CustomTableCell>Degree</CustomTableCell>
-              <CustomTableCell>Years</CustomTableCell>
+              <CustomTableCell>
+                {type == DataType.Education ? 'School' : 'Company'}
+              </CustomTableCell>
+              <CustomTableCell>
+                {type == DataType.Education ? 'Degree/Course' : 'Title'}
+              </CustomTableCell>
+              {/* <CustomTableCell>Years</CustomTableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
-            {education.map(row => {
+            {data.map((row, index) => {
               return (
-                <TableRow key={row.to}>
+                <TableRow key={index}>
                   <TableCell component="th" scope="row">
-                    {row.school}
+                    {type === DataType.Education ? row.school : row.company}
                   </TableCell>
-                  <TableCell>{row.degree}</TableCell>
-                  <TableCell>{`${row.to}-${row.to}`}</TableCell>
+                  <TableCell>
+                    {type === DataType.Education ? row.degree : row.title}
+                  </TableCell>
+                  {/* <TableCell>{`${row.to}-${row.to}`}</TableCell> */}
                   <TableCell>
                     <Button color="secondary" variant="fab" mini>
                       <DeleteIcon />

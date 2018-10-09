@@ -10,10 +10,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+
 //redux
 import { connect } from 'react-redux';
 //actions
-import { getCurrentProfile, setProfile } from '../../actions/profileActions';
+import { getCurrentProfile, addExperience } from '../../actions/profileActions';
 
 const styles = theme => ({
   root: {},
@@ -42,12 +43,43 @@ const styles = theme => ({
 //sor add tooltips
 
 class Experience extends Component {
-  state = {};
+  state = {
+    company: '',
+    title: '',
+    location: '',
+    description: '',
+    from: '',
+    to: '',
+    current: ''
+  };
 
   componentDidMount() {}
 
   handleFormSubmit = e => {
     e.preventDefault();
+    console.log('Experience :', this.state);
+
+    const { company, title, location, description, from, to } = this.state;
+
+    //construct our exp object from state
+    const experience = {
+      company,
+      title,
+      location,
+      description,
+      from,
+      to
+    };
+
+    //sor ???
+    //add the user id to the tobe actioned profile
+    //is this necessary - its mined from the requeest on the server??
+    //experience.userId = user.id;
+    //'connect' gets us access to the action
+    this.props.addExperience(experience);
+    //go back to dashboard
+    //sor this seems to need to be moved, async call needs to be finished before dashboard (to the action maybe
+    //this.props.history.push('./dashboard');
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -58,7 +90,7 @@ class Experience extends Component {
 
   render() {
     const { classes } = this.props;
-    const {} = this.state;
+    const { company, title, location, description, from, to } = this.state;
     return (
       <Fragment>
         <CssBaseline />
@@ -75,15 +107,74 @@ class Experience extends Component {
               style={{ marginTop: 0 }}
               color="textPrimary"
               align="center">
-              Let People know who you are!
+              Add degrees, certificates, courses, etc
             </Typography>
             <form className={classes.form}>
-              {/* handle */}
               <FormControl margin="dense" fullWidth>
-                <TextField name="handle" label="Handle" />
+                <TextField
+                  onChange={this.handleChange('company')}
+                  name="company"
+                  required
+                  label="Company"
+                  value={company}
+                />
               </FormControl>
-              {/* prop status */}
-              {/* company */}
+              <FormControl margin="dense" fullWidth>
+                <TextField
+                  onChange={this.handleChange('title')}
+                  name="title"
+                  label="Title"
+                  required
+                  value={title}
+                />
+              </FormControl>
+              <FormControl margin="dense" fullWidth>
+                <TextField
+                  onChange={this.handleChange('location')}
+                  name="location"
+                  label="Location"
+                  value={location}
+                />
+              </FormControl>
+              <FormControl margin="dense" fullWidth>
+                <TextField
+                  onChange={this.handleChange('description')}
+                  name="description"
+                  label="Description"
+                  value={description}
+                />
+              </FormControl>
+              <FormControl margin="dense">
+                <TextField
+                  id="date"
+                  label="From"
+                  defaultValue="2017-05-24"
+                  type="date"
+                  required
+                  onChange={this.handleChange('from')}
+                  value={from}
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
+              </FormControl>
+              <br />
+              <FormControl margin="dense">
+                <TextField
+                  id="date"
+                  label="To"
+                  defaultValue="2017-05-24"
+                  onChange={this.handleChange('to')}
+                  type="date"
+                  value={to}
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
+              </FormControl>
+              <br />
               <Button
                 onClick={this.handleFormSubmit}
                 type="submit"
@@ -103,17 +194,17 @@ class Experience extends Component {
 Experience.propTypes = {
   classes: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  setProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
+  //auth gets us the user
   auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, setProfile }
+  { getCurrentProfile, addExperience }
 )(withStyles(styles)(Experience));
