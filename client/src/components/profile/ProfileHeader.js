@@ -11,6 +11,21 @@ import Chip from '@material-ui/core/Chip';
 // import MenuItem from '@material-ui/core/MenuItem';
 // import Select from '@material-ui/core/Select';
 
+//card
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+
+//ex panel
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Experience from './Experience';
+import ProfileHead from './ProfileHead';
+
+
 const styles = theme => ({
   root: {},
   layout: {
@@ -23,7 +38,6 @@ const styles = theme => ({
       marginRight: 'auto'
     }
   },
-
   paperHeader: {
     marginTop: theme.spacing.unit * 1,
     marginBottom: theme.spacing.unit * 1,
@@ -45,48 +59,15 @@ const styles = theme => ({
     margin: 'auto',
     padding: '25px'
     // marginBotton: '25px'
-  },
-  chip: {
-    margin: theme.spacing.unit
   }
 });
 
 const ProfileHeader = props => {
   const { classes, profile, avatar } = props;
-  console.log('PROFILE', this.profile);
+  console.log('PROFILE', profile);
   return (
-    <Fragment>
-      <CssBaseline />
-      <div className={classes.layout}>
-        <Paper className={classes.paperHeader}>
-          <Typography variant="display2" align="center" color="inherit">
-            {profile.user.name}
-          </Typography>
-          <img
-            className={classes.gravtar}
-            src={avatar}
-            width="250"
-            height="250"
-            alt="alt"
-          />
-          <Typography variant="headline" align="center" color="inherit">
-            {'Software Engineer'}
-          </Typography>
-          <Typography variant="subheading" align="center" color="inherit">
-            {profile.location}
-          </Typography>
-        </Paper>
-        <Paper className={classes.paperHeader}>
-          <Typography variant="headline" align="center" color="inherit">
-            Sheldon's Bio
-          </Typography>
-          <Typography
-            paragraph
-            variant="subheading"
-            align="center"
-            color="inherit">
-            {profile.bio}
-          </Typography>
+    <ProfileHead/>
+       <Paper className={classes.paperHeader}>
           <Typography variant="headline" align="center" color="inherit">
             {'Skills'}
           </Typography>
@@ -105,8 +86,10 @@ const ProfileHeader = props => {
             <Chip label="C++" className={classes.chip} />
           </div>
         </Paper>
-      </div>
-    </Fragment>
+        <Experience />
+        <Experience />
+
+        
   );
 };
 
