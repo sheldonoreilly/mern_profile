@@ -9,7 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 // import InputLabel from '@material-ui/core/InputLabel';
 // import MenuItem from '@material-ui/core/MenuItem';
 // import Select from '@material-ui/core/Select';
-import ProfileHeader from './ProfileHeader';
+import ProfileHeader from './ProfileHead';
 //redux
 import { connect } from 'react-redux';
 //actions
@@ -62,7 +62,7 @@ class Profile extends Component {
     return (
       <div>
         <CssBaseline />
-        <ProfileHeader profile={profile} avatar={avatar} />
+        <ProfileHead profile={profile} avatar={avatar} />
       </div>
     );
   }

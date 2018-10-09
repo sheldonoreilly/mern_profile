@@ -44,6 +44,7 @@ const styles = theme => ({
 
 const ProfileHead = props => {
   const { classes, profile, avatar } = props;
+  console.log('PROFILE', profile);
   return (
     <Fragment>
       <CssBaseline />
