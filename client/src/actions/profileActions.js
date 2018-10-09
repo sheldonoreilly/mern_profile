@@ -55,26 +55,17 @@ export const setProfile = profile => dispatch => {
     });
 };
 
-export const addEducation = education => dispatch => {
+// export const createprofile = (profileData, history) => dispatch => {
+export const addEducation = (education, history) => dispatch => {
   axios
     .post('/api/profile/education', education)
-    // .then(response => {
-    //   //sor nothing is needed here i guess.
-    //   //i am forwarding to dashboard in the component
-    //   //so router not needed here?
-    //   // dispatch({
-    //   //   type: SET_PROFILE,
-    //   //   payload: response.data
-    //   // });
-
-    //   // const wh
-    // })
-    .catch(err => {
+    .then(res => history.push('/dashboard'))
+    .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
-      });
-    });
+      })
+    );
 };
 
 export const addExperience = experience => dispatch => {

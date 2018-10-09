@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+//mui
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,10 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-
 //redux
 import { connect } from 'react-redux';
 //actions
@@ -40,27 +38,52 @@ const styles = theme => ({
   }
 });
 
-//sor add tooltips
-
 class Education extends Component {
   state = {
     degree: '',
+    degreeInvalid: false,
+    degreeError: '',
+
     school: '',
+    schoolInvalid: false,
+    schoolError: '',
+
     fieldofstudy: '',
+    fieldofstudyInvalid: false,
+    fieldofstudyError: '',
+
     from: '',
+    fromInvalid: false,
+    fromError: '',
+
     to: '',
     current: '',
     description: ''
   };
 
-  componentDidMount() {}
+  componentWillReceiveProps(nextProps) {
+    //set errors to component state to reflect in UI
+    const { errors } = nextProps;
+    if (errors) {
+      this.setState({
+        //school
+        schoolInvalid: errors.school ? true : false,
+        schoolError: errors.school,
+        //degree
+        degreeInvalid: errors.degree ? true : false,
+        degreeError: errors.degree,
+        //field of study
+        fieldofstudyInvalid: errors.fieldofstudy ? true : false,
+        fieldofstudyError: errors.fieldofstudy,
+        //from
+        fromInvalid: errors.fromInvalid ? true : false,
+        fromError: errors.fromInvalid
+      });
+    }
+  }
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log('education :', this.state);
-
-    //const { user } = this.props.auth;
-
     //construct our edu object from state
     const education = {
       degree: this.state.degree,
@@ -68,19 +91,9 @@ class Education extends Component {
       fieldofstudy: this.state.fieldofstudy,
       from: this.state.from,
       to: this.state.to
-      // current: '',
-      // description
     };
 
-    //sor ???
-    //add the user id to the tobe actioned profile
-    //is this necessary - its mined from the requeest on the server??
-    //education.userId = user.id;
-    //'connect' gets us access to the action
-    this.props.addEducation(education);
-    //go back to dashboard
-    //sor this seems to need to be moved, async call needs to be finished before dashboard (to the action maybe
-    this.props.history.push('./dashboard');
+    this.props.addEducation(education, this.props.history);
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -126,6 +139,8 @@ class Education extends Component {
                   required
                   label="School"
                   value={school}
+                  error={this.state.schoolInvalid}
+                  helperText={this.state.schoolError}
                 />
               </FormControl>
               <FormControl margin="dense" fullWidth>
@@ -135,6 +150,8 @@ class Education extends Component {
                   label="Degree\Course"
                   required
                   value={degree}
+                  error={this.state.degreeInvalid}
+                  helperText={this.state.degreeError}
                 />
               </FormControl>
               <FormControl margin="dense" fullWidth>
@@ -143,13 +160,14 @@ class Education extends Component {
                   name="fieldofstudy"
                   label="Field of Study"
                   value={fieldofstudy}
+                  error={this.state.fieldofstudyInvalid}
+                  helperText={this.state.fieldofstudyError}
                 />
               </FormControl>
               <FormControl margin="dense">
                 <TextField
                   id="date"
                   label="From"
-                  defaultValue="2017-05-24"
                   type="date"
                   onChange={this.handleChange('from')}
                   value={from}
@@ -157,6 +175,8 @@ class Education extends Component {
                   InputLabelProps={{
                     shrink: true
                   }}
+                  error={this.state.fromInvalid}
+                  helperText={this.state.fromError}
                 />
               </FormControl>
               <br />
@@ -164,7 +184,6 @@ class Education extends Component {
                 <TextField
                   id="date"
                   label="To"
-                  defaultValue="2017-05-24"
                   onChange={this.handleChange('to')}
                   type="date"
                   value={to}
@@ -201,10 +220,11 @@ Education.propTypes = {
 const mapStateToProps = state => ({
   profile: state.profile,
   //auth gets us the user
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
   { getCurrentProfile, addEducation }
-)(withStyles(styles)(Education));
+)(withRouter(withStyles(styles)(Education)));
