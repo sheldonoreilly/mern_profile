@@ -47,7 +47,7 @@ class Navbar extends Component {
               Dispatch
             </Typography>
             <Button color="inherit" component={Link} to="/browse">
-              Browse
+              View All
             </Button>
 
             {!isAuthenticated ? (
@@ -60,10 +60,15 @@ class Navbar extends Component {
                 </Button>
               </Fragment>
             ) : (
-              <Button onClick={this.logOut} color="inherit">
-                {/* add the avatar */}
-                Logout
-              </Button>
+              <Fragment>
+                <Button color="inherit" component={Link} to="/profile">
+                  View Me
+                </Button>
+                <Button onClick={this.logOut} color="inherit">
+                  {/* add the avatar */}
+                  Logout
+                </Button>
+              </Fragment>
             )}
           </Toolbar>
         </AppBar>

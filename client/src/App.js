@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 //private Routes
-import PrivateRoute from './components/common/PrivateRoute';
+// import PrivateRoute from './components/common/PrivateRoute';
 //components
 import Navbar from './components/layout/Navbar';
 import Center from './components/layout/Center';
@@ -21,6 +21,7 @@ import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import SignIn from './components/auth/SignIn';
 import Dashboard from './components/dashboard/Dashboard';
+import Profile from './components/profile/Profile';
 import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import Education from './components/education/Education';
@@ -91,6 +92,7 @@ class App extends Component {
               <Route exact path="/editprofile" component={EditProfile} />
               <Route exact path="/addeducation" component={Education} />
               <Route exact path="/addexperience" component={Experience} />
+              <Route exact path="/profile" component={Profile} />
 
               <Footer />
             </MuiThemeProvider>

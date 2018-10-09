@@ -24,7 +24,6 @@ class Center extends React.Component {
 
   render() {
     const { classes } = this.props;
-    // const { isAuthenticated, user } = this.props.auth;
     return (
       <Fragment>
         <Paper className={classes.paperContainer} />

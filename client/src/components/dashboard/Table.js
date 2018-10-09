@@ -57,10 +57,10 @@ function DataTable(props) {
           <TableHead>
             <TableRow>
               <CustomTableCell>
-                {type == DataType.Education ? 'School' : 'Company'}
+                {type === DataType.Education ? 'School' : 'Company'}
               </CustomTableCell>
               <CustomTableCell>
-                {type == DataType.Education
+                {type === DataType.Education
                   ? 'Degree or Course'
                   : 'Title or Position'}
               </CustomTableCell>

@@ -40,8 +40,6 @@ const styles = theme => ({
   }
 });
 
-//sor add tooltips
-
 class EditProfile extends Component {
   state = {
     handle: '',

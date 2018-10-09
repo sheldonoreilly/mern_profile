@@ -65,7 +65,7 @@ class CreateProfile extends Component {
     //sor this has to be cleaned 8(
     const {
       handle,
-      status,
+      // status,
       company,
       website,
       location,

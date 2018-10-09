@@ -37,7 +37,6 @@ const styles = theme => ({
     }
   }
 });
-
 class Education extends Component {
   state = {
     degree: '',
@@ -111,9 +110,9 @@ class Education extends Component {
       school,
       fieldofstudy,
       from,
-      to,
-      current,
-      description
+      to
+      // current,
+      // description
     } = this.state;
     return (
       <Fragment>
