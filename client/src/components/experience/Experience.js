@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+//mui
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,10 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-
 //redux
 import { connect } from 'react-redux';
 //actions
@@ -39,29 +37,50 @@ const styles = theme => ({
     }
   }
 });
-
-//sor add tooltips
-
 class Experience extends Component {
   state = {
     company: '',
+    companyInvalid: false,
+    companyError: '',
+
     title: '',
+    titleInvalid: false,
+    titleError: '',
+
     location: '',
     description: '',
+
     from: '',
+    fromInvalid: false,
+    fromError: '',
+
     to: '',
     current: ''
   };
 
-  componentDidMount() {}
+  componentWillReceiveProps(nextProps) {
+    //set errors to component state to reflect in UI
+    const { errors } = nextProps;
+    if (errors) {
+      this.setState({
+        //company
+        companyInvalid: errors.company ? true : false,
+        companyError: errors.company,
+        //title
+        titleInvalid: errors.title ? true : false,
+        titleError: errors.title,
+        //from
+        fromInvalid: errors.fromInvalid ? true : false,
+        fromError: errors.fromInvalid
+      });
+    }
+  }
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log('Experience :', this.state);
-
+    //deconstruct from state
     const { company, title, location, description, from, to } = this.state;
-
-    //construct our exp object from state
+    //construct our exp object es6
     const experience = {
       company,
       title,
@@ -71,15 +90,7 @@ class Experience extends Component {
       to
     };
 
-    //sor ???
-    //add the user id to the tobe actioned profile
-    //is this necessary - its mined from the requeest on the server??
-    //experience.userId = user.id;
-    //'connect' gets us access to the action
-    this.props.addExperience(experience);
-    //go back to dashboard
-    //sor this seems to need to be moved, async call needs to be finished before dashboard (to the action maybe
-    //this.props.history.push('./dashboard');
+    this.props.addExperience(experience, this.props.history);
   };
 
   handleChange = name => ({ target: { value } }) => {
@@ -117,6 +128,8 @@ class Experience extends Component {
                   required
                   label="Company"
                   value={company}
+                  error={this.state.companyInvalid}
+                  helperText={this.state.companyError}
                 />
               </FormControl>
               <FormControl margin="dense" fullWidth>
@@ -126,6 +139,8 @@ class Experience extends Component {
                   label="Title"
                   required
                   value={title}
+                  error={this.state.titleInvalid}
+                  helperText={this.state.titleError}
                 />
               </FormControl>
               <FormControl margin="dense" fullWidth>
@@ -148,7 +163,6 @@ class Experience extends Component {
                 <TextField
                   id="date"
                   label="From"
-                  defaultValue="2017-05-24"
                   type="date"
                   required
                   onChange={this.handleChange('from')}
@@ -157,6 +171,8 @@ class Experience extends Component {
                   InputLabelProps={{
                     shrink: true
                   }}
+                  error={this.state.fromInvalid}
+                  helperText={this.state.fromError}
                 />
               </FormControl>
               <br />
@@ -164,7 +180,6 @@ class Experience extends Component {
                 <TextField
                   id="date"
                   label="To"
-                  defaultValue="2017-05-24"
                   onChange={this.handleChange('to')}
                   type="date"
                   value={to}
@@ -201,10 +216,12 @@ Experience.propTypes = {
 const mapStateToProps = state => ({
   profile: state.profile,
   //auth gets us the user
-  auth: state.auth
+  auth: state.auth,
+  //errors from api
+  errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
   { getCurrentProfile, addExperience }
-)(withStyles(styles)(Experience));
+)(withRouter(withStyles(styles)(Experience)));

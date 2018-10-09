@@ -84,13 +84,15 @@ class Education extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    //construct our edu object from state
+    //deconstruct from state
+    const { degree, school, fieldofstudy, from, to } = this.state;
+    //construct our exp object es6
     const education = {
-      degree: this.state.degree,
-      school: this.state.school,
-      fieldofstudy: this.state.fieldofstudy,
-      from: this.state.from,
-      to: this.state.to
+      degree,
+      school,
+      fieldofstudy,
+      from,
+      to
     };
 
     this.props.addEducation(education, this.props.history);
@@ -221,6 +223,7 @@ const mapStateToProps = state => ({
   profile: state.profile,
   //auth gets us the user
   auth: state.auth,
+  //errors from api
   errors: state.errors
 });
 

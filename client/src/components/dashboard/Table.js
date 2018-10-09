@@ -13,14 +13,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    // backgroundColor: theme.palette.common.black,
-    // backgroundColor: theme.palette.grey[400],
     fontSize: 18,
     color: 'black'
   }
-  // body: {
-  //   fontSize: 20
-  // }
 }))(TableCell);
 
 const styles = theme => ({
@@ -33,14 +28,6 @@ const styles = theme => ({
     minWidth: 300
   }
 });
-
-let id = 0;
-function createData(School, Degree, Years) {
-  id += 1;
-  return { id, School, Degree, Years };
-}
-
-// const rows = [createData('UNB', 'Business of Administration', '1988-1994')];
 
 export var DataType = {
   Education: 1,
@@ -59,7 +46,7 @@ function DataTable(props) {
         variant="headline"
         style={{
           display: 'inline-block',
-          marginBottom: 0,
+          marginBottom: '0',
           marginTop: '32px',
           marginRight: '16px'
         }}>
@@ -73,9 +60,10 @@ function DataTable(props) {
                 {type == DataType.Education ? 'School' : 'Company'}
               </CustomTableCell>
               <CustomTableCell>
-                {type == DataType.Education ? 'Degree/Course' : 'Title'}
+                {type == DataType.Education
+                  ? 'Degree or Course'
+                  : 'Title or Position'}
               </CustomTableCell>
-              {/* <CustomTableCell>Years</CustomTableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -88,7 +76,6 @@ function DataTable(props) {
                   <TableCell>
                     {type === DataType.Education ? row.degree : row.title}
                   </TableCell>
-                  {/* <TableCell>{`${row.to}-${row.to}`}</TableCell> */}
                   <TableCell>
                     <Button color="secondary" variant="fab" mini>
                       <DeleteIcon />
