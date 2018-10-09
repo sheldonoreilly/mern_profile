@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+// import Paper from '@material-ui/core/Paper';
+// import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 // import FormControl from '@material-ui/core/FormControl';
 // import TextField from '@material-ui/core/TextField';
@@ -50,8 +50,7 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('this.props', this.props);
-    const { classes } = this.props;
+    // const { classes } = this.props;
 
     if (!this.props.profile.profile) {
       return <h1>Loading...</h1>;
@@ -59,11 +58,11 @@ class Profile extends Component {
 
     // this.state.profileLoaded = true;
     const avatar = this.props.profile.profile.user.avatar;
-    const name = this.props.profile.profile.user.name;
+    const profile = this.props.profile.profile;
     return (
       <div>
         <CssBaseline />
-        <ProfileHeader name={name} avatar={avatar} />
+        <ProfileHeader profile={profile} avatar={avatar} />
       </div>
     );
   }
