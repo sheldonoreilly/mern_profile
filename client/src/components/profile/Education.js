@@ -20,7 +20,7 @@ const styles = theme => ({
   }
 });
 
-const Experience = props => {
+const Education = props => {
   const { classes, company, title, location, description } = props;
   return (
     <Paper>
@@ -37,7 +37,7 @@ const Experience = props => {
     </Paper>
   );
 };
-Experience.propTypes = {
+Education.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(Experience);
+export default withStyles(styles)(Education);

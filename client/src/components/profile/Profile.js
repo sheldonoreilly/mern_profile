@@ -5,35 +5,27 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ProfileHead from './ProfileHead';
 import Skills from './Skills';
+import Bio from './Bio';
 //redux
 import { connect } from 'react-redux';
 //actions
 import { getCurrentProfile } from '../../actions/profileActions';
-import Experience from './Experience';
 import ExperienceList from './ExperienceList';
+import EducationList from './EducationList';
 
 const styles = theme => ({
   root: {},
   layout: {
+    //so 600 and below
     width: 'auto',
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    color: theme.palette.common.white
-  },
-
-  paper: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit * 2,
-    padding: theme.spacing.unit * 2
-    /* [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
-      marginTop: theme.spacing.unit * 6,
-      marginBottom: theme.spacing.unit * 6,
-      padding: theme.spacing.unit * 3
-    },*/
-    // backgroundColor: theme.palette.grey[800],
-    // color: theme.palette.common.white
-    // display: 'flex',
-    // flexDirection: 'column'
+    marginLeft: theme.spacing.unit * 1,
+    marginRight: theme.spacing.unit * 1,
+    //so here 600 and above
+    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+      width: 900,
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
   }
 });
 
@@ -61,8 +53,10 @@ class Profile extends Component {
         <Fragment>
           <CssBaseline />
           <ProfileHead profile={profile1} avatar={profile1.user.avatar} />
+          <Bio profile={profile1} />
           <Skills skills={profile1.skills} />
           <ExperienceList profile={profile1} />
+          <EducationList profile={profile1} />
         </Fragment>
       </div>
     );

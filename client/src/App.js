@@ -68,7 +68,7 @@ if (localStorage.jwtToken) {
 // }
 // });
 
-const theme = createMuiTheme({
+const dark = createMuiTheme({
   typography: {
     fontFamily: ['Karma', 'serif']
   },
@@ -77,19 +77,34 @@ const theme = createMuiTheme({
       paper: '#282c34'
     },
     text: {
-      primary: '#fff'
+      primary: '#fff',
+      secondary: '#000'
+    }
+  }
+});
+const light = createMuiTheme({
+  typography: {
+    fontFamily: ['Karma', 'serif']
+  },
+  palette: {
+    background: {
+      paper: '#fff'
+    },
+    text: {
+      primary: '#000',
+      secondary: '#000'
     }
   }
 });
 
 class App extends Component {
   render() {
-    console.log('theme :', theme);
+    // console.log('theme :', theme);
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <MuiThemeProvider theme={theme}>
+            <MuiThemeProvider theme={light}>
               <Navbar />
               <Route exact path="/" component={Center} />
               <Route exact path="/register" component={Register} />

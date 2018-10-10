@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { logUserOut } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
+import Switch from '@material-ui/core/Switch';
 //react-redux
 import { connect } from 'react-redux';
 
@@ -46,6 +47,11 @@ class Navbar extends Component {
               className={classes.grow}>
               Dispatch
             </Typography>
+            <Switch
+              // checked={this.state.checkedA}
+              // onChange={this.handleChange('checkedA')}
+              value="checkedA"
+            />
             <Button color="inherit" component={Link} to="/browse">
               View All
             </Button>

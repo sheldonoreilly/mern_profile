@@ -10,6 +10,7 @@ import Person from '@material-ui/icons/Person';
 import School from '@material-ui/icons/School';
 import Update from '@material-ui/icons/Update';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Paper from '@material-ui/core/Paper';
 //router
 import { Link } from 'react-router-dom';
 //redux
@@ -26,9 +27,21 @@ import { Button } from '@material-ui/core';
 const styles = theme => ({
   root: {},
   layout: {
+    //so 600 and below
     width: 'auto',
-    marginLeft: theme.spacing.unit * 8,
-    marginRight: theme.spacing.unit * 8
+    marginLeft: theme.spacing.unit * 1,
+    marginRight: theme.spacing.unit * 1,
+    //so here 600 and above
+    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+      width: 900,
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
+  },
+  paper: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+    padding: theme.spacing.unit * 2
   }
 });
 
@@ -58,89 +71,88 @@ class Dashboard extends Component {
       <React.Fragment>
         <CssBaseline />
         <div className={classes.layout}>
-          <Grid container className={classes.main_container}>
+          <Grid container>
             <Grid item xs={12}>
-              <Typography
-                variant="display2"
-                color="textPrimary"
-                style={{ marginBottom: 0, marginTop: '32px' }}>
-                Dashboard
-              </Typography>
-              <Typography color="textSecondary" style={{ marginTop: 0 }}>
-                {greeting}
-              </Typography>
-              {isEmpty(profile) ? (
-                <Button component={Link} to="/createprofile">
-                  Add Profile
-                </Button>
-              ) : (
-                <Fragment>
-                  {/* // load the 'preview profile' dashboard screen */}
-                  <Grid
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justify: 'flex-start'
-                    }}>
-                    {/* <List component="nav"> */}
+              <Paper className={classes.paper}>
+                <Typography variant="display2" color="textPrimary">
+                  Dashboard
+                </Typography>
+                <Typography color="textSecondary" style={{ marginTop: 0 }}>
+                  {greeting}
+                </Typography>
+                {isEmpty(profile) ? (
+                  <Button component={Link} to="/createprofile">
+                    Add Profile
+                  </Button>
+                ) : (
+                  <Fragment>
+                    {/* // load the 'preview profile' dashboard screen */}
+                    <Grid
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justify: 'flex-start'
+                      }}>
+                      {/* <List component="nav"> */}
 
-                    <ListItem
-                      button
-                      component={Link}
-                      to="/editprofile"
-                      disableGutters
-                      style={{ width: 'auto' }}>
-                      <ListItemIcon style={{ marginRight: 4 }}>
-                        <Person />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Edit Profile"
-                        style={{ padding: '0px 12px 0px 0px' }}
-                      />
-                    </ListItem>
-                    <ListItem
-                      button
-                      component={Link}
-                      to="/addeducation"
-                      disableGutters
-                      style={{ width: 'auto' }}>
-                      <ListItemIcon style={{ marginRight: 4 }}>
-                        <School />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Add Education"
-                        style={{ padding: '0px 12px 0px 0px' }}
-                      />
-                    </ListItem>
-                    <ListItem
-                      button
-                      component={Link}
-                      to="/addexperience"
-                      disableGutters
-                      style={{ width: 'auto' }}>
-                      <ListItemIcon style={{ marginRight: 4 }}>
-                        <Update />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Add Experience"
-                        style={{
-                          padding: '0px 12px 0px 0px',
-                          fontSize: '0.8rem'
-                        }}
-                      />
-                    </ListItem>
-                  </Grid>
+                      <ListItem
+                        button
+                        component={Link}
+                        to="/editprofile"
+                        disableGutters
+                        style={{ width: 'auto' }}>
+                        <ListItemIcon style={{ marginRight: 4 }}>
+                          <Person />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary="Edit Profile"
+                          style={{ padding: '0px 12px 0px 0px' }}
+                        />
+                      </ListItem>
+                      <ListItem
+                        button
+                        component={Link}
+                        to="/addeducation"
+                        disableGutters
+                        style={{ width: 'auto' }}>
+                        <ListItemIcon style={{ marginRight: 4 }}>
+                          <School />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary="Add Education"
+                          style={{ padding: '0px 12px 0px 0px' }}
+                        />
+                      </ListItem>
+                      <ListItem
+                        button
+                        component={Link}
+                        to="/addexperience"
+                        disableGutters
+                        style={{ width: 'auto' }}>
+                        <ListItemIcon style={{ marginRight: 4 }}>
+                          <Update />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary="Add Experience"
+                          style={{
+                            padding: '0px 12px 0px 0px',
+                            fontSize: '0.8rem'
+                          }}
+                        />
+                      </ListItem>
+                    </Grid>
 
-                  <DataTable
-                    type={DataType.Education}
-                    data={profile.education}
-                  />
-                  <DataTable
-                    type={DataType.Experience}
-                    data={profile.experience}
-                  />
-                </Fragment>
-              )}
+                    <DataTable
+                      type={DataType.Education}
+                      data={profile.education}
+                    />
+                    <DataTable
+                      type={DataType.Experience}
+                      data={profile.experience}
+                    />
+                  </Fragment>
+                )}
+              </Paper>
             </Grid>
           </Grid>
         </div>

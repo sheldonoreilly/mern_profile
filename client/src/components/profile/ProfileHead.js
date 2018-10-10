@@ -9,11 +9,8 @@ const styles = theme => ({
   root: {},
   paper: {
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit * 2,
-    padding: theme.spacing.unit * 2,
-    color: theme.palette.common.white
-    // display: 'flex',
-    // flexDirection: 'column'
+    marginBottom: theme.spacing.unit,
+    padding: theme.spacing.unit * 2
   },
 
   gravtar: {
@@ -29,7 +26,7 @@ const ProfileHead = props => {
     <Fragment>
       <Paper className={classes.paper}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant="display2" color="inherit" align="center">
+          <Typography variant="display2" color="textPrimary" align="center">
             {profile.user.name}
           </Typography>
           <img
@@ -39,25 +36,13 @@ const ProfileHead = props => {
             height="250"
             alt="alt"
           />
-          <Typography variant="headline" align="center" color="inherit">
+          <Typography variant="headline" align="center">
             {'Software Engineer'}
           </Typography>
-          <Typography variant="subheading" align="center" color="inherit">
+          <Typography variant="subheading" align="center">
             {profile.location}
           </Typography>
         </div>
-      </Paper>
-      <Paper>
-        <Typography variant="headline" align="center" color="inherit">
-          Sheldon's Bio
-        </Typography>
-        <Typography
-          paragraph
-          variant="subheading"
-          align="center"
-          color="inherit">
-          {profile.bio}
-        </Typography>
       </Paper>
     </Fragment>
   );
