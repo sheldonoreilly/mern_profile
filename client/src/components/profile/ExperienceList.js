@@ -18,14 +18,6 @@ const styles = theme => ({
     //sor
     display: 'flex',
     flexDirection: 'column'
-  },
-  cardtitle: {
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(25))
-  },
-  cardsubtitle: {
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(15))
   }
 });
 
@@ -44,7 +36,7 @@ const ExperienceList = props => {
   ));
   return (
     <Paper className={classes.paperHeader}>
-      <Typography variant="headline" align="center" color="inherit">
+      <Typography variant="headline" align="center">
         {'Experience'}
       </Typography>
       {experiences}

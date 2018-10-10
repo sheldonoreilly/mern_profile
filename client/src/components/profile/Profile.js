@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profileActions';
 import ExperienceList from './ExperienceList';
 import EducationList from './EducationList';
+import ProfileGithub from './ProfileGitHub';
 
 const styles = theme => ({
   root: {},
@@ -57,6 +58,7 @@ class Profile extends Component {
           <Skills skills={profile1.skills} />
           <ExperienceList profile={profile1} />
           <EducationList profile={profile1} />
+          <ProfileGithub username={profile1.gitHubUserName} />
         </Fragment>
       </div>
     );

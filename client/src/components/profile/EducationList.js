@@ -42,7 +42,7 @@ const EducationList = props => {
   ));
   return (
     <Paper className={classes.paperHeader}>
-      <Typography variant="headline" align="center" color="inherit">
+      <Typography variant="headline" align="center">
         {'Education'}
       </Typography>
       {experiences}
