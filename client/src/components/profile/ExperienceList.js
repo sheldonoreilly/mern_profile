@@ -20,8 +20,7 @@ const styles = theme => ({
     //   marginBottom: theme.spacing.unit * 6,
     //   padding: theme.spacing.unit * 3
     // },
-    // backgroundColor: theme.palette.grey[800],
-    color: theme.palette.common.white,
+
     display: 'flex',
     flexDirection: 'column'
   },
@@ -36,7 +35,8 @@ const styles = theme => ({
 });
 
 const ExperienceList = props => {
-  const { classes, experience } = props.profile;
+  const { classes } = props;
+  const { experience } = props.profile;
 
   const experiences = experience.map((ex, index) => (
     <Experience
@@ -47,7 +47,14 @@ const ExperienceList = props => {
       description={ex.description}
     />
   ));
-  return experiences;
+  return (
+    <Paper className={classes.paperHeader}>
+      <Typography variant="headline" align="center" color="inherit">
+        {'Experience'}
+      </Typography>
+      {experiences}
+    </Paper>
+  );
 };
 
 ExperienceList.propTypes = {

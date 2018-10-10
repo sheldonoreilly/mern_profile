@@ -71,6 +71,14 @@ if (localStorage.jwtToken) {
 const theme = createMuiTheme({
   typography: {
     fontFamily: ['Karma', 'serif']
+  },
+  palette: {
+    background: {
+      paper: '#282c34'
+    },
+    text: {
+      primary: '#fff'
+    }
   }
 });
 
