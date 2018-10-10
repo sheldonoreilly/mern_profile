@@ -27,6 +27,11 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto'
     }
+  },
+  paper: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+    padding: theme.spacing.unit * 2
   }
 });
 

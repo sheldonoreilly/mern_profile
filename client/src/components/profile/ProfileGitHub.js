@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
@@ -10,6 +10,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
 
+//divider
+import Divider from '@material-ui/core/Divider';
+
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
@@ -17,6 +20,11 @@ import StarRate from '@material-ui/icons/StarRate';
 
 const styles = theme => ({
   root: {},
+  paper: {
+    marginTop: theme.spacing.unit * 1,
+    marginBottom: theme.spacing.unit * 1,
+    padding: theme.spacing.unit * 2
+  },
   card: {
     display: 'flex'
   },
@@ -26,15 +34,23 @@ const styles = theme => ({
   },
   cardtitle: {
     fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(25))
+    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(20)),
+    textDecoration: 'none'
   },
   cardsubtitle: {
     fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(20))
+    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(15))
   },
   chip: {
-    margin: theme.spacing.unit
-    // flexGrow: 1
+    margin: theme.spacing.unit,
+    // backgroundColor: 'green',
+    color: 'white'
+  },
+  divider: {
+    width: '100%',
+    // maxWidth: '360px',
+    // backgroundColor: theme.palette.background.paper
+    backgroundColor: 'black'
   }
 });
 
@@ -72,8 +88,15 @@ class ProfileGithub extends Component {
       .catch(err => alert(err));
   }
   render() {
-    console.log('RENDER this.state.repos.length :', this.state.repos.length);
-    return <Paper>{this.generateRepoCards()}</Paper>;
+    const { classes } = this.props;
+    return (
+      <Paper className={classes.paper}>
+        <Typography variant="headline" align="center">
+          {'Latest GitHub Repos'}
+        </Typography>
+        {this.generateRepoCards()}
+      </Paper>
+    );
   }
 
   generateRepoCards = () => {
@@ -84,39 +107,49 @@ class ProfileGithub extends Component {
 
     const repoCards = repos.map(repo => {
       return (
-        <Card className={classes.card} key={repo.id}>
-          <CardContent className={classes.cardcontent}>
-            <div style={{ display: 'flex' }}>
-              <Typography className={classes.cardtitle}>
-                <Link to={repo.html_url} className="text-info" target="_blank">
-                  {repo.name}
-                </Link>
-              </Typography>
-              <div
-                style={{
-                  display: 'flex',
-                  width: '100%',
-                  justifyContent: 'flex-end'
-                }}>
-                <Chip
-                  label={`Watches: ${repo.watchers_count}`}
-                  className={classes.chip}
-                />
-                <Chip
-                  label={`Stars: ${repo.stargazers_count}`}
-                  className={classes.chip}
-                />
-                <Chip
-                  label={`Forks: ${repo.forks_count}`}
-                  className={classes.chip}
-                />
+        <Fragment>
+          <Divider className={classes.divider} />
+          <Card className={classes.card} key={repo.id}>
+            <CardContent className={classes.cardcontent}>
+              <div style={{ display: 'flex' }}>
+                <Typography className={classes.cardtitle}>
+                  <Link
+                    to={repo.html_url}
+                    className="text-info"
+                    style={{ textDecoration: 'none' }}
+                    target="_blank">
+                    {repo.name}
+                  </Link>
+                </Typography>
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'flex-end'
+                  }}>
+                  <Chip
+                    label={`Watches: ${repo.watchers_count}`}
+                    className={classes.chip}
+                    color="primary"
+                  />
+                  <Chip
+                    label={`Stars: ${repo.stargazers_count}`}
+                    className={classes.chip}
+                    color="primary"
+                  />
+                  <Chip
+                    label={`Forks: ${repo.forks_count}`}
+                    className={classes.chip}
+                    color="secondary"
+                  />
+                </div>
               </div>
-            </div>
-            <Typography className={classes.cardsubtitle}>
-              {repo.description}
-            </Typography>
-          </CardContent>
-        </Card>
+              <Typography className={classes.cardsubtitle}>
+                {repo.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Fragment>
       );
     });
     console.log('repoCards :', repoCards);

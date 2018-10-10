@@ -116,7 +116,6 @@ class App extends Component {
               <Route exact path="/addeducation" component={Education} />
               <Route exact path="/addexperience" component={Experience} />
               <Route exact path="/profile" component={Profile} />
-
               <Footer />
             </MuiThemeProvider>
           </div>
