@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-// import FormControl from '@material-ui/core/FormControl';
-// import TextField from '@material-ui/core/TextField';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import Select from '@material-ui/core/Select';
-import ProfileHeader from './ProfileHead';
+import ProfileHead from './ProfileHead';
+import Skills from './Skills';
 //redux
 import { connect } from 'react-redux';
 //actions
 import { getCurrentProfile } from '../../actions/profileActions';
+import Experience from './Experience';
+import ExperienceList from './ExperienceList';
 
 const styles = theme => ({
   root: {},
@@ -22,7 +19,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
     [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-      width: 700,
+      width: 900,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -44,25 +41,28 @@ class Profile extends Component {
     profileLoaded: false,
     avatar: ''
   };
-  //sor sanity check here - without this the profile isnt available - check/confirm this
   componentDidMount() {
     this.props.getCurrentProfile();
   }
 
   render() {
-    // const { classes } = this.props;
+    console.log('this.props.profile.profile :', this.props.profile.profile);
+    const { classes } = this.props;
+    const profile1 = this.props.profile.profile;
 
-    if (!this.props.profile.profile) {
+    if (!profile1) {
       return <h1>Loading...</h1>;
     }
 
-    // this.state.profileLoaded = true;
-    const avatar = this.props.profile.profile.user.avatar;
-    const profile = this.props.profile.profile;
     return (
-      <div>
+      <div className={classes.layout}>
         <CssBaseline />
-        <ProfileHead profile={profile} avatar={avatar} />
+        <Fragment>
+          <CssBaseline />
+          <ProfileHead profile={profile1} avatar={profile1.user.avatar} />
+          <Skills skills={profile1.skills} />
+          <ExperienceList profile={profile1} />
+        </Fragment>
       </div>
     );
   }

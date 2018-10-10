@@ -6,6 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 //card
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Experience from './Experience';
 
 // theme.typography.pxToRem
 const styles = theme => ({
@@ -34,39 +35,22 @@ const styles = theme => ({
   }
 });
 
-const Experience = props => {
-  const { classes, company, title, location, description } = props;
-  return (
-    <Paper className={classes.paperHeader}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography className={classes.cardtitle} color="textPrimary">
-            {company}
-          </Typography>
-          <Typography
-            className={classes.cardsubtitle}
-            color="textPrimary"
-            gutterBottom>
-            {title}
-          </Typography>
-          <Typography
-            className={classes.cardsubtitle}
-            color="textPrimary"
-            gutterBottom>
-            {location}
-          </Typography>
-          <Typography
-            className={classes.cardsubtitle}
-            color="textPrimary"
-            gutterBottom>
-            {description}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Paper>
-  );
+const ExperienceList = props => {
+  const { classes, experience } = props.profile;
+
+  const experiences = experience.map((ex, index) => (
+    <Experience
+      key={index}
+      company={ex.company}
+      title={ex.title}
+      location={ex.location}
+      description={ex.description}
+    />
+  ));
+  return experiences;
 };
-Experience.propTypes = {
+
+ExperienceList.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(Experience);
+export default withStyles(styles)(ExperienceList);
