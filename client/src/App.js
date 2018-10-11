@@ -26,6 +26,7 @@ import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
+import Browse from './components/browse-profile/Browse';
 
 //check for token
 if (localStorage.jwtToken) {
@@ -116,6 +117,7 @@ class App extends Component {
               <Route exact path="/addeducation" component={Education} />
               <Route exact path="/addexperience" component={Experience} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/browse" component={Browse} />
               <Footer />
             </MuiThemeProvider>
           </div>

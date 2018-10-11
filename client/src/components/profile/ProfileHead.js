@@ -16,7 +16,9 @@ const styles = theme => ({
   gravtar: {
     borderRadius: '50%',
     margin: 'auto',
-    padding: '25px'
+    padding: '25px',
+    width: '250px',
+    height: '250px'
   }
 });
 
@@ -29,13 +31,7 @@ const ProfileHead = props => {
           <Typography variant="display2" color="textPrimary" align="center">
             {profile.user.name}
           </Typography>
-          <img
-            className={classes.gravtar}
-            src={avatar}
-            width="250"
-            height="250"
-            alt="alt"
-          />
+          <img className={classes.gravtar} src={avatar} alt="Image of user." />
           <Typography variant="headline" align="center">
             {'Software Engineer'}
           </Typography>
