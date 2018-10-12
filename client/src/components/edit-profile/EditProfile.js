@@ -10,11 +10,24 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+// import Icon from '@material-ui/core/Icon';
+import classNames from 'classnames';
+// import { loadCSS } from 'fg-loadcss/src/loadCSS';
+//router
+// import TwitterBox from '@material-ui/icons/TwitterBox';
+import Icon from '@mdi/react';
+import { mdiTwitterCircle } from '@mdi/js';
+import { mdiGithubCircle } from '@mdi/js';
+
+import Grid from '@material-ui/core/Grid';
+
 import isEmpty from '../../validation/is-empty';
 //redux
 import { connect } from 'react-redux';
 //actions
 import { getCurrentProfile, setProfile } from '../../actions/profileActions';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const styles = theme => ({
   root: {},
@@ -41,6 +54,17 @@ const styles = theme => ({
       marginBottom: theme.spacing.unit * 6,
       padding: theme.spacing.unit * 3
     }
+  },
+
+  // font icon
+  icon: {
+    margin: theme.spacing.unit * 2
+  },
+  iconHover: {
+    margin: theme.spacing.unit * 2,
+    '&:hover': {
+      // color: red[800]
+    }
   }
 });
 
@@ -58,6 +82,11 @@ class EditProfile extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile();
+
+    // loadCSS(
+    //   'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+    //   document.querySelector('#insertion-point-jss')
+    // );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -209,9 +238,14 @@ class EditProfile extends Component {
                     name: 'status',
                     id: 'status'
                   }}>
-                  <MenuItem value={10}>Programmer</MenuItem>
-                  <MenuItem value={20}>Business Owner</MenuItem>
-                  <MenuItem value={30}>Student</MenuItem>
+                  <MenuItem value={10}>Developer</MenuItem>
+                  <MenuItem value={10}>Junior Developer</MenuItem>
+                  <MenuItem value={10}>Senior Developer</MenuItem>
+                  <MenuItem value={10}>Manager</MenuItem>
+                  <MenuItem value={10}>Student or Learning</MenuItem>
+                  <MenuItem value={10}>Instructor or Teacher</MenuItem>
+                  <MenuItem value={10}>Intern</MenuItem>
+                  <MenuItem value={10}>Other</MenuItem>
                 </Select>
               </FormControl>
               {/* company */}
@@ -277,6 +311,47 @@ class EditProfile extends Component {
                     'If you want a GitHub link to your latest repositories.'
                   }
                 />
+
+                <Button> Social Media </Button>
+
+                {/* //sor social icon */}
+                {/* <Button color="primary" className={classes.button}>
+                  <Icon
+                    path={mdiTwitterCircle}
+                    size={1.5}
+                    horizontal
+                    vertical
+                  />
+                </Button> */}
+
+                {/* <InputLabel htmlFor="input-with-icon-adornment">
+                  With a start adornment
+                </InputLabel> */}
+                <Grid container spacing={8} alignItems="flex-end">
+                  <Grid item>
+                    <Icon
+                      path={mdiTwitterCircle}
+                      size={1.5}
+                      horizontal
+                      vertical
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField id="input-with-icon-grid" label="Twitter" />
+                  </Grid>
+                  <Grid item>
+                    <Icon
+                      path={mdiGithubCircle}
+                      size={1.5}
+                      horizontal
+                      vertical
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField id="input-with-icon-grid" label="Twitter" />
+                  </Grid>
+                </Grid>
+                {/* //sor social icon */}
               </FormControl>
               <Button
                 type="submit"

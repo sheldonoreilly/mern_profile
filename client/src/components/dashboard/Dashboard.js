@@ -7,8 +7,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import Person from '@material-ui/icons/Person';
-import School from '@material-ui/icons/School';
 import Update from '@material-ui/icons/Update';
+import School from '@material-ui/icons/School';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 //router
