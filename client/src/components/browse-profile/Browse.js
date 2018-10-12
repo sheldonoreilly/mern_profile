@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { getProfiles } from '../../actions/profileActions';
 import Profiles from './Profiles';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 class Browse extends Component {
   componentDidMount() {
@@ -12,7 +11,6 @@ class Browse extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { profiles } = this.props.profile;
     if (!profiles) {
       return <div>Loading</div>;
@@ -22,12 +20,12 @@ class Browse extends Component {
     ));
 
     return (
-      <Paper className={classes.paper}>
+      <Fragment>
         <Typography variant="display1" align="center">
           {'Developer Profiles'}
         </Typography>
         {profileCards}
-      </Paper>
+      </Fragment>
     );
   }
 }

@@ -13,11 +13,6 @@ import Chip from '@material-ui/core/Chip';
 //divider
 import Divider from '@material-ui/core/Divider';
 
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
-import StarRate from '@material-ui/icons/StarRate';
-
 const styles = theme => ({
   root: {},
   paper: {
