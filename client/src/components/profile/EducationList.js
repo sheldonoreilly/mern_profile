@@ -38,10 +38,9 @@ const EducationList = props => {
   const { education } = props.profile;
 
   const experiences = education.map((ex, index) => (
-    <Fragment>
+    <Fragment key={index}>
       <Divider className={classes.divider} />
       <Education
-        key={index}
         company={ex.school}
         title={ex.degree}
         location={ex.fieldofstudy}

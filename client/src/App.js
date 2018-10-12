@@ -100,7 +100,6 @@ const light = createMuiTheme({
 
 class App extends Component {
   render() {
-    // console.log('theme :', theme);
     return (
       <Provider store={store}>
         <Router>

@@ -29,10 +29,9 @@ const ExperienceList = props => {
   const { experience } = props.profile;
 
   const experiences = experience.map((ex, index) => (
-    <Fragment>
+    <Fragment key={index}>
       <Divider className={classes.divider} />
       <Experience
-        key={index}
         company={ex.company}
         title={ex.title}
         location={ex.location}

@@ -44,7 +44,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('this.props.profile.profile :', this.props.profile.profile);
     const { classes } = this.props;
     const profile1 = this.props.profile.profile;
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Social from './social';
 
 const styles = theme => ({
   root: {},
@@ -37,6 +38,8 @@ const ProfileHead = props => {
           <Typography variant="subheading" align="center">
             {profile.location}
           </Typography>
+
+          <Social />
         </div>
       </Paper>
     </Fragment>

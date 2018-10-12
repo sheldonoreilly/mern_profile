@@ -63,18 +63,14 @@ class ProfileGithub extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
     const { username } = this.props;
     const { count, sort, clientId, clientSecret } = this.state;
-    const url = `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`;
 
-    console.log('url for github is :', url);
     fetch(
       `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
     )
       .then(res => res.json())
       .then(data => {
-        console.log('The data return from the repo promise :', data);
         //if (this.refs.myRef) {
         this.setState({ repos: data });
         //}
@@ -97,14 +93,11 @@ class ProfileGithub extends Component {
   generateRepoCards = () => {
     const { classes } = this.props;
     const { repos } = this.state;
-
-    console.log('this.state.repos.length :', repos.length);
-
-    const repoCards = repos.map(repo => {
+    const repoCards = repos.map((repo, index) => {
       return (
-        <Fragment>
+        <Fragment key={index}>
           <Divider className={classes.divider} />
-          <Card className={classes.card} key={repo.id}>
+          <Card className={classes.card}>
             <CardContent className={classes.cardcontent}>
               <div style={{ display: 'flex' }}>
                 <Typography className={classes.cardtitle}>
@@ -147,7 +140,6 @@ class ProfileGithub extends Component {
         </Fragment>
       );
     });
-    console.log('repoCards :', repoCards);
     return repoCards;
   };
 }

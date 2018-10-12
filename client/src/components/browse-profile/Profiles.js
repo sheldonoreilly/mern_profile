@@ -86,7 +86,6 @@ const styles = theme => ({
 
 const Profiles = props => {
   const { classes } = props;
-  console.log('From Profiles props.profile :', props.profile);
   return (
     <Grid container spacing={24} className={classes.layout}>
       <Grid item xs={12}>
