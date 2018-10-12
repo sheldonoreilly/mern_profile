@@ -16,7 +16,11 @@ import { Link } from 'react-router-dom';
 //redux
 import { connect } from 'react-redux';
 //actions
-import { getCurrentProfile } from '../../actions/profileActions';
+import {
+  getCurrentProfile,
+  deleteExperience,
+  deleteEducation
+} from '../../actions/profileActions';
 
 import isEmpty from '../../validation/is-empty';
 
@@ -53,6 +57,14 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
+
+  deleteExperience = id => {
+    this.props.deleteExperience();
+  };
+
+  deleteEducation = id => {
+    this.props.deleteEducation();
+  };
 
   render() {
     const { classes } = this.props;
@@ -145,10 +157,12 @@ class Dashboard extends Component {
                     <DataTable
                       type={DataType.Education}
                       data={profile.education}
+                      handler={this.deleteEducation}
                     />
                     <DataTable
                       type={DataType.Experience}
                       data={profile.experience}
+                      handler={this.deleteExperience}
                     />
                   </Fragment>
                 )}
@@ -164,6 +178,8 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
+  deleteExperience: PropTypes.func.isRequired,
+  deleteEducation: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -175,5 +191,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile, deleteExperience, deleteEducation }
 )(withStyles(styles)(Dashboard));

@@ -10,7 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Social from './social';
+import Social from './Social';
 import isEmpty from '../../validation/is-empty';
 //redux
 import { connect } from 'react-redux';

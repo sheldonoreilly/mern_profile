@@ -35,10 +35,8 @@ export var DataType = {
 };
 
 function DataTable(props) {
-  const { classes } = props;
-  const { data } = props;
-  const { type } = props;
-
+  const { classes, data, type, handler } = props;
+  console.log('data :', data);
   return (
     <div>
       <Typography
@@ -77,7 +75,13 @@ function DataTable(props) {
                     {type === DataType.Education ? row.degree : row.title}
                   </TableCell>
                   <TableCell>
-                    <Button color="secondary" variant="fab" mini>
+                    <Button
+                      onClick={e => {
+                        handler(data[index]._id);
+                      }}
+                      color="secondary"
+                      variant="fab"
+                      mini>
                       <DeleteIcon />
                     </Button>
                   </TableCell>
