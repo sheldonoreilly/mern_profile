@@ -13,19 +13,33 @@ import Switch from '@material-ui/core/Switch';
 import { connect } from 'react-redux';
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1
-  },
+  // root: {
+  //   flexGrow: 1
+  // },
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
+    justifyContent: 'flex-start',
+    textDecoration: 'none'
+  },
+  gravtar: {
+    borderRadius: '50%',
+    width: '25px'
+  },
+  buttons: {
+    padding: theme.spacing.unit
   }
-  // menuButton: {
-  //   marginLeft: -12,
-  //   marginRight: 20
-  // }
 });
 
 class Navbar extends Component {
+  state = {
+    checked: true
+  };
+
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
+
+    this.props.themeHandler(this.state.checked);
+  };
   logOut = e => {
     //sor why prevent
     // e.preventDefault();
@@ -35,24 +49,31 @@ class Navbar extends Component {
 
   render() {
     const { classes } = this.props;
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, user } = this.props.auth;
 
     return (
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
             <Typography
-              variant="title"
+              className={classes.grow}
               color="inherit"
-              className={classes.grow}>
+              variant="title"
+              component={Link}
+              to="/signin">
               Dispatch
             </Typography>
+
             <Switch
-              // checked={this.state.checkedA}
-              // onChange={this.handleChange('checkedA')}
-              value="checkedA"
+              checked={this.state.checked}
+              onChange={this.handleChange('checked')}
+              value="checked"
             />
-            <Button color="inherit" component={Link} to="/browse">
+            <Button
+              className={classes.buttons}
+              color="inherit"
+              component={Link}
+              to="/browse">
               View All
             </Button>
 
@@ -67,10 +88,25 @@ class Navbar extends Component {
               </Fragment>
             ) : (
               <Fragment>
-                <Button color="inherit" component={Link} to="/profile">
+                <Button
+                  className={classes.buttons}
+                  style={{ marginRight: '24px' }}
+                  color="inherit"
+                  component={Link}
+                  to="/profile">
                   View Me
                 </Button>
-                <Button onClick={this.logOut} color="inherit">
+                <img
+                  className={classes.gravtar}
+                  src={user.avatar}
+                  alt={user.name}
+                  style={{ width: '25px', marginRight: '5px' }}
+                  title="You must have a Gravatar connected to your email to display an image"
+                />{' '}
+                <Button
+                  style={{ padding: 0 }}
+                  onClick={this.logOut}
+                  color="inherit">
                   {/* add the avatar */}
                   Logout
                 </Button>

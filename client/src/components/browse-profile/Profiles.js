@@ -61,8 +61,6 @@ const styles = theme => ({
   },
   gravtar: {
     borderRadius: '50%',
-    // margin: 'auto',
-    // padding: '25px',
     width: '150px',
     height: '150px'
   },

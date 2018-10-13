@@ -99,13 +99,30 @@ const light = createMuiTheme({
 });
 
 class App extends Component {
+  state = {
+    themeColor: light
+  };
+
+  setTheme = lightColor => {
+    if (lightColor === true) {
+      this.setState({
+        themeColor: light
+      });
+    } else {
+      this.setState({
+        themeColor: dark
+      });
+    }
+  };
+
   render() {
+    console.log('render :');
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <MuiThemeProvider theme={light}>
-              <Navbar />
+            <MuiThemeProvider theme={this.state.themeColor}>
+              <Navbar themeHandler={this.setTheme} />
               <Route exact path="/" component={Center} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/signin" component={SignIn} />
