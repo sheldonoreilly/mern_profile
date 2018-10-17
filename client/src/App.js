@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //jwt
 import jwt_decode from 'jwt-decode';
@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 //private Routes
-// import PrivateRoute from './components/common/PrivateRoute';
+import PrivateRoute from './components/common/PrivateRoute';
 //components
 import Navbar from './components/layout/Navbar';
 import Center from './components/layout/Center';
@@ -27,6 +27,7 @@ import EditProfile from './components/edit-profile/EditProfile';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
 import Browse from './components/browse-profile/Browse';
+import NotFound from './components/notfound/NotFound';
 
 //check for token
 if (localStorage.jwtToken) {
@@ -37,7 +38,7 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
 
   //check for expired token
-  const currentTime = Date.currentTime / 1000;
+  const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     //logout user
     store.dispatch(logUserOut());
@@ -123,14 +124,43 @@ class App extends Component {
               <Route exact path="/" component={Center} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/signin" component={SignIn} />
-              {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/createprofile" component={CreateProfile} />
-              <Route exact path="/editprofile" component={EditProfile} />
-              <Route exact path="/addeducation" component={Education} />
-              <Route exact path="/addexperience" component={Experience} />
-              <Route exact path="/profile" component={Profile} />
               <Route exact path="/browse" component={Browse} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/createprofile"
+                  component={CreateProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/editprofile"
+                  component={EditProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/addeducation"
+                  component={Education}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/addexperience"
+                  component={Experience}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/profile" component={Profile} />
+              </Switch>
+
+              <Route exact path="/not-found" component={NotFound} />
               <Footer />
             </MuiThemeProvider>
           </div>

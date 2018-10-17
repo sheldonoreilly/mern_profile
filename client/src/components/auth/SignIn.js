@@ -77,7 +77,7 @@ class SignIn extends Component {
   //if logged in then we dont want to be here -> redirect to dashboard
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('./dashboard');
+      this.props.history.push('/dashboard');
     }
   }
 
