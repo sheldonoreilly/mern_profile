@@ -10,7 +10,14 @@ const styles = theme => ({
   paper: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2,
+
+    backgroundImage:
+      'linear-gradient(left, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 73%, rgba(254,254,254,1) 100%)'
+
+    // backgroundImage: `url(
+    //   'http://fieltro.net/wp-content/uploads/2018/05/free-grey-art-wave-design-backgrounds-for-powerpoint-abstract-and-in-professional-powerpoint-backgrounds-grey.jpg'
+    // )`
   },
 
   gravtar: {

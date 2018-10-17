@@ -13,12 +13,14 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   chip: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
+    backgroundColor: theme.palette.secondary.main
   }
 });
 
 const Skills = props => {
-  const { classes } = props;
+  console.log('props from skill :', props);
+  const { classes, skills } = props;
   return (
     <Paper className={classes.paper}>
       <Typography variant="headline" align="center">
@@ -28,19 +30,11 @@ const Skills = props => {
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          justifyContent: 'space-around'
+          justifyContent: 'center'
         }}>
-        <Chip label="Java" className={classes.chip} />
-        <Chip label="C#" className={classes.chip} />
-        <Chip label="JavaScript" className={classes.chip} />
-        <Chip label="C++" className={classes.chip} />
-        <Chip label="React/Redux" className={classes.chip} />
-        <Chip label="C#" className={classes.chip} />
-        <Chip label="C++" className={classes.chip} />
-        <Chip label="C++" className={classes.chip} />
-        <Chip label="React/Redux" className={classes.chip} />
-        <Chip label="C#" className={classes.chip} />
-        <Chip label="C++" className={classes.chip} />
+        {skills.map((skill, index) => (
+          <Chip key={index} label={skill} className={classes.chip} />
+        ))}
       </div>
     </Paper>
   );

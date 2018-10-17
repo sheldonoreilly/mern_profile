@@ -59,11 +59,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start'
   },
-  gravtar: {
-    borderRadius: '50%',
-    width: '150px',
-    height: '150px'
-  },
+
   button: {
     // margin: theme.spacing.unit,
     padding: theme.spacing.unit

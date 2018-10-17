@@ -30,8 +30,6 @@ import Browse from './components/browse-profile/Browse';
 
 //check for token
 if (localStorage.jwtToken) {
-  //sor guess this gets called all the time
-
   setAuthToken(localStorage.jwtToken);
   //decode tokken and get user info
   const decoded = jwt_decode(localStorage.jwtToken);
@@ -116,7 +114,6 @@ class App extends Component {
   };
 
   render() {
-    console.log('render :');
     return (
       <Provider store={store}>
         <Router>
