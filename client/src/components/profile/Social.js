@@ -44,20 +44,14 @@ const Social = props => {
       </p>
       <p>
         {isEmpty(linkedIn) ? null : (
-          <a
-            className="text-white p-2"
-            href={'https://www.w3schools.com'}
-            target="_blank">
+          <a className="text-white p-2" href={linkedIn} target="_blank">
             <Icon path={mdiLinkedinBox} size={1.5} horizontal vertical />
           </a>
         )}
       </p>
       <p>
         {isEmpty(github) ? null : (
-          <a
-            className="text-white p-2"
-            href={'https://www.w3schools.com'}
-            target="_blank">
+          <a className="text-white p-2" href={github} target="_blank">
             <Icon path={mdiGithubCircle} size={1.5} horizontal vertical />
           </a>
         )}

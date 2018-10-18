@@ -96,6 +96,8 @@ class Navbar extends Component {
                   to="/profile">
                   View Me
                 </Button>
+                (/* //sor */}
+                {/* <Link to={`/profile/${props.profile.handle}`}>View Profile</Link>                                                                                                                    */}
                 <img
                   className={classes.gravtar}
                   src={user.avatar}

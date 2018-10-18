@@ -9,6 +9,7 @@ import Bio from './Bio';
 import { connect } from 'react-redux';
 //actions
 import { getCurrentProfile } from '../../actions/profileActions';
+import { getProfileByHandle } from '../../actions/profileActions';
 import ExperienceList from './ExperienceList';
 import EducationList from './EducationList';
 import ProfileGithub from './ProfileGitHub';
@@ -39,13 +40,26 @@ class Profile extends Component {
     profileLoaded: false,
     avatar: ''
   };
+
   componentDidMount() {
-    this.props.getCurrentProfile();
+    //we are given the handle via the url
+    if (this.props.match.params.handle) {
+      this.props.getProfileByHandle(this.props.match.params.handle);
+    }
+    console.log('we are in componentDidMount of the main profile');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push('/not-found');
+    }
+    console.log('we are in componentWillReceiveProps of the main profile');
   }
 
   render() {
     const { classes } = this.props;
     const profile1 = this.props.profile.profile;
+    console.log('we are in render of the main profile with ', profile1);
 
     if (!profile1) {
       return <h1>Loading...</h1>;
@@ -61,7 +75,11 @@ class Profile extends Component {
           <Skills skills={profile1.skills} />
           <ExperienceList profile={profile1} />
           <EducationList profile={profile1} />
-          <ProfileGithub username={profile1.gitHubUserName} />
+          {profile1.gitHubUserName ? (
+            <ProfileGithub username={profile1.gitHubUserName} />
+          ) : (
+            ''
+          )}
         </Fragment>
       </div>
     );
@@ -70,16 +88,31 @@ class Profile extends Component {
 
 Profile.propTypes = {
   classes: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  getProfileByHandle: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth
+  profile: state.profile
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getProfileByHandle }
 )(withStyles(styles)(Profile));
+
+// Profile.propTypes = {
+//   classes: PropTypes.object.isRequired,
+//   getCurrentProfile: PropTypes.func.isRequired,
+//   auth: PropTypes.object.isRequired
+// };
+
+// const mapStateToProps = state => ({
+//   profile: state.profile,
+//   auth: state.auth
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   { getCurrentProfile }
+// )(withStyles(styles)(Profile));

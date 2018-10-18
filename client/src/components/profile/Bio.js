@@ -18,7 +18,7 @@ const Skills = props => {
   return (
     <Paper className={classes.paper}>
       <Typography variant="headline" align="center">
-        Sheldon's Bio
+        {`${profile.user.name}'s Bio`}
       </Typography>
       <Typography variant="subheading" align="center">
         {profile.bio}

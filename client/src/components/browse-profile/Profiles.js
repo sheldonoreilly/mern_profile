@@ -6,6 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 //card
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -103,10 +104,13 @@ const Profiles = props => {
                 gutterBottom>
                 {props.profile.status}
               </Typography>
+
               <Button
-                className={classes.button}
-                variant="contained"
-                color="primary">
+                className={classes.buttons}
+                style={{ marginRight: '24px' }}
+                color="inherit"
+                component={Link}
+                to={`/profile/${props.profile.handle}`}>
                 View Profile
               </Button>
             </div>
@@ -127,12 +131,6 @@ const Profiles = props => {
           </div>
           {/* </div> */}
         </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper className={classes.paper}>xs=6</Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper className={classes.paper}>xs=6</Paper>
       </Grid>
     </Grid>
   );

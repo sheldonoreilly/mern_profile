@@ -28,7 +28,6 @@ const styles = theme => ({
 const ProfileHead = props => {
   const { classes, profile, avatar } = props;
 
-  console.log('the profile in profile head is', profile);
   return (
     <Fragment>
       <Paper className={classes.paper}>
@@ -43,13 +42,16 @@ const ProfileHead = props => {
           <Typography variant="subheading" align="center">
             {profile.location}
           </Typography>
-
-          <Social
-            personal={profile.website}
-            github={profile.social.github}
-            linkedIn={profile.social.linkedIn}
-            twitter={profile.social.twitter}
-          />
+          {profile.social ? (
+            <Social
+              personal={profile.website}
+              github={profile.social.github}
+              linkedIn={profile.social.linkedIn}
+              twitter={profile.social.twitter}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </Paper>
     </Fragment>

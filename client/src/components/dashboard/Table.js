@@ -36,7 +36,6 @@ export var DataType = {
 
 function DataTable(props) {
   const { classes, data, type, handler } = props;
-  console.log('data :', data);
   return (
     <div>
       <Typography

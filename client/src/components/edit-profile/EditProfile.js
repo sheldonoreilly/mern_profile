@@ -178,7 +178,6 @@ class EditProfile extends Component {
 
     //sor
     profile.status = 'Intern';
-    console.log('profile.status', profile.status);
     //add the user id to the tobe actioned profile
     profile.userId = user.id;
     //'connect' gets us access to the action

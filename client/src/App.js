@@ -27,6 +27,7 @@ import EditProfile from './components/edit-profile/EditProfile';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
 import Browse from './components/browse-profile/Browse';
+//sor
 import NotFound from './components/notfound/NotFound';
 
 //check for token
@@ -125,6 +126,9 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/signin" component={SignIn} />
               <Route exact path="/browse" component={Browse} />
+
+              <Route exact path="/profile/:handle" component={Profile} />
+
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
@@ -156,9 +160,9 @@ class App extends Component {
                   component={Experience}
                 />
               </Switch>
-              <Switch>
+              {/* <Switch>
                 <PrivateRoute exact path="/profile" component={Profile} />
-              </Switch>
+              </Switch> */}
 
               <Route exact path="/not-found" component={NotFound} />
               <Footer />

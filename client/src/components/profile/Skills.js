@@ -19,7 +19,6 @@ const styles = theme => ({
 });
 
 const Skills = props => {
-  console.log('props from skill :', props);
   const { classes, skills } = props;
   return (
     <Paper className={classes.paper}>

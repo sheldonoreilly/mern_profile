@@ -142,20 +142,12 @@ router.post(
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
-        console.log('this is where it get written to db :', profileFields);
-
         // Update
         Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
-        ).then(profile => {
-          console.log(
-            'profile++++++++++++++++++++++++++++++++++++++ :',
-            profile
-          );
-          res.json(profile);
-        });
+        ).then(profile => res.json(profile));
       } else {
         // Create
 
