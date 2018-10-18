@@ -86,7 +86,7 @@ class CreateProfile extends Component {
     };
 
     //sor
-    profile.status = 'Intern';
+    profile.status = this.getStatusStr(status);
 
     //add the user id to the tobe actioned profile
     profile.userId = user.id;
@@ -101,6 +101,27 @@ class CreateProfile extends Component {
       [name]: value
     });
   };
+
+  getStatusStr(intVal) {
+    switch (intVal) {
+      case 10:
+        return 'Developer';
+      case 20:
+        return 'Junior Developer';
+      case 30:
+        return 'Senior Developer';
+      case 40:
+        return 'Manager';
+      case 50:
+        return 'Student or Learning';
+      case 60:
+        return 'Instructor or Teacher';
+      case 70:
+        return 'Intern';
+      default:
+        return 'Other';
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -210,17 +231,18 @@ class CreateProfile extends Component {
                 <TextField
                   onChange={this.handleChange('bio')}
                   name="Bio"
-                  label="A short bio of yourself"
+                  label="A short bio of yourself..."
                   value={bio}
                   multiline
                   rows="3"
                   rowsMax="6"
+                  variant="outlined"
                 />
               </FormControl>
               {/* GitHub */}
               <FormControl margin="dense" fullWidth>
                 <TextField
-                  onChange={this.handleChange('gitHubUserName ')}
+                  onChange={this.handleChange('gitHubUserName')}
                   name="gitHubUserName"
                   label="GitHub Username"
                   value={gitHubUserName}

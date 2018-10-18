@@ -16,6 +16,7 @@ import { mdiTwitterCircle } from '@mdi/js';
 import { mdiGithubCircle } from '@mdi/js';
 import { mdiLinkedinBox } from '@mdi/js';
 import { mdiFacebook } from '@mdi/js';
+import { mdiWeb } from '@mdi/js';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import isEmpty from '../../validation/is-empty';
@@ -76,6 +77,7 @@ class EditProfile extends Component {
     gitHubUserName: '',
     skills: '',
     bio: '',
+    personal: '',
     twitter: '',
     facebook: '',
     linkedIn: '',
@@ -110,6 +112,9 @@ class EditProfile extends Component {
       profile.twitter = !isEmpty(profile.social.twitter)
         ? profile.social.twitter
         : '';
+      profile.personal = !isEmpty(profile.social.personal)
+        ? profile.social.personal
+        : '';
       profile.facebook = !isEmpty(profile.social.facebook)
         ? profile.social.facebook
         : '';
@@ -123,6 +128,9 @@ class EditProfile extends Component {
         ? profile.social.github
         : '';
 
+      //we switch the status value from string to int for internal usage
+      profile.status = this.getStatusValue(profile.status);
+
       // Set component fields state
       this.setState({
         handle: profile.handle,
@@ -133,6 +141,7 @@ class EditProfile extends Component {
         skills: skillsCSV,
         gitHubUserName: profile.gitHubUserName,
         bio: profile.bio,
+        personal: profile.personal,
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedIn: profile.linkedIn,
@@ -155,6 +164,7 @@ class EditProfile extends Component {
       gitHubUserName,
       skills,
       bio,
+      personal,
       linkedIn,
       facebook,
       twitter,
@@ -170,14 +180,15 @@ class EditProfile extends Component {
       gitHubUserName,
       skills,
       bio,
+      personal,
       linkedIn,
       facebook,
       twitter,
       github
     };
 
-    //sor
-    profile.status = 'Intern';
+    //switch back from integer value of status to str value
+    profile.status = this.getStatusStr(status);
     //add the user id to the tobe actioned profile
     profile.userId = user.id;
     //'connect' gets us access to the action
@@ -214,6 +225,27 @@ class EditProfile extends Component {
     }
   }
 
+  getStatusStr(intVal) {
+    switch (intVal) {
+      case 10:
+        return 'Developer';
+      case 20:
+        return 'Junior Developer';
+      case 30:
+        return 'Senior Developer';
+      case 40:
+        return 'Manager';
+      case 50:
+        return 'Student or Learning';
+      case 60:
+        return 'Instructor or Teacher';
+      case 70:
+        return 'Intern';
+      default:
+        return 'Other';
+    }
+  }
+
   render() {
     const { classes } = this.props;
     const {
@@ -225,6 +257,7 @@ class EditProfile extends Component {
       skills,
       gitHubUserName,
       bio,
+      personal,
       linkedIn,
       facebook,
       twitter,
@@ -271,7 +304,8 @@ class EditProfile extends Component {
               <FormControl margin="dense" fullWidth>
                 <InputLabel>Select Professional Status</InputLabel>
                 <Select
-                  value={this.getStatusValue(status)}
+                  defaultValue={this.getStatusValue(status)}
+                  value={status}
                   onChange={this.handleChange('status')}>
                   <MenuItem value={10}>Developer</MenuItem>
                   <MenuItem value={20}>Junior Developer</MenuItem>
@@ -328,7 +362,7 @@ class EditProfile extends Component {
                 <TextField
                   onChange={this.handleChange('bio')}
                   name="Bio"
-                  label="A short bio of yourself:"
+                  label="A short bio of yourself..."
                   value={bio}
                   multiline
                   rows="3"
@@ -353,6 +387,18 @@ class EditProfile extends Component {
                 Social Media
               </Typography>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <FormControl className={classes.socialmedialink}>
+                  <Input
+                    id="input-with-icon-adornment"
+                    onChange={this.handleChange('personal')}
+                    value={personal}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Icon path={mdiWeb} size={1} horizontal vertical />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
                 <FormControl className={classes.socialmedialink}>
                   <Input
                     id="input-with-icon-adornment"

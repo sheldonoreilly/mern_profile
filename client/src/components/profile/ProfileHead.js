@@ -44,7 +44,7 @@ const ProfileHead = props => {
           </Typography>
           {profile.social ? (
             <Social
-              personal={profile.website}
+              personal={profile.social.personal}
               github={profile.social.github}
               linkedIn={profile.social.linkedIn}
               twitter={profile.social.twitter}

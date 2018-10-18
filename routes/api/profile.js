@@ -139,6 +139,7 @@ router.post(
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if (req.body.linkedIn) profileFields.social.linkedIn = req.body.linkedIn;
     if (req.body.github) profileFields.social.github = req.body.github;
+    if (req.body.personal) profileFields.social.personal = req.body.personal;
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {

@@ -39,7 +39,7 @@ export const clearCurrentProfile = () => {
   };
 };
 
-export const setProfile = profile => dispatch => {
+export const setProfile = (profile, history) => dispatch => {
   axios
     .post('/api/profile', profile)
     .then(response => {
@@ -47,6 +47,7 @@ export const setProfile = profile => dispatch => {
         type: SET_PROFILE,
         payload: response.data
       });
+      //history.push('/dashboard');
     })
     .catch(err => {
       dispatch({

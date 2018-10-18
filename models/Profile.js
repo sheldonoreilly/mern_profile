@@ -90,7 +90,7 @@ const ProfileSchema = new Schema({
     }
   ],
   social: {
-    youTube: {
+    personal: {
       type: String
     },
     twitter: {
