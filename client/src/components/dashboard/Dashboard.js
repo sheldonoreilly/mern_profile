@@ -1,4 +1,8 @@
 import React, { Component, Fragment } from 'react';
+//router
+import { Link } from 'react-router-dom';
+//redux
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -11,23 +15,18 @@ import Update from '@material-ui/icons/Update';
 import School from '@material-ui/icons/School';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
-//router
-import { Link } from 'react-router-dom';
-//redux
-import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 //actions
 import {
   getCurrentProfile,
   deleteExperience,
   deleteEducation
 } from '../../actions/profileActions';
-
 import isEmpty from '../../validation/is-empty';
+import DataTable from './DashTable';
+import { DataType } from './DashTable';
 
-import DataTable from './Table';
-import { DataType } from './Table';
-import { Button } from '@material-ui/core';
-
+//mui styling
 const styles = theme => ({
   root: {},
   layout: {
@@ -74,7 +73,8 @@ class Dashboard extends Component {
     //sor need to work on spinner and such
     let greeting = `Welcome, ${user.name}`;
 
-    //so profile is an empty obj - use hasnt created one yet
+    //sor profile is an empty obj - user hasnt created one yet
+    //Loading ... - stuff needs a serious facelift
     if (loading) {
       greeting = 'Loading';
     }
@@ -106,7 +106,6 @@ class Dashboard extends Component {
                         justify: 'flex-start'
                       }}>
                       {/* <List component="nav"> */}
-
                       <ListItem
                         button
                         component={Link}
@@ -153,7 +152,6 @@ class Dashboard extends Component {
                         />
                       </ListItem>
                     </Grid>
-
                     <DataTable
                       type={DataType.Education}
                       data={profile.education}

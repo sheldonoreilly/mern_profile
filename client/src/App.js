@@ -12,9 +12,8 @@ import { logUserOut } from './actions/authActions';
 import { Provider } from 'react-redux';
 import store from './store';
 
-//private Routes
-import PrivateRoute from './components/common/PrivateRoute';
 //components
+import PrivateRoute from './components/common/PrivateRoute';
 import Navbar from './components/layout/Navbar';
 import Center from './components/layout/Center';
 import Footer from './components/layout/Footer';
@@ -27,13 +26,12 @@ import EditProfile from './components/edit-profile/EditProfile';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
 import Browse from './components/browse-profile/Browse';
-//sor
 import NotFound from './components/notfound/NotFound';
 
-//check for token
+//check for token validity
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
-  //decode tokken and get user info
+  //decode token and get user info
   const decoded = jwt_decode(localStorage.jwtToken);
   //dispatch
   store.dispatch(setCurrentUser(decoded));
@@ -50,24 +48,26 @@ if (localStorage.jwtToken) {
   }
 }
 
-//material-ui
-// const theme = createMuiTheme({
-// palette: {
-//   primary: {
-//     main: '#282c34',
-//     contrastText: '#eae6d2'
-//   },
-//   secondary: {
-//     light: green[300],
-//     main: green[500],
-//     dark: green[700]
-//   },
-//   background: {
-//     paper: '#282c34', //the background
-//     default: '#282c34' // everything else (maybe plain grid?)
-//   }
-// }
-// });
+//mui styling
+// material-ui theme - saved for now
+/*const theme = createMuiTheme({
+palette: {
+  primary: {
+    main: '#282c34',
+    contrastText: '#eae6d2'
+  },
+  secondary: {
+    light: green[300],
+    main: green[500],
+    dark: green[700]
+  },
+  background: {
+    paper: '#282c34', //the background
+    default: '#282c34' // everything else (maybe plain grid?)
+  }
+}
+});
+*/
 
 const dark = createMuiTheme({
   typography: {
@@ -126,9 +126,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/signin" component={SignIn} />
               <Route exact path="/browse" component={Browse} />
-
               <Route exact path="/profile/:handle" component={Profile} />
-
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
@@ -160,10 +158,6 @@ class App extends Component {
                   component={Experience}
                 />
               </Switch>
-              {/* <Switch>
-                <PrivateRoute exact path="/profile" component={Profile} />
-              </Switch> */}
-
               <Route exact path="/not-found" component={NotFound} />
               <Footer />
             </MuiThemeProvider>
