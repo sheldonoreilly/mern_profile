@@ -14,10 +14,6 @@ const styles = theme => ({
 
     backgroundImage:
       'linear-gradient(left, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 73%, rgba(254,254,254,1) 100%)'
-
-    // backgroundImage: `url(
-    //   'http://fieltro.net/wp-content/uploads/2018/05/free-grey-art-wave-design-backgrounds-for-powerpoint-abstract-and-in-professional-powerpoint-backgrounds-grey.jpg'
-    // )`
   },
 
   gravtar: {
@@ -31,6 +27,8 @@ const styles = theme => ({
 
 const ProfileHead = props => {
   const { classes, profile, avatar } = props;
+
+  console.log('the profile in profile head is', profile);
   return (
     <Fragment>
       <Paper className={classes.paper}>
@@ -46,7 +44,12 @@ const ProfileHead = props => {
             {profile.location}
           </Typography>
 
-          <Social />
+          <Social
+            personal={profile.website}
+            github={profile.social.github}
+            linkedIn={profile.social.linkedIn}
+            twitter={profile.social.twitter}
+          />
         </div>
       </Paper>
     </Fragment>

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,7 +11,13 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Social from './Social';
+import Icon from '@mdi/react';
+import { mdiTwitterCircle } from '@mdi/js';
+import { mdiGithubCircle } from '@mdi/js';
+import { mdiLinkedinBox } from '@mdi/js';
+import { mdiFacebook } from '@mdi/js';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import isEmpty from '../../validation/is-empty';
 //redux
 import { connect } from 'react-redux';
@@ -68,7 +75,12 @@ class EditProfile extends Component {
     location: '',
     gitHubUserName: '',
     skills: '',
-    bio: ''
+    bio: '',
+    twitter: '',
+    facebook: '',
+    linkedIn: '',
+    youtube: '',
+    github: ''
   };
 
   componentDidMount() {
@@ -101,14 +113,14 @@ class EditProfile extends Component {
       profile.facebook = !isEmpty(profile.social.facebook)
         ? profile.social.facebook
         : '';
-      profile.linkedin = !isEmpty(profile.social.linkedin)
-        ? profile.social.linkedin
+      profile.linkedIn = !isEmpty(profile.social.linkedIn)
+        ? profile.social.linkedIn
         : '';
       profile.youtube = !isEmpty(profile.social.youtube)
         ? profile.social.youtube
         : '';
-      profile.instagram = !isEmpty(profile.social.instagram)
-        ? profile.social.instagram
+      profile.github = !isEmpty(profile.social.github)
+        ? profile.social.github
         : '';
 
       // Set component fields state
@@ -123,8 +135,9 @@ class EditProfile extends Component {
         bio: profile.bio,
         twitter: profile.twitter,
         facebook: profile.facebook,
-        linkedin: profile.linkedin,
-        youtube: profile.youtube
+        linkedIn: profile.linkedIn,
+        youtube: profile.youtube,
+        github: profile.github
       });
     }
   }
@@ -141,7 +154,11 @@ class EditProfile extends Component {
       location,
       gitHubUserName,
       skills,
-      bio
+      bio,
+      linkedIn,
+      facebook,
+      twitter,
+      github
     } = this.state;
 
     const profile = {
@@ -152,8 +169,16 @@ class EditProfile extends Component {
       location,
       gitHubUserName,
       skills,
-      bio
+      bio,
+      linkedIn,
+      facebook,
+      twitter,
+      github
     };
+
+    //sor
+    profile.status = 'Intern';
+    console.log('profile.status', profile.status);
     //add the user id to the tobe actioned profile
     profile.userId = user.id;
     //'connect' gets us access to the action
@@ -169,6 +194,27 @@ class EditProfile extends Component {
     });
   };
 
+  getStatusValue(str) {
+    switch (str) {
+      case 'Developer':
+        return 10;
+      case 'Junior Developer':
+        return 20;
+      case 'Senior Developer':
+        return 30;
+      case 'Manager':
+        return 40;
+      case 'Student or Learning':
+        return 50;
+      case 'Instructor or Teacher':
+        return 60;
+      case 'Intern':
+        return 70;
+      default:
+        return 80;
+    }
+  }
+
   render() {
     const { classes } = this.props;
     const {
@@ -179,13 +225,22 @@ class EditProfile extends Component {
       website,
       skills,
       gitHubUserName,
-      bio
+      bio,
+      linkedIn,
+      facebook,
+      twitter,
+      github
     } = this.state;
+
     return (
       <Fragment>
         <CssBaseline />
         <div className={classes.layout}>
           <Paper className={classes.paper}>
+            <Button component={Link} to="/dashboard">
+              Go Back
+            </Button>
+
             <Typography
               variant="display2"
               align="center"
@@ -193,6 +248,7 @@ class EditProfile extends Component {
               style={{ marginBottom: 0, marginTop: '32px' }}>
               Edit your Profile
             </Typography>
+
             <Typography
               style={{ marginTop: 0 }}
               color="textPrimary"
@@ -214,24 +270,18 @@ class EditProfile extends Component {
               </FormControl>
               {/* prop status */}
               <FormControl margin="dense" fullWidth>
-                <InputLabel htmlFor="status">
-                  Select Professional Status
-                </InputLabel>
+                <InputLabel>Select Professional Status</InputLabel>
                 <Select
-                  value={status}
-                  onChange={this.handleChange('status')}
-                  inputProps={{
-                    name: 'status',
-                    id: 'status'
-                  }}>
+                  value={this.getStatusValue(status)}
+                  onChange={this.handleChange('status')}>
                   <MenuItem value={10}>Developer</MenuItem>
-                  <MenuItem value={10}>Junior Developer</MenuItem>
-                  <MenuItem value={10}>Senior Developer</MenuItem>
-                  <MenuItem value={10}>Manager</MenuItem>
-                  <MenuItem value={10}>Student or Learning</MenuItem>
-                  <MenuItem value={10}>Instructor or Teacher</MenuItem>
-                  <MenuItem value={10}>Intern</MenuItem>
-                  <MenuItem value={10}>Other</MenuItem>
+                  <MenuItem value={20}>Junior Developer</MenuItem>
+                  <MenuItem value={30}>Senior Developer</MenuItem>
+                  <MenuItem value={40}>Manager</MenuItem>
+                  <MenuItem value={50}>Student or Learning</MenuItem>
+                  <MenuItem value={60}>Instructor or Teacher</MenuItem>
+                  <MenuItem value={70}>Intern</MenuItem>
+                  <MenuItem value={80}>Other</MenuItem>
                 </Select>
               </FormControl>
               {/* company */}
@@ -279,11 +329,12 @@ class EditProfile extends Component {
                 <TextField
                   onChange={this.handleChange('bio')}
                   name="Bio"
-                  label="A short bio of yourself"
+                  label="A short bio of yourself:"
                   value={bio}
                   multiline
                   rows="3"
                   rowsMax="6"
+                  variant="outlined"
                 />
               </FormControl>
               {/* GitHub */}
@@ -299,10 +350,74 @@ class EditProfile extends Component {
                 />
               </FormControl>
 
-              <Button variant="contained" color="primary">
+              <Typography variant="headline" color="primary">
                 Social Media
-              </Button>
-              <Social />
+              </Typography>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <FormControl className={classes.socialmedialink}>
+                  <Input
+                    id="input-with-icon-adornment"
+                    onChange={this.handleChange('github')}
+                    value={github}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Icon
+                          path={mdiGithubCircle}
+                          size={1}
+                          horizontal
+                          vertical
+                        />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <FormControl className={classes.socialmedialink}>
+                  <Input
+                    id="input-with-icon-adornment"
+                    onChange={this.handleChange('linkedIn')}
+                    value={linkedIn}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Icon
+                          path={mdiLinkedinBox}
+                          size={1}
+                          horizontal
+                          vertical
+                        />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <FormControl className={classes.socialmedialink}>
+                  <Input
+                    id="input-with-icon-adornment"
+                    onChange={this.handleChange('facebook')}
+                    value={facebook}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Icon path={mdiFacebook} size={1} horizontal vertical />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <FormControl className={classes.socialmedialink}>
+                  <Input
+                    id="input-with-icon-adornment"
+                    onChange={this.handleChange('twitter')}
+                    value={twitter}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Icon
+                          path={mdiTwitterCircle}
+                          size={1}
+                          horizontal
+                          vertical
+                        />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+              </div>
 
               <Button
                 type="submit"

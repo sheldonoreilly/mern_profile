@@ -102,7 +102,7 @@ const ProfileSchema = new Schema({
     linkedIn: {
       type: String
     },
-    instragram: {
+    github: {
       type: String
     }
   },

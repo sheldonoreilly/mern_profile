@@ -137,17 +137,25 @@ router.post(
     if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
     if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
-    if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
-    if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
+    if (req.body.linkedIn) profileFields.social.linkedIn = req.body.linkedIn;
+    if (req.body.github) profileFields.social.github = req.body.github;
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
+        console.log('this is where it get written to db :', profileFields);
+
         // Update
         Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
-        ).then(profile => res.json(profile));
+        ).then(profile => {
+          console.log(
+            'profile++++++++++++++++++++++++++++++++++++++ :',
+            profile
+          );
+          res.json(profile);
+        });
       } else {
         // Create
 

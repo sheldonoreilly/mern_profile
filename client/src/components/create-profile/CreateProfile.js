@@ -65,7 +65,7 @@ class CreateProfile extends Component {
     //sor this has to be cleaned 8(
     const {
       handle,
-      // status,
+      status,
       company,
       website,
       location,
@@ -76,7 +76,7 @@ class CreateProfile extends Component {
 
     const profile = {
       handle,
-      status: 'filler',
+      status,
       company,
       website,
       location,
@@ -84,6 +84,10 @@ class CreateProfile extends Component {
       skills,
       bio
     };
+
+    //sor
+    profile.status = 'Intern';
+
     //add the user id to the tobe actioned profile
     profile.userId = user.id;
     //'connect' gets us access to the action
@@ -142,9 +146,7 @@ class CreateProfile extends Component {
               </FormControl>
               {/* prop status */}
               <FormControl margin="dense" fullWidth>
-                <InputLabel htmlFor="status">
-                  Select Professional Status
-                </InputLabel>
+                <InputLabel>Select Professional Status</InputLabel>
                 <Select
                   value={status}
                   onChange={this.handleChange('status')}
@@ -152,9 +154,15 @@ class CreateProfile extends Component {
                     name: 'status',
                     id: 'status'
                   }}>
-                  <MenuItem value={10}>Programmer</MenuItem>
-                  <MenuItem value={20}>Business Owner</MenuItem>
-                  <MenuItem value={30}>Student</MenuItem>
+                  : 'status' }}>
+                  <MenuItem value={10}>Developer</MenuItem>
+                  <MenuItem value={20}>Junior Developer</MenuItem>
+                  <MenuItem value={30}>Senior Developer</MenuItem>
+                  <MenuItem value={40}>Manager</MenuItem>
+                  <MenuItem value={50}>Student or Learning</MenuItem>
+                  <MenuItem value={60}>Instructor or Teacher</MenuItem>
+                  <MenuItem value={70}>Intern</MenuItem>
+                  <MenuItem value={80}>Other</MenuItem>
                 </Select>
               </FormControl>
               {/* company */}

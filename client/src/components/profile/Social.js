@@ -7,6 +7,7 @@ import { mdiGithubCircle } from '@mdi/js';
 import { mdiLinkedinBox } from '@mdi/js';
 import { mdiWeb } from '@mdi/js';
 import withStyles from '@material-ui/core/styles/withStyles';
+import isEmpty from '../../validation/is-empty';
 
 const styles = theme => ({
   root: {},
@@ -16,7 +17,7 @@ const styles = theme => ({
 });
 
 const Social = props => {
-  //   const { classes } = props;
+  const { personal, github, twitter, linkedIn } = props;
   return (
     <div
       style={{
@@ -25,44 +26,41 @@ const Social = props => {
         justifyContent: 'center'
       }}>
       <p>
-        {/* {isEmpty(profile.website) ? null : ( )*/}
-        <a
-          className="text-white p-2"
-          href={'https://www.w3schools.com'}
-          target="_blank">
-          <Icon path={mdiWeb} size={1.5} horizontal vertical />
-        </a>
-        {/* } */}
+        {isEmpty(personal) ? null : (
+          <a
+            className="text-white p-2"
+            href={'https://www.w3schools.com'}
+            target="_blank">
+            <Icon path={mdiWeb} size={1.5} horizontal vertical />
+          </a>
+        )}
       </p>
       <p>
-        {/* {isEmpty(profile.website) ? null : ( )*/}
-        <a
-          className="text-white p-2"
-          href={'https://www.w3schools.com'}
-          target="_blank">
-          <Icon path={mdiTwitterCircle} size={1.5} horizontal vertical />
-        </a>
-        {/* } */}
+        {isEmpty(twitter) ? null : (
+          <a className="text-white p-2" href={twitter} target="_blank">
+            <Icon path={mdiTwitterCircle} size={1.5} horizontal vertical />
+          </a>
+        )}
       </p>
       <p>
-        {/* {isEmpty(profile.website) ? null : ( )*/}
-        <a
-          className="text-white p-2"
-          href={'https://www.w3schools.com'}
-          target="_blank">
-          <Icon path={mdiLinkedinBox} size={1.5} horizontal vertical />
-        </a>
-        {/* } */}
+        {isEmpty(linkedIn) ? null : (
+          <a
+            className="text-white p-2"
+            href={'https://www.w3schools.com'}
+            target="_blank">
+            <Icon path={mdiLinkedinBox} size={1.5} horizontal vertical />
+          </a>
+        )}
       </p>
       <p>
-        {/* {isEmpty(profile.website) ? null : ( )*/}
-        <a
-          className="text-white p-2"
-          href={'https://www.w3schools.com'}
-          target="_blank">
-          <Icon path={mdiGithubCircle} size={1.5} horizontal vertical />
-        </a>
-        {/* } */}
+        {isEmpty(github) ? null : (
+          <a
+            className="text-white p-2"
+            href={'https://www.w3schools.com'}
+            target="_blank">
+            <Icon path={mdiGithubCircle} size={1.5} horizontal vertical />
+          </a>
+        )}
       </p>
     </div>
   );
