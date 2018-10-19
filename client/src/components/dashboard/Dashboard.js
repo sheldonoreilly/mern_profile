@@ -22,7 +22,9 @@ import {
   deleteExperience,
   deleteEducation
 } from '../../actions/profileActions';
+//helper
 import isEmpty from '../../validation/is-empty';
+//internal component
 import DataTable from './DashTable';
 import { DataType } from './DashTable';
 
@@ -30,12 +32,11 @@ import { DataType } from './DashTable';
 const styles = theme => ({
   root: {},
   layout: {
-    //so 600 and below
     width: 'auto',
     marginLeft: theme.spacing.unit * 1,
     marginRight: theme.spacing.unit * 1,
-    //so here 600 and above
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+    //this says that it will grow to a maximum of 900
+    [theme.breakpoints.up(900 + theme.spacing.unit * 2 * 2)]: {
       width: 900,
       marginLeft: 'auto',
       marginRight: 'auto'

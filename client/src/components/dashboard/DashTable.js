@@ -53,10 +53,10 @@ function DataTable(props) {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell>
+              <CustomTableCell style={{ width: '200px', padding: '10px' }}>
                 {type === DataType.Education ? 'School' : 'Company'}
               </CustomTableCell>
-              <CustomTableCell>
+              <CustomTableCell style={{ padding: '10px' }}>
                 {type === DataType.Education
                   ? 'Degree or Course'
                   : 'Title or Position'}
@@ -67,13 +67,13 @@ function DataTable(props) {
             {data.map((row, index) => {
               return (
                 <TableRow key={index}>
-                  <TableCell component="th" scope="row">
+                  <TableCell style={{ padding: 10 }} component="th" scope="row">
                     {type === DataType.Education ? row.school : row.company}
                   </TableCell>
-                  <TableCell>
+                  <TableCell style={{ padding: 10 }}>
                     {type === DataType.Education ? row.degree : row.title}
                   </TableCell>
-                  <TableCell>
+                  <TableCell style={{ padding: 10 }}>
                     <Button
                       onClick={e => {
                         handler(data[index]._id);

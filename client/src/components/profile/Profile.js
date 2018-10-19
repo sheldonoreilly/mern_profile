@@ -22,7 +22,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 1,
     marginRight: theme.spacing.unit * 1,
     //so here 600 and above
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+    [theme.breakpoints.up(900 + theme.spacing.unit * 2 * 2)]: {
       width: 900,
       marginLeft: 'auto',
       marginRight: 'auto'

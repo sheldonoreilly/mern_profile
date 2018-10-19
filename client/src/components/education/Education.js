@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 //mui
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,7 +20,7 @@ const styles = theme => ({
     width: 'auto',
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+    [theme.breakpoints.up(700 + theme.spacing.unit * 2 * 2)]: {
       width: 700,
       marginLeft: 'auto',
       marginRight: 'auto'
@@ -35,6 +35,9 @@ const styles = theme => ({
       marginBottom: theme.spacing.unit * 6,
       padding: theme.spacing.unit * 3
     }
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 5
   }
 });
 class Education extends Component {
@@ -119,6 +122,9 @@ class Education extends Component {
         <CssBaseline />
         <div className={classes.layout}>
           <Paper className={classes.paper}>
+            <Button component={Link} to="/dashboard">
+              Go Back
+            </Button>
             <Typography
               variant="display2"
               align="center"
