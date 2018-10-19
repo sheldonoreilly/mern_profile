@@ -5,6 +5,18 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Person from '@material-ui/icons/Person';
+import Icon from '@mdi/react';
+import {
+  mdiAccount,
+  mdiAccountDetails,
+  mdiLogout,
+  mdiThemeLightDark,
+  mdiImageFilterBlackWhite,
+  mdiSolid
+} from '@mdi/js';
+
 import { Link } from 'react-router-dom';
 import { logUserOut } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
@@ -13,20 +25,22 @@ import Switch from '@material-ui/core/Switch';
 import { connect } from 'react-redux';
 
 const styles = theme => ({
-  // root: {
-  //   flexGrow: 1
-  // },
-  grow: {
+  //font specs especially for nav
+
+  menubutton: {
+    fontFamily: 'Roboto Slab',
+    padding: theme.spacing.unit
+  },
+  logoutbuttonLeft: { margin: '0, 0, 24px, 0', padding: '0, 0, 0, 0' },
+  themelink: { marginRight: '24px' },
+  logo: {
     flexGrow: 1,
     justifyContent: 'flex-start',
     textDecoration: 'none'
   },
   gravtar: {
-    borderRadius: '50%',
-    width: '25px'
-  },
-  buttons: {
-    padding: theme.spacing.unit
+    width: '30px',
+    borderRadius: '50%'
   }
 });
 
@@ -41,8 +55,6 @@ class Navbar extends Component {
     this.props.themeHandler(this.state.checked);
   };
   logOut = e => {
-    //sor why prevent
-    // e.preventDefault();
     this.props.clearCurrentProfile();
     this.props.logUserOut();
   };
@@ -56,7 +68,7 @@ class Navbar extends Component {
         <AppBar position="static">
           <Toolbar>
             <Typography
-              className={classes.grow}
+              className={classes.logo}
               color="inherit"
               variant="title"
               component={Link}
@@ -64,54 +76,93 @@ class Navbar extends Component {
               Dispatch
             </Typography>
 
-            <Switch
+            {/* <Switch
               checked={this.state.checked}
               onChange={this.handleChange('checked')}
               value="checked"
-            />
-            <Button
-              className={classes.buttons}
-              color="inherit"
+            /> */}
+
+            <Link
               component={Link}
-              to="/browse">
-              View All
-            </Button>
+              to="/browse"
+              style={{ width: 'auto', padding: 0, marginRight: '60px' }}>
+              <Icon
+                path={mdiThemeLightDark}
+                color="beige"
+                size={1.5}
+                horizontal
+                vertical
+              />
+            </Link>
+
+            <Link
+              component={Link}
+              to="/browse"
+              style={{ width: 'auto', padding: 0 }}>
+              <Icon
+                path={mdiAccountDetails}
+                color="beige"
+                size={1.5}
+                horizontal
+                vertical
+              />
+            </Link>
 
             {!isAuthenticated ? (
               <Fragment>
-                <Button color="inherit" component={Link} to="/signin">
+                <Button
+                  className={classes.menubutton}
+                  color="inherit"
+                  component={Link}
+                  to="/signin">
                   Login
                 </Button>
-                <Button color="inherit" component={Link} to="register">
+                <Button
+                  className={classes.menubutton}
+                  color="inherit"
+                  component={Link}
+                  to="register">
                   Sign Up
                 </Button>
               </Fragment>
             ) : (
               <Fragment>
-                <Button
-                  className={classes.buttons}
-                  style={{ marginRight: '24px' }}
-                  color="inherit"
+                <Link
                   component={Link}
-                  to="/profile">
-                  View Me
-                </Button>
-                (/* //sor */}
-                {/* <Link to={`/profile/${props.profile.handle}`}>View Profile</Link>                                                                                                                    */}
-                <img
-                  className={classes.gravtar}
-                  src={user.avatar}
-                  alt={user.name}
-                  style={{ width: '25px', marginRight: '5px' }}
-                  title="You must have a Gravatar connected to your email to display an image"
-                />{' '}
-                <Button
-                  style={{ padding: 0 }}
+                  to="/profile"
+                  style={{ width: 'auto', padding: 0, marginRight: '24px' }}>
+                  <Icon
+                    color="beige"
+                    path={mdiAccount}
+                    size={1.5}
+                    horizontal
+                    vertical
+                  />
+                </Link>
+                {/* //sor */}
+                {/* <Link to={`/profile/${props.profile.handle}`}>View Profile</Link>     */}
+                <IconButton
+                  className={classes.logoutbuttonLeft}
+                  size="small"
                   onClick={this.logOut}
                   color="inherit">
                   {/* add the avatar */}
-                  Logout
-                </Button>
+                  <Icon
+                    color="beige"
+                    path={mdiLogout}
+                    size={1.5}
+                    horizontal
+                    vertical
+                  />
+                </IconButton>
+                <span>
+                  <img
+                    className={classes.gravtar}
+                    src={user.avatar}
+                    alt={user.name}
+                    title="You must have a Gravatar connected to your email to display an image"
+                  />{' '}
+                </span>
               </Fragment>
             )}
           </Toolbar>

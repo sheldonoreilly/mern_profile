@@ -84,16 +84,28 @@ const dark = createMuiTheme({
   }
 });
 const light = createMuiTheme({
-  typography: {
-    fontFamily: ['Karma', 'serif']
-  },
   palette: {
     background: {
-      paper: '#fff'
+      paper: '#'
     },
-    text: {
-      primary: '#000',
-      secondary: '#000'
+    primary: {
+      main: '#ef6c00'
+    },
+    secondary: {
+      main: '#ffc400'
+    }
+  }
+});
+const theme1 = createMuiTheme({
+  palette: {
+    background: {
+      paper: '#'
+    },
+    primary: {
+      main: '#ef6c00'
+    },
+    secondary: {
+      main: '#ffc400'
     }
   }
 });
@@ -106,11 +118,11 @@ class App extends Component {
   setTheme = lightColor => {
     if (lightColor === true) {
       this.setState({
-        themeColor: light
+        themeColor: theme1
       });
     } else {
       this.setState({
-        themeColor: dark
+        themeColor: theme1
       });
     }
   };
