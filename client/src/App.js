@@ -69,46 +69,19 @@ palette: {
 });
 */
 
-const dark = createMuiTheme({
-  typography: {
-    fontFamily: ['Karma', 'serif']
-  },
-  palette: {
-    background: {
-      paper: '#282c34'
-    },
-    text: {
-      primary: '#fff',
-      secondary: '#000'
-    }
-  }
-});
+const dark = createMuiTheme({});
 const light = createMuiTheme({
   palette: {
-    background: {
-      paper: '#'
-    },
     primary: {
-      main: '#ef6c00'
+      main: '#344955'
     },
     secondary: {
-      main: '#ffc400'
-    }
+      main: '#fff'
+    },
+    type: 'light'
   }
 });
-const theme1 = createMuiTheme({
-  palette: {
-    background: {
-      paper: '#'
-    },
-    primary: {
-      main: '#ef6c00'
-    },
-    secondary: {
-      main: '#ffc400'
-    }
-  }
-});
+const theme1 = createMuiTheme({});
 
 class App extends Component {
   state = {

@@ -10,18 +10,15 @@ const styles = theme => ({
   paper: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
-    padding: theme.spacing.unit * 2,
-
-    backgroundImage:
-      'linear-gradient(left, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(219,219,219,1) 73%, rgba(254,254,254,1) 100%)'
+    padding: theme.spacing.unit * 2
   },
 
   gravtar: {
     borderRadius: '50%',
     margin: 'auto',
     padding: '25px',
-    width: '250px',
-    height: '250px'
+    width: '200px',
+    height: '200px'
   }
 });
 

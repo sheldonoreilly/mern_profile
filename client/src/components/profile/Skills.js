@@ -13,8 +13,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   chip: {
-    margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main
+    margin: theme.spacing.unit
   }
 });
 

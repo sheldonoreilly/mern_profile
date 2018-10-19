@@ -18,29 +18,30 @@ import Grid from '@material-ui/core/Grid';
 
 // theme.typography.pxToRem
 const styles = theme => ({
-  //   root: {
-  //     width: '100%'
-  //   },
-
+  root: {},
   layout: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 1,
-    marginRight: theme.spacing.unit * 1,
-    //so here 600 and above
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-      width: 900,
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up(700 + theme.spacing.unit * 2 * 2)]: {
+      width: 700,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
   },
-
   paper: {
     display: 'flex',
     justifyContent: 'space-between',
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
     padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3
+    }
   },
+
   cardContent: {
     display: 'flex',
     padding: 0
