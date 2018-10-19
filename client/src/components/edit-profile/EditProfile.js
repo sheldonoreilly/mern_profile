@@ -62,8 +62,15 @@ const styles = theme => ({
       // color: red[800]
     }
   },
+  socialmedia: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 1
+  },
   socialmedialink: {
     margin: theme.spacing.unit * 1
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 5
   }
 });
 
@@ -383,7 +390,7 @@ class EditProfile extends Component {
                 />
               </FormControl>
 
-              <Typography variant="headline" color="primary">
+              <Typography className={classes.socialmedia} variant="headline">
                 Social Media
               </Typography>
               <div style={{ display: 'flex', flexDirection: 'column' }}>

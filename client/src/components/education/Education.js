@@ -121,9 +121,9 @@ class Education extends Component {
       <Fragment>
         <CssBaseline />
         <div className={classes.layout}>
-          <Paper className={classes.paper}>
+          <Paper elevation={22} className={classes.paper}>
             <Button component={Link} to="/dashboard">
-              Go Back
+              <Typography variant="button">Go Back</Typography>
             </Button>
             <Typography
               variant="display2"

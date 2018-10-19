@@ -36,6 +36,9 @@ const styles = theme => ({
       marginBottom: theme.spacing.unit * 6,
       padding: theme.spacing.unit * 3
     }
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 5
   }
 });
 

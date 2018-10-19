@@ -86,8 +86,11 @@ class Dashboard extends Component {
         <div className={classes.layout}>
           <Grid container>
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Typography variant="display2" color="textPrimary">
+              <Paper elevation="22" className={classes.paper}>
+                <Typography
+                  variant="display2"
+                  color="textPrimary"
+                  style={{ marginTop: '24px' }}>
                   Dashboard
                 </Typography>
                 <Typography color="textSecondary" style={{ marginTop: 0 }}>
@@ -163,6 +166,25 @@ class Dashboard extends Component {
                       data={profile.experience}
                       handler={this.deleteExperience}
                     />
+
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end'
+                      }}>
+                      <Button
+                        variant="outlined"
+                        style={{
+                          margin: '24px 0px 8px 32px '
+                        }}>
+                        <Typography
+                          variant="button"
+                          align="center"
+                          color="error">
+                          Delete Account
+                        </Typography>
+                      </Button>
+                    </div>
                   </Fragment>
                 )}
               </Paper>

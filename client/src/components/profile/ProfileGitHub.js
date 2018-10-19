@@ -37,15 +37,9 @@ const styles = theme => ({
     fontSize: (theme.typography.fontSize = theme.typography.pxToRem(15))
   },
   chip: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit
     // backgroundColor: 'green',
-    color: 'white'
-  },
-  divider: {
-    width: '100%',
-    // maxWidth: '360px',
-    // backgroundColor: theme.palette.background.paper
-    backgroundColor: 'black'
+    // color: 'white'
   }
 });
 
@@ -81,7 +75,7 @@ class ProfileGithub extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Paper className={classes.paper}>
+      <Paper elevation={22} className={classes.paper}>
         <Typography variant="headline" align="center">
           {'Latest GitHub Repos'}
         </Typography>
@@ -96,7 +90,6 @@ class ProfileGithub extends Component {
     const repoCards = repos.map((repo, index) => {
       return (
         <Fragment key={index}>
-          <Divider className={classes.divider} />
           <Card className={classes.card}>
             <CardContent className={classes.cardcontent}>
               <div style={{ display: 'flex' }}>

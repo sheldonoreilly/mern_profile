@@ -14,7 +14,7 @@ const styles = theme => ({
   },
 
   gravtar: {
-    borderRadius: '50%',
+    // borderRadius: '50%',
     margin: 'auto',
     padding: '25px',
     width: '200px',
@@ -27,7 +27,7 @@ const ProfileHead = props => {
 
   return (
     <Fragment>
-      <Paper className={classes.paper}>
+      <Paper elevation={22} className={classes.paper}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Typography variant="display2" color="textPrimary" align="center">
             {profile.user.name}

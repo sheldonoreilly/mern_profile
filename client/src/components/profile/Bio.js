@@ -10,14 +10,21 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
     padding: theme.spacing.unit * 2
+  },
+  sectionheader: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 4
   }
 });
 
 const Skills = props => {
   const { classes, profile } = props;
   return (
-    <Paper className={classes.paper}>
-      <Typography variant="headline" align="center">
+    <Paper elevation={22} className={classes.paper}>
+      <Typography
+        className={classes.sectionheader}
+        variant="headline"
+        align="center">
         {`${profile.user.name}'s Bio`}
       </Typography>
       <Typography variant="subheading" align="center">

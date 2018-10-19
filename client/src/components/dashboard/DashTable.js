@@ -13,8 +13,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    fontSize: 18,
-    color: 'black'
+    fontSize: 18
   }
 }))(TableCell);
 
@@ -39,7 +38,6 @@ function DataTable(props) {
   return (
     <div>
       <Typography
-        color="textPrimary"
         variant="headline"
         style={{
           display: 'inline-block',

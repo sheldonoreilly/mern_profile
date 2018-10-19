@@ -4,32 +4,21 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Education from './Education';
-//divider
-import Divider from '@material-ui/core/Divider';
 
 // theme.typography.pxToRem
 const styles = theme => ({
   root: {},
   paper: {
     marginTop: theme.spacing.unit * 1,
-    marginBottom: theme.spacing.unit * 1,
+    marginBottom: theme.spacing.unit * 3,
     padding: theme.spacing.unit * 2,
 
-    //sor
     display: 'flex',
     flexDirection: 'column'
   },
-  cardtitle: {
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(25))
-  },
-  cardsubtitle: {
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(15))
-  },
-  divider: {
-    width: '100%',
-    backgroundColor: 'black'
+  sectionheader: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 4
   }
 });
 
@@ -37,9 +26,8 @@ const EducationList = props => {
   const { classes } = props;
   const { education } = props.profile;
 
-  const experiences = education.map((ex, index) => (
+  const educationItems = education.map((ex, index) => (
     <Fragment key={index}>
-      <Divider className={classes.divider} />
       <Education
         company={ex.school}
         title={ex.degree}
@@ -49,11 +37,14 @@ const EducationList = props => {
     </Fragment>
   ));
   return (
-    <Paper className={classes.paper}>
-      <Typography variant="headline" align="center">
+    <Paper elevation={22} className={classes.paper}>
+      <Typography
+        className={classes.sectionheader}
+        variant="headline"
+        align="center">
         {'Education'}
       </Typography>
-      {experiences}
+      {educationItems}
     </Paper>
   );
 };

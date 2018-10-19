@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getProfiles } from '../../actions/profileActions';
 import Profiles from './Profiles';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 //mui styling
 const styles = theme => ({
@@ -21,9 +22,14 @@ const styles = theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-    padding: theme.spacing.unit * 2
+    // marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 3,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3
+    }
   }
 });
 
@@ -34,20 +40,26 @@ class Browse extends Component {
 
   render() {
     const { profiles } = this.props.profile;
+    const { classes } = this.props;
     if (!profiles) {
       return <div>Loading</div>;
     }
-    const profileCards = profiles.map((profile, index) => (
-      <Profiles key={index} profile={profile} />
-    ));
+
+    const profileCards = profiles.map((profile, index) => {
+      return <Profiles key={index} profile={profile} />;
+    });
 
     return (
-      <Fragment>
-        <Typography variant="display1" align="center">
-          {'Developer Profiles'}
+      <Paper className={classes.paper}>
+        <Typography
+          variant="display2"
+          align="center"
+          color="textPrimary"
+          style={{ padding: '32px' }}>
+          Developer Profiles
         </Typography>
         {profileCards}
-      </Fragment>
+      </Paper>
     );
   }
 }

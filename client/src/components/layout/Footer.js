@@ -14,8 +14,8 @@ const styles = theme => ({
 const Footer = props => {
   const { classes } = props;
   return (
-    <Typography className={classes.layout} variant="title" color="inherit">
-      Copyright &copy;
+    <Typography className={classes.layout} variant="title" color="primary">
+      Dispatch
     </Typography>
   );
 };

@@ -32,14 +32,17 @@ const styles = theme => ({
   paper: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 3,
-    padding: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
-      marginTop: theme.spacing.unit * 6,
-      marginBottom: theme.spacing.unit * 6,
-      padding: theme.spacing.unit * 3
-    }
+    marginTop: theme.spacing.unit * 2.0,
+    marginBottom: theme.spacing.unit * 2.0,
+    padding: theme.spacing.unit * 2
+  },
+
+  gravtar: {
+    borderRadius: '50%',
+    margin: 'auto',
+    padding: '25px',
+    width: '150px',
+    height: '150px'
   },
 
   cardContent: {
@@ -85,7 +88,7 @@ const Profiles = props => {
   return (
     <Grid container spacing={24} className={classes.layout}>
       <Grid item xs={12}>
-        <Paper className={classes.paper}>
+        <Paper elevation={22} className={classes.paper}>
           {/* this is the card with avatar and name */}
           <CardContent className={classes.cardContent}>
             <div>
@@ -107,9 +110,10 @@ const Profiles = props => {
               </Typography>
 
               <Button
+                variant="contained"
                 className={classes.buttons}
                 style={{ marginRight: '24px' }}
-                color="inherit"
+                color="primary"
                 component={Link}
                 to={`/profile/${props.profile.handle}`}>
                 View Profile
@@ -117,6 +121,7 @@ const Profiles = props => {
             </div>
           </CardContent>
           <div className={classes.skilllist}>
+            <Typography>Skills</Typography>
             <List>
               {props.profile.skills.map((skill, index) => {
                 return (
@@ -129,6 +134,7 @@ const Profiles = props => {
                 );
               })}
             </List>
+            <Typography>Contact</Typography>
           </div>
           {/* </div> */}
         </Paper>

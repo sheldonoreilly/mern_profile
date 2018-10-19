@@ -12,15 +12,16 @@ const styles = theme => ({
   root: {},
   paper: {
     marginTop: theme.spacing.unit * 1,
-    marginBottom: theme.spacing.unit * 1,
+    marginBottom: theme.spacing.unit * 3,
     padding: theme.spacing.unit * 2,
-    //sor
+
     display: 'flex',
     flexDirection: 'column'
   },
-  divider: {
-    width: '100%',
-    backgroundColor: 'black'
+
+  sectionheader: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 4
   }
 });
 
@@ -30,7 +31,7 @@ const ExperienceList = props => {
 
   const experiences = experience.map((ex, index) => (
     <Fragment key={index}>
-      <Divider className={classes.divider} />
+      {/* <Divider className={classes.divider} /> */}
       <Experience
         company={ex.company}
         title={ex.title}
@@ -40,12 +41,17 @@ const ExperienceList = props => {
     </Fragment>
   ));
   return (
-    <Paper className={classes.paper}>
-      <Typography variant="headline" align="center">
-        {'Experience'}
-      </Typography>
-      {experiences}
-    </Paper>
+    <Fragment>
+      <Paper elevation={22} className={classes.paper}>
+        <Typography
+          className={classes.sectionheader}
+          variant="headline"
+          align="center">
+          {'Experience'}
+        </Typography>
+        {experiences}
+      </Paper>
+    </Fragment>
   );
 };
 

@@ -23,18 +23,16 @@ const styles = theme => ({
 const Experience = props => {
   const { classes, company, title, location, description } = props;
   return (
-    <Paper>
-      <Card>
-        <CardContent>
-          <Typography className={classes.cardtitle}>{company}</Typography>
-          <Typography className={classes.cardsubtitle} gutterBottom>
-            {title}
-          </Typography>
-          <Typography gutterBottom>{location}</Typography>
-          <Typography gutterBottom>{description}</Typography>
-        </CardContent>
-      </Card>
-    </Paper>
+    <Card>
+      <CardContent>
+        <Typography className={classes.cardtitle}>{company}</Typography>
+        <Typography className={classes.cardsubtitle} gutterBottom>
+          {title}
+        </Typography>
+        <Typography gutterBottom>{location}</Typography>
+        <Typography gutterBottom>{description}</Typography>
+      </CardContent>
+    </Card>
   );
 };
 Experience.propTypes = {

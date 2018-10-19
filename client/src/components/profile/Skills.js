@@ -14,14 +14,21 @@ const styles = theme => ({
   },
   chip: {
     margin: theme.spacing.unit
+  },
+  sectionheader: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 4
   }
 });
 
 const Skills = props => {
   const { classes, skills } = props;
   return (
-    <Paper className={classes.paper}>
-      <Typography variant="headline" align="center">
+    <Paper elevation={22} className={classes.paper}>
+      <Typography
+        className={classes.sectionheader}
+        variant="headline"
+        align="center">
         {'Skills'}
       </Typography>
       <div
