@@ -13,11 +13,15 @@ const styles = theme => ({
   root: {},
   socialmedialink: {
     margin: theme.spacing.unit * 1
+  },
+  socialicon: {
+    //color: theme.palette.primary.contrastText
+    color: 'red'
   }
 });
 
 const Social = props => {
-  const { personal, github, twitter, linkedIn } = props;
+  const { personal, github, twitter, linkedIn, classes } = props;
   return (
     <div
       style={{
@@ -37,21 +41,21 @@ const Social = props => {
       </p>
       <p>
         {isEmpty(twitter) ? null : (
-          <a className="text-white p-2" href={twitter} target="_blank">
+          <a href={twitter} target="_blank">
             <Icon path={mdiTwitterCircle} size={1.5} horizontal vertical />
           </a>
         )}
       </p>
       <p>
         {isEmpty(linkedIn) ? null : (
-          <a className="text-white p-2" href={linkedIn} target="_blank">
+          <a href={linkedIn} target="_blank">
             <Icon path={mdiLinkedinBox} size={1.5} horizontal vertical />
           </a>
         )}
       </p>
       <p>
         {isEmpty(github) ? null : (
-          <a className="text-white p-2" href={github} target="_blank">
+          <a href={github} target="_blank">
             <Icon path={mdiGithubCircle} size={1.5} horizontal vertical />
           </a>
         )}

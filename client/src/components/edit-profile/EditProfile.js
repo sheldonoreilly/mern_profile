@@ -285,7 +285,7 @@ class EditProfile extends Component {
               align="center"
               color="textPrimary"
               style={{ marginBottom: 0, marginTop: '32px' }}>
-              Edit your Profile
+              Edit Profile
             </Typography>
 
             <Typography

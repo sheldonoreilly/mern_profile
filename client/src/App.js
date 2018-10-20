@@ -78,7 +78,7 @@ const light = createMuiTheme({
     secondary: {
       main: '#fff'
     },
-    type: 'dark'
+    type: 'light'
   }
 });
 const theme1 = createMuiTheme({});

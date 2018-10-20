@@ -15,6 +15,7 @@ import Update from '@material-ui/icons/Update';
 import School from '@material-ui/icons/School';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 import { Button } from '@material-ui/core';
 //actions
 import {
@@ -46,6 +47,14 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
     padding: theme.spacing.unit * 2
+  },
+  divider: {
+    color: '#344955',
+    width: '100%',
+    marginTop: '10px',
+    marginBottom: '10px',
+    height: '3px',
+    backgroundColor: '#344955'
   }
 });
 
@@ -96,6 +105,7 @@ class Dashboard extends Component {
                 <Typography color="textSecondary" style={{ marginTop: 0 }}>
                   {greeting}
                 </Typography>
+                <Divider className={classes.divider} />
                 {isEmpty(profile) ? (
                   <Button component={Link} to="/createprofile">
                     Add Profile
