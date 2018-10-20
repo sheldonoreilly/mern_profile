@@ -90,46 +90,48 @@ class ProfileGithub extends Component {
     const repoCards = repos.map((repo, index) => {
       return (
         <Fragment key={index}>
-          <Card className={classes.card}>
-            <CardContent className={classes.cardcontent}>
-              <div style={{ display: 'flex' }}>
-                <Typography className={classes.cardtitle}>
-                  <Link
-                    to={repo.html_url}
-                    className="text-info"
-                    style={{ textDecoration: 'none' }}
-                    target="_blank">
-                    {repo.name}
-                  </Link>
-                </Typography>
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'flex-end'
-                  }}>
-                  <Chip
-                    label={`Watches: ${repo.watchers_count}`}
-                    className={classes.chip}
-                    color="primary"
-                  />
-                  <Chip
-                    label={`Stars: ${repo.stargazers_count}`}
-                    className={classes.chip}
-                    color="primary"
-                  />
-                  <Chip
-                    label={`Forks: ${repo.forks_count}`}
-                    className={classes.chip}
-                    color="secondary"
-                  />
+          <Paper elevation={22} className={classes.paper}>
+            <Card className={classes.card}>
+              <CardContent className={classes.cardcontent}>
+                <div style={{ display: 'flex' }}>
+                  <Typography className={classes.cardtitle}>
+                    <Link
+                      to={repo.html_url}
+                      className="text-info"
+                      style={{ textDecoration: 'none' }}
+                      target="_blank">
+                      {repo.name}
+                    </Link>
+                  </Typography>
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      justifyContent: 'flex-end'
+                    }}>
+                    <Chip
+                      label={`Watches: ${repo.watchers_count}`}
+                      className={classes.chip}
+                      color="primary"
+                    />
+                    <Chip
+                      label={`Stars: ${repo.stargazers_count}`}
+                      className={classes.chip}
+                      color="primary"
+                    />
+                    <Chip
+                      label={`Forks: ${repo.forks_count}`}
+                      className={classes.chip}
+                      color="secondary"
+                    />
+                  </div>
                 </div>
-              </div>
-              <Typography className={classes.cardsubtitle}>
-                {repo.description}
-              </Typography>
-            </CardContent>
-          </Card>
+                <Typography className={classes.cardsubtitle}>
+                  {repo.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Paper>
         </Fragment>
       );
     });

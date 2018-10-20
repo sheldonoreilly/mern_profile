@@ -9,8 +9,8 @@ import Education from './Education';
 const styles = theme => ({
   root: {},
   paper: {
-    marginTop: theme.spacing.unit * 1,
-    marginBottom: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
     padding: theme.spacing.unit * 2,
 
     display: 'flex',

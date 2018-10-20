@@ -31,8 +31,7 @@ const styles = theme => ({
   paper: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
-    padding: theme.spacing.unit * 2,
-    elevation: 14
+    padding: theme.spacing.unit * 2
   }
 });
 

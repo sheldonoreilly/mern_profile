@@ -11,8 +11,6 @@ import Divider from '@material-ui/core/Divider';
 const styles = theme => ({
   root: {},
   paper: {
-    marginTop: theme.spacing.unit * 1,
-    marginBottom: theme.spacing.unit * 3,
     padding: theme.spacing.unit * 2,
 
     display: 'flex',
@@ -31,7 +29,6 @@ const ExperienceList = props => {
 
   const experiences = experience.map((ex, index) => (
     <Fragment key={index}>
-      {/* <Divider className={classes.divider} /> */}
       <Experience
         company={ex.company}
         title={ex.title}
@@ -42,7 +39,7 @@ const ExperienceList = props => {
   ));
   return (
     <Fragment>
-      <Paper elevation={22} className={classes.paper}>
+      <Paper elevation={1} className={classes.paper}>
         <Typography
           className={classes.sectionheader}
           variant="headline"

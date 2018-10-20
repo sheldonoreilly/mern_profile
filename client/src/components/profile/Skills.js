@@ -31,16 +31,18 @@ const Skills = props => {
         align="center">
         {'Skills'}
       </Typography>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}>
-        {skills.map((skill, index) => (
-          <Chip key={index} label={skill} className={classes.chip} />
-        ))}
-      </div>
+      <Paper elevation={22} className={classes.paper}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}>
+          {skills.map((skill, index) => (
+            <Chip key={index} label={skill} className={classes.chip} />
+          ))}
+        </div>
+      </Paper>
     </Paper>
   );
 };

@@ -28,28 +28,30 @@ const ProfileHead = props => {
   return (
     <Fragment>
       <Paper elevation={22} className={classes.paper}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant="display2" color="textPrimary" align="center">
-            {profile.user.name}
-          </Typography>
-          <img className={classes.gravtar} src={avatar} alt="Gravatar" />
-          <Typography variant="headline" align="center">
-            {'Software Engineer'}
-          </Typography>
-          <Typography variant="subheading" align="center">
-            {profile.location}
-          </Typography>
-          {profile.social ? (
-            <Social
-              personal={profile.social.personal}
-              github={profile.social.github}
-              linkedIn={profile.social.linkedIn}
-              twitter={profile.social.twitter}
-            />
-          ) : (
-            ''
-          )}
-        </div>
+        <Paper elevation={22} className={classes.paper}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography variant="display2" color="textPrimary" align="center">
+              {profile.user.name}
+            </Typography>
+            <img className={classes.gravtar} src={avatar} alt="Gravatar" />
+            <Typography variant="headline" align="center">
+              {'Software Engineer'}
+            </Typography>
+            <Typography variant="subheading" align="center">
+              {profile.location}
+            </Typography>
+            {profile.social ? (
+              <Social
+                personal={profile.social.personal}
+                github={profile.social.github}
+                linkedIn={profile.social.linkedIn}
+                twitter={profile.social.twitter}
+              />
+            ) : (
+              ''
+            )}
+          </div>
+        </Paper>
       </Paper>
     </Fragment>
   );

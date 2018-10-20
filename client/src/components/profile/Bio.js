@@ -27,9 +27,11 @@ const Skills = props => {
         align="center">
         {`${profile.user.name}'s Bio`}
       </Typography>
-      <Typography variant="subheading" align="center">
-        {profile.bio}
-      </Typography>
+      <Paper elevation={22} className={classes.paper}>
+        <Typography variant="subheading" align="center">
+          {profile.bio}
+        </Typography>
+      </Paper>
     </Paper>
   );
 };
