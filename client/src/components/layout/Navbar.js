@@ -8,10 +8,13 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Person from '@material-ui/icons/Person';
 import Icon from '@mdi/react';
+import Tooltip from '@material-ui/core/Tooltip';
 import {
   mdiAccount,
   mdiAccountDetails,
   mdiLogout,
+  mdiLogin,
+  mdiHome,
   mdiThemeLightDark,
   mdiImageFilterBlackWhite,
   mdiSolid
@@ -32,11 +35,17 @@ const styles = theme => ({
     padding: theme.spacing.unit
   },
   logoutbuttonLeft: { margin: '0, 0, 24px, 0', padding: '0, 0, 0, 0' },
-  themelink: { marginRight: '24px' },
-  logo: {
-    flexGrow: 1,
+  themelink: {
     justifyContent: 'flex-start',
-    textDecoration: 'none'
+
+    marginRight: theme.spacing.unit * 3.5
+  },
+  applink: { flexGrow: 1 },
+  home: {
+    justifyContent: 'flex-start',
+    textDecoration: 'none',
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit * 3.5
   },
   gravtar: {
     width: '30px',
@@ -46,7 +55,7 @@ const styles = theme => ({
 
 class Navbar extends Component {
   state = {
-    checked: true
+    themeLight: true
   };
 
   handleChange = name => event => {
@@ -59,6 +68,10 @@ class Navbar extends Component {
     this.props.logUserOut();
   };
 
+  setTheme = () => {
+    this.props.themeHandler();
+  };
+
   render() {
     const { classes } = this.props;
     const { isAuthenticated, user } = this.props.auth;
@@ -67,94 +80,89 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography
-              className={classes.logo}
-              color="inherit"
-              variant="title"
-              component={Link}
-              to="/signin">
-              Dispatch
-            </Typography>
-
-            {/* <Switch
-              checked={this.state.checked}
-              onChange={this.handleChange('checked')}
-              value="checked"
-            /> */}
-
-            <Link
-              component={Link}
-              to="/browse"
-              style={{ width: 'auto', padding: 0, marginRight: '60px' }}>
-              <Icon
-                path={mdiThemeLightDark}
-                color="beige"
-                size={1.5}
-                horizontal
-                vertical
-              />
+            <Link component={Link} to="/dashboard" className={classes.home}>
+              <Tooltip title="Home">
+                <Icon
+                  path={mdiHome}
+                  color="beige"
+                  size={1.25}
+                  horizontal
+                  vertical
+                />
+              </Tooltip>
             </Link>
+            <label className={classes.applink}>
+              <Typography
+                color="secondary"
+                className={classes.layout}
+                variant="title">
+                Profiler
+              </Typography>
+            </label>
+            <Button onClick={this.setTheme} className={classes.themelink}>
+              <Tooltip title="Dark/Light Theme">
+                <Icon
+                  path={mdiThemeLightDark}
+                  color="beige"
+                  size={0.9}
+                  horizontal
+                  vertical
+                />
+              </Tooltip>
+            </Button>
 
-            <Link
-              component={Link}
-              to="/browse"
-              style={{ width: 'auto', padding: 0 }}>
-              <Icon
-                path={mdiAccountDetails}
-                color="beige"
-                size={1.5}
-                horizontal
-                vertical
-              />
-            </Link>
-
+            <Tooltip title="Browse Profiles">
+              <Button
+                className={classes.menubutton}
+                color="inherit"
+                component={Link}
+                to="/browse">
+                Browse
+              </Button>
+            </Tooltip>
             {!isAuthenticated ? (
               <Fragment>
-                <Button
-                  className={classes.menubutton}
-                  color="inherit"
-                  component={Link}
-                  to="/signin">
-                  Login
-                </Button>
-                <Button
-                  className={classes.menubutton}
-                  color="inherit"
-                  component={Link}
-                  to="register">
-                  Sign Up
-                </Button>
+                <Tooltip title="Sign In">
+                  <Button
+                    className={classes.menubutton}
+                    color="inherit"
+                    component={Link}
+                    to="/signin">
+                    Sign In
+                  </Button>
+                </Tooltip>
+
+                <Tooltip title="Register">
+                  <Button
+                    className={classes.menubutton}
+                    color="inherit"
+                    component={Link}
+                    to="/register">
+                    Sign Up
+                  </Button>
+                </Tooltip>
               </Fragment>
             ) : (
               <Fragment>
-                <Link
-                  component={Link}
-                  to="/profile"
-                  style={{ width: 'auto', padding: 0, marginRight: '24px' }}>
-                  <Icon
-                    color="beige"
-                    path={mdiAccount}
-                    size={1.5}
-                    horizontal
-                    vertical
-                  />
-                </Link>
+                <Tooltip title="Browse Profiles">
+                  <Button
+                    className={classes.menubutton}
+                    color="inherit"
+                    component={Link}
+                    to="/profile">
+                    Profile
+                  </Button>
+                </Tooltip>
                 {/* //sor */}
                 {/* <Link to={`/profile/${props.profile.handle}`}>View Profile</Link>     */}
-                <IconButton
+                <Button
                   className={classes.logoutbuttonLeft}
                   size="small"
                   onClick={this.logOut}
                   color="inherit">
                   {/* add the avatar */}
-                  <Icon
-                    color="beige"
-                    path={mdiLogout}
-                    size={1.5}
-                    horizontal
-                    vertical
-                  />
-                </IconButton>
+                  Logout
+                </Button>
                 <span>
                   <img
                     className={classes.gravtar}

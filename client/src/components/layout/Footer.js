@@ -14,8 +14,8 @@ const styles = theme => ({
 const Footer = props => {
   const { classes } = props;
   return (
-    <Typography className={classes.layout} variant="title" color="primary">
-      Dispatch
+    <Typography className={classes.layout} variant="title" color="secondary">
+      dispatch 2018
     </Typography>
   );
 };

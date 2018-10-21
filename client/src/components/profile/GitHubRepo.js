@@ -21,7 +21,7 @@ const styles = theme => ({
   },
   cardtitle: {
     fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(20)),
+    fontSize: theme.spacing.unit * 2,
     textDecoration: 'none'
   },
   cardsubtitle: {
@@ -45,10 +45,9 @@ const GitHubRepo = props => {
             <Typography className={classes.cardtitle}>
               <Link
                 to={repo.html_url}
-                className="text-info"
                 style={{ textDecoration: 'none' }}
                 target="_blank">
-                {repo.name}
+                {`sheldonoreilly/${repo.name}`}
               </Link>
             </Typography>
             <div
@@ -70,7 +69,7 @@ const GitHubRepo = props => {
               <Chip
                 label={`Forks: ${repo.forks_count}`}
                 className={classes.chip}
-                color="secondary"
+                color="primary"
               />
             </div>
           </div>

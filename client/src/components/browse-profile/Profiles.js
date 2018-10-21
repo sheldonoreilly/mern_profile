@@ -51,11 +51,11 @@ const styles = theme => ({
   },
   cardtitle: {
     fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(25))
+    fontSize: theme.spacing.unit * 3
   },
   cardsubtitle: {
     fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(20))
+    fontSize: theme.spacing.unit * 2
   },
   details: {
     marginLeft: theme.spacing.unit * 5,
@@ -66,7 +66,7 @@ const styles = theme => ({
   },
 
   button: {
-    // margin: theme.spacing.unit,
+    marginTop: theme.spacing.unit * 3,
     padding: theme.spacing.unit
   },
   skills: {
@@ -84,7 +84,14 @@ const styles = theme => ({
 });
 
 const Profiles = props => {
-  const { classes } = props;
+  const { classes, profile } = props;
+
+  //make a tmp arrary holding only five skills
+  var tmpArr = profile.skills;
+  if (tmpArr && tmpArr.length > 4) {
+    tmpArr = tmpArr.slice(0, 4);
+  }
+
   return (
     <Grid container spacing={24} className={classes.layout}>
       <Grid item xs={12}>
@@ -94,28 +101,34 @@ const Profiles = props => {
             <div>
               <img
                 className={classes.gravtar}
-                src={props.profile.user.avatar}
+                src={profile.user.avatar}
                 alt="Gravatar"
               />
             </div>
             <div className={classes.details}>
               <Typography align="left" className={classes.cardtitle}>
-                {props.profile.user.name}
+                {profile.user.name}
               </Typography>
               <Typography
                 align="left"
                 className={classes.cardsubtitle}
                 gutterBottom>
-                {props.profile.status}
+                {profile.status}
+              </Typography>
+              <Typography
+                align="left"
+                className={classes.cardsubtitle}
+                gutterBottom>
+                {profile.location}
               </Typography>
 
               <Button
                 variant="contained"
-                className={classes.buttons}
+                className={classes.button}
                 style={{ marginRight: '24px' }}
                 color="primary"
                 component={Link}
-                to={`/profile/${props.profile.handle}`}>
+                to={`/profile/${profile.handle}`}>
                 View Profile
               </Button>
             </div>
@@ -123,7 +136,7 @@ const Profiles = props => {
           <div className={classes.skilllist}>
             <Typography>Skills</Typography>
             <List>
-              {props.profile.skills.map((skill, index) => {
+              {tmpArr.map((skill, index) => {
                 return (
                   <ListItem key={index} className={classes.skills}>
                     <ListItemIcon>

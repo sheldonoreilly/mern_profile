@@ -23,6 +23,7 @@ const styles = theme => ({
 
 const Skills = props => {
   const { classes, skills } = props;
+
   return (
     <Paper elevation={22} className={classes.paper}>
       <Typography

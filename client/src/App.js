@@ -69,38 +69,48 @@ palette: {
 });
 */
 
-const dark = createMuiTheme({});
+const dark = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#344955'
+    },
+    secondary: {
+      main: '#d8ca05'
+    },
+    type: 'dark'
+  }
+});
 const light = createMuiTheme({
   palette: {
     primary: {
       main: '#344955'
     },
     secondary: {
-      main: '#fff'
+      main: '#d8ca05'
     },
     type: 'light'
   }
 });
-const theme1 = createMuiTheme({});
 
 class App extends Component {
   state = {
     themeColor: light
   };
 
-  setTheme = lightColor => {
-    if (lightColor === true) {
+  setTheme = () => {
+    if (this.state.themeColor === light) {
       this.setState({
-        themeColor: theme1
+        themeColor: dark
       });
     } else {
       this.setState({
-        themeColor: theme1
+        themeColor: light
       });
     }
   };
 
   render() {
+    console.log('this is the render of the app class');
     return (
       <Provider store={store}>
         <Router>

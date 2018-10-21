@@ -14,30 +14,12 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
     padding: theme.spacing.unit * 2
   },
-  card: {
-    display: 'flex'
-  },
-  cardcontent: {
-    width: '100%',
-    display: 'block'
-  },
-  cardtitle: {
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(20)),
-    textDecoration: 'none'
-  },
-  cardsubtitle: {
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: (theme.typography.fontSize = theme.typography.pxToRem(15))
-  },
   sectionheader: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit * 4
   },
   chip: {
     margin: theme.spacing.unit
-    // backgroundColor: 'green',
-    // color: 'white'
   }
 });
 

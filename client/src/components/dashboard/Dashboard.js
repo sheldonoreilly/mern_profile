@@ -17,6 +17,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import { Button } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
 //actions
 import {
   getCurrentProfile,
@@ -49,12 +50,12 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   divider: {
-    color: '#344955',
+    color: '#7ca57c',
     width: '100%',
     marginTop: '10px',
     marginBottom: '10px',
     height: '3px',
-    backgroundColor: '#344955'
+    backgroundColor: '#7ca57c'
   }
 });
 

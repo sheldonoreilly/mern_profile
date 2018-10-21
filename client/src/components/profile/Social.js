@@ -49,7 +49,13 @@ const Social = props => {
       <p>
         {isEmpty(linkedIn) ? null : (
           <a href={linkedIn} target="_blank">
-            <Icon path={mdiLinkedinBox} size={1.5} horizontal vertical />
+            <Icon
+              // color="#7ca57c"
+              path={mdiLinkedinBox}
+              size={1.5}
+              horizontal
+              vertical
+            />
           </a>
         )}
       </p>
