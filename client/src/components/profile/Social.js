@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 const Social = props => {
-  const { personal, github, twitter, linkedIn, classes } = props;
+  const { personal, github, twitter, linkedIn } = props;
   return (
     <div
       style={{
@@ -49,13 +49,7 @@ const Social = props => {
       <p>
         {isEmpty(linkedIn) ? null : (
           <a href={linkedIn} target="_blank">
-            <Icon
-              // color="#7ca57c"
-              path={mdiLinkedinBox}
-              size={1.5}
-              horizontal
-              vertical
-            />
+            <Icon path={mdiLinkedinBox} size={1.5} horizontal vertical />
           </a>
         )}
       </p>

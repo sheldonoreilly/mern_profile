@@ -17,7 +17,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import { Button } from '@material-ui/core';
-import Tooltip from '@material-ui/core/Tooltip';
 //actions
 import {
   getCurrentProfile,
@@ -96,7 +95,7 @@ class Dashboard extends Component {
         <div className={classes.layout}>
           <Grid container>
             <Grid item xs={12}>
-              <Paper elevation="22" className={classes.paper}>
+              <Paper elevation={22} className={classes.paper}>
                 <Typography
                   variant="display2"
                   color="textPrimary"

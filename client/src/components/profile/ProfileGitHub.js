@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
@@ -49,8 +49,8 @@ class ProfileGithub extends Component {
         this.setState({ repos: data });
         //}
       })
-      //sor no alert
-      .catch(err => alert(err));
+
+      .catch(err => console.log(err));
   }
   render() {
     const { classes } = this.props;
@@ -70,7 +70,7 @@ class ProfileGithub extends Component {
   generateRepoCards = () => {
     const { repos } = this.state;
     const repoCards = repos.map((repo, index) => {
-      return <GitHubRepo repo={repo} />;
+      return <GitHubRepo key={index} repo={repo} />;
     });
     return repoCards;
   };

@@ -110,7 +110,6 @@ class App extends Component {
   };
 
   render() {
-    console.log('this is the render of the app class');
     return (
       <Provider store={store}>
         <Router>

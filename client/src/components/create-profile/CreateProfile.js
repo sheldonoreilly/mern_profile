@@ -42,8 +42,6 @@ const styles = theme => ({
   }
 });
 
-//sor add tooltips
-
 class CreateProfile extends Component {
   state = {
     handle: '',

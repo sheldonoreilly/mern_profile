@@ -5,25 +5,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Person from '@material-ui/icons/Person';
 import Icon from '@mdi/react';
 import Tooltip from '@material-ui/core/Tooltip';
-import {
-  mdiAccount,
-  mdiAccountDetails,
-  mdiLogout,
-  mdiLogin,
-  mdiHome,
-  mdiThemeLightDark,
-  mdiImageFilterBlackWhite,
-  mdiSolid
-} from '@mdi/js';
+import { mdiHome, mdiThemeLightDark } from '@mdi/js';
 
 import { Link } from 'react-router-dom';
 import { logUserOut } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
-import Switch from '@material-ui/core/Switch';
 //react-redux
 import { connect } from 'react-redux';
 
@@ -80,7 +68,7 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Link component={Link} to="/dashboard" className={classes.home}>
+            <Link to="/dashboard" className={classes.home}>
               <Tooltip title="Home">
                 <Icon
                   path={mdiHome}
@@ -153,14 +141,11 @@ class Navbar extends Component {
                     Profile
                   </Button>
                 </Tooltip>
-                {/* //sor */}
-                {/* <Link to={`/profile/${props.profile.handle}`}>View Profile</Link>     */}
                 <Button
-                  className={classes.logoutbuttonLeft}
-                  size="small"
+                  className={classes.menubutton}
+                  // size="small"
                   onClick={this.logOut}
                   color="inherit">
-                  {/* add the avatar */}
                   Logout
                 </Button>
                 <span>

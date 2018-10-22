@@ -4,10 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Experience from './Experience';
-//divider
-import Divider from '@material-ui/core/Divider';
 
-// theme.typography.pxToRem
 const styles = theme => ({
   root: {},
   paper: {

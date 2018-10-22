@@ -8,7 +8,6 @@ import Bio from './Bio';
 //redux
 import { connect } from 'react-redux';
 //actions
-import { getCurrentProfile } from '../../actions/profileActions';
 import { getProfileByHandle } from '../../actions/profileActions';
 import ExperienceList from './ExperienceList';
 import EducationList from './EducationList';
@@ -46,20 +45,17 @@ class Profile extends Component {
     if (this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
-    console.log('we are in componentDidMount of the main profile');
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
       this.props.history.push('/not-found');
     }
-    console.log('we are in componentWillReceiveProps of the main profile');
   }
 
   render() {
     const { classes } = this.props;
     const profile1 = this.props.profile.profile;
-    console.log('we are in render of the main profile with ', profile1);
 
     if (!profile1) {
       return <h1>Loading...</h1>;
