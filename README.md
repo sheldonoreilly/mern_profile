@@ -1,88 +1,59 @@
-# Project Title
+# Mern_Profile
 
-One Paragraph of project description goes here
+Social platform for dvelopers to register and display professional profiles.  
 
-## Getting Started
+The project is a mid-sized create-react-app with integrated Redux on the front end.  Utilizing React router (incl protected routes), and Material UI (React Component GUI Elements) for View.    Auth is povided by JWT tokens on the server side.  Local Storage and auth header for storage and delivery of token. 
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The Server side api uses Express and Express routing, making use of JWT for auth, private routes and approximately 20 end-points.  All data is persisted with in a MongoDB on mLab.  
 
-### Prerequisites
+TODO: 
 
-What things you need to install the software and how to install them
+Minor bug fixes
+Dockerize the project (font and back)
+Set up CI/CD with Jenkins
+Auto push to AWS for auto deployment
 
-```
-Give examples
-```
+
+##What things you need to install the software and how to install them
+
+* Node
+* npm
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+Clone the repository.
 
-```
-Give the example
-```
+To install and run on local machine.
 
-And repeat
+npm install
+npm run dev
+Browse to localhost:3000
 
-```
-until finished
-```
+## Build tools
+* Webpack
+* Webpack dev-server
+* Babel
+* Sass
+  
+  
+## Tech Stack
+* React/ Router
+* Redux/Thunk
+- Material UI
+* Heroku
+* Node
+* Express
+* JWT
 
-End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
+Sheldon O'Reilly
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
