@@ -9,7 +9,7 @@ The Server side api uses Express and Express routing, making use of JWT for auth
 TODO: 
 
 - Minor bug fixes
-- Dockerize the project (font and back)
+- Dockerize the project (front and back)
 - Set up CI/CD with Jenkins
 - Auto push to AWS for auto deployment
 
