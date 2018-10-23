@@ -46,7 +46,9 @@ Browse to localhost:3000
 * Express
 * JWT
 
+##Deployed:
 
+https://infinite-falls-32403.herokuapp.com/ 
 
 
 ## Authors
